@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageType>Template</PackageType>
+    <PackageVersion>1.1.0-prerelease-preview3</PackageVersion>
+    <PackageId>Microsoft.WinForms.Designer.TypeEditorTemplate</PackageId>
+    <Title>WinForms TypeEditor Template</Title>
+    <Authors>The WinForms Team</Authors>
+    <Description>Template to create a Windows Forms (WinForms) TypeEditor for the Out-of-Proc Designer.</Description>
+    <PackageTags>dotnet-new;templates;WinForms;TypeEditor</PackageTags>
+
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>10.0</LangVersion>
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>content</ContentTargetFolders>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Templates\**\*" Exclude="Templates\**\bin\**;Templates\**\obj\**"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Resources.Extensions" Version="6.0.0" />
+    <Compile Remove="**\*" />
+  </ItemGroup>
+  
+</Project>

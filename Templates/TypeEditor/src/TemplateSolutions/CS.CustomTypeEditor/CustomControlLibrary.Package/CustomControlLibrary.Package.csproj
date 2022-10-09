@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <RepositoryUrl>https://github.com/dotnet/winforms-designer</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_GetFilesToPackage</TargetsForTfmSpecificContentInPackage>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+    <PackageVersion>$([System.DateTime]::Now.ToString("1.yM.dHmm"))</PackageVersion>
+    <AssemblyVersion>$([System.DateTime]::Now.ToString("yyyy.MM.dd.HHmm"))</AssemblyVersion>
+  </PropertyGroup>
+
+  <Target Name="_GetFilesToPackage">
+    <ItemGroup>
+      <_File Include="$(SolutionDir)\CustomControlLibrary\bin\$(Configuration)\net6.0-windows\CustomControlLibrary.dll" />
+      
+      <!--We need this during Control development, so we get proper Debug-Support at runtime. -->
+      <_File Include="$(SolutionDir)\CustomControlLibrary\bin\$(Configuration)\net6.0-windows\CustomControlLibrary.pdb" />
+      
+      <_File Include="$(SolutionDir)\CustomControlLibrary.Client\bin\$(Configuration)\net472\CustomControlLibrary.Client.dll" TargetDir="Design/WinForms" />
+      <_File Include="$(SolutionDir)\CustomControlLibrary.Protocol\bin\$(Configuration)\net472\CustomControlLibrary.Protocol.dll" TargetDir="Design/WinForms" />
+      <_File Include="$(SolutionDir)\CustomControlLibrary.Server\bin\$(Configuration)\net6.0-windows\CustomControlLibrary.Server.dll" TargetDir="Design/WinForms/Server" />
+      <_File Include="$(SolutionDir)\CustomControlLibrary.Protocol\bin\$(Configuration)\net6.0-windows\CustomControlLibrary.Protocol.dll" TargetDir="Design/WinForms/Server" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="@(_File)" PackagePath="$(BuildOutputTargetFolder)/$(TargetFramework)/%(_File.TargetDir)" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="CopyPackage" AfterTargets="Pack">
+    <Copy SourceFiles="$(OutputPath)..\$(PackageId).$(PackageVersion).nupkg"
+	      DestinationFolder="$(SolutionDir)NuGet\BuildOut\"/>
+  </Target>
+
+</Project>

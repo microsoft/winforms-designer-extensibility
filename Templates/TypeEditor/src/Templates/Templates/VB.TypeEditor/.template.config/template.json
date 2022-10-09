@@ -1,0 +1,74 @@
+{
+  "author": "The Microsoft WinForms Team",
+  "classifications": [
+    "WinForms",
+    "Designer",
+    "TypeEditor",
+    "ActionList",
+    "CodeDomSerializer",
+    "Solution"
+  ],
+  "name": "WinForms .NET Custom Type Editor",
+  "identity": "WinForms.Designer.TypeEditor.VBTemplate",
+  "shortName": "WinFormsTypeEditor",
+  "tags": {
+    "language": "VB",
+    "type": "solution"
+  },
+  "sourceName": "CustomControlLibrary",
+  "preferNameDirectory": "true",
+  "guids": [
+    "2F7DA330-E18E-4BD3-B622-778B23C1BF57",
+    "5A2ADC0D-8C70-486B-9D47-F0B318D5FA21",
+    "B8AB91D2-BF7D-400B-A7DC-AA822EED595D",
+    "9F683ED6-F340-4485-A72F-29A190B4BF3A",
+    "1D1547CF-EA61-481B-B573-EF234BF44D25",
+    "E52586AC-3746-4432-BFF5-5AB119CA76D1",
+    "3CDDD740-9432-4B92-A334-C93520BCA05F",
+    "A144A338-20E9-4BD7-9288-AF7DD69C1051"
+  ],
+  "symbols": {
+    "Framework": {
+      "type": "parameter",
+      "description": "The target framework for the project.",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "net6.0",
+          "description": "Target .NET 6.0 for Windows"
+        },
+        {
+          "choice": "net7.0",
+          "description": "Target .NET 7.0 for Windows"
+        },
+        {
+          "choice": "net8.0",
+          "description": "Target .NET 8.0 for Windows"
+        }
+      ],
+      "replaces": "net6.0",
+      "defaultValue": "net6.0"
+    },
+    "PropertyTypeName": {
+      "type": "parameter",
+      "defaultValue": "MyPropertyStore",
+      "replaces": "CustomPropertyStore",
+      "fileRename": "CustomPropertyStore",
+      "description": "The name of the custom type of a property of the custom control targeted by the custom type editor."
+    },
+    "TypeEditorName": {
+      "type": "parameter",
+      "defaultValue": "MyTypeEditor",
+      "replaces": "CustomTypeEditor",
+      "fileRename": "CustomTypeEditor",
+      "description": "The name of the custom type editor."
+    },
+    "CustomControlName": {
+      "type": "parameter",
+      "defaultValue": "MyControl",
+      "replaces": "CustomControl",
+      "fileRename": "CustomControl",
+      "description": "The name of the custom control containing the property of the custom property type targeted by the custom type editor."
+    }
+  }
+}

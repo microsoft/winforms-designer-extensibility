@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>CustomControlLibrary.Designer.Server</RootNamespace>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.WinForms.Designer.SDK" Version="1.1.0-prerelease-preview3.22076.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CustomControlLibrary.Protocol\CustomControlLibrary.Protocol.vbproj" />
+    <ProjectReference Include="..\CustomControlLibrary\CustomControlLibrary.vbproj" />
+  </ItemGroup>
+
+
+</Project>
