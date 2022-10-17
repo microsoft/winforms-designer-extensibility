@@ -5,11 +5,11 @@
     "Designer",
     "TypeEditor",
     "ActionList",
-    "CodeDomSerializer",
-    "Solution"
+    "CodeDomSerializer"
   ],
   "name": "WinForms .NET Custom Type Editor",
   "identity": "WinForms.Designer.TypeEditor.Template",
+  "groupIdentity": "WinForms.Designer.TypeEditor.Template",
   "shortName": "WinFormsTypeEditor",
   "tags": {
     "language": "C#",
