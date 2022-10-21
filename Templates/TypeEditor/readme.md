@@ -1,34 +1,32 @@
 # Type Editors with the modern WinForms Designer
 
-The way type editors in the modern WinForms Designer are authored changed
+The way Type Editors in the modern WinForms Designer are authored changed
 considerably with the modern Windows Forms (WinForms) Designer. Since the modern
-WinForms Designer runs out of the Visual Studio process for showing most of the
-design-time experience, type editors for complex types need to be migrated so
-that they can cooperate with the new realities of the modern WinForms Designer.
-This template package for C# and Visual Basic .NET type editors helps with that
-process.
+WinForms Designer runs outside of the Visual Studio process for showing most of
+the design-time experience, Type Editors for complex types need to be migrated
+so that they can cooperate with the new realities of the modern WinForms
+Designer. This template package for C# and Visual Basic .NET Type Editors helps
+with that process.
 
-## 10.000 feet view of this template solution
+## 30.000 feet view of this template solution
 
 Disclaimer: Don't get confused with the terminology around templates. When we
-are talking about templates, we mean Visual Studio Templates. Those are the
+are talking about templates, we mean Visual Studio templates. Those are the
 templates that you see, when you create a new project or solution inside of
-Visual Studio, or at the dotnet CLI. A template solution is therefore a
-collection of VS related projects to build such a template. A solution template
-(same words, different order), on the other hand, is a certain type of .NET
-template. There are item templates, project template and solution templates. A
-project template results in a new project. A solution template results in a new
-collection of projects, and an item template is usually used to add a project
-file of a certain type (a new Form, a new class, a new UserControl) to an
-existing project.
+Visual Studio, or at the dotnet CLI. There are these types of templates:
 
-This template solution contains the following parts:
+* Project template results in a new project.
+* Solution template results in a new collection of projects.
+* Item templates are usually used to add project files of a certain type (a new
+Form, a new class, a new UserControl) to an existing project.
+
+A template solution is therefore a collection of VS related projects to build
+such a template. This template solution contains the following parts:
 
 * Two Visual Studio solutions in both C# and VB which serve as the blue prints
-  for the solution templates, if you will. These are real WinForms control
-  designer solutions, along with a WinForms test app, whose purpose is to
-  develop the control designer's components and to test the design time
-  experience.
+  for the solution templates. These include WinForms control designer solution,
+  along with a WinForms test app, whose purpose is to develop the control
+  designer's components and to test the design time experience.
 * A raw skeleton of the solution templates, again both for C# and Visual Basic.
 * A batch file, which copies the relevant parts of the blue print solutions to
   the templates folder and then runs a couple of dotnet CLI commands to pack the
@@ -38,11 +36,11 @@ This template solution contains the following parts:
 
 ## Building the Solution Template Package
 
-A type editor for the modern out-of-process WinForms Designer is built from
-several projects. The section *Introduction to the Template Solution* gives all
-the necessary background information in detail. What’s important for building
-the templates: There are 2 Visual Studio solutions in the repo which represent a
-working type editor, both in C\# and in Visual Basic. These solutions are
+A Type Editor for the out-of-process WinForms Designer is built from several
+projects. The section *Introduction to the Template Solution* gives all the
+necessary background information in detail. What’s important for building the
+templates: There are 2 Visual Studio solutions in the repo which represent a
+working Type Editor, both in C\# and in Visual Basic. These solutions are
 located in the path
 .\\winforms-designer-extensibility\\Templates\\TypeEditor\\src\\TemplateSolutions*.
 
@@ -55,13 +53,13 @@ These solutions provide:
   render the content of a composite type named *CustomPropertyStore*, which is
   just the composition of a bunch of properties of different types.
 
-  ![Custom Control of the type editor template in WinForms Designer, showing the expanded action list](.\resources\CustomControlWithOpenedActionList.png)
+  ![Custom Control of the Type Editor template in WinForms Designer, showing the expanded action list](.\resources\CustomControlWithOpenedActionList.png)
 
 * Three projects which make up the Control Designer:
 
   * The *CustomControlLibrary.Client* project which targets the same .NET
     Framework version as Visual Studio (in the sample .NET Framework 4.7.2). It
-    holds the actual WinForms type editor, the type editor’s UI, and the
+    holds the actual WinForms Type Editor, the Type Editor’s UI, and the
     client-side view model.
   * The *CustomControlLibrary.Server* project, which targets .NET 6. It holds
     the actual control designer, a custom CodeDom serializer which
@@ -125,10 +123,10 @@ Visual Studio.
 
 * Start Visual Studio, and click on *Create a new Project*.
 * In the New-Project-Dialog, type “winforms” in the filter textbox.
-* Pick one of the available type editor templates, either for C\# or Visual
+* Pick one of the available Type Editor templates, either for C\# or Visual
   Basic.  
 
-  ![The VS new project dialog showing the type editor templates](.\resources\CreateNewTypeEditorSolution.png)
+  ![The VS new project dialog showing the Type Editor templates](.\resources\CreateNewTypeEditorSolution.png)
 
 * Click *Next*.
 * In the *Configure your Project* page, specify the following options:
@@ -146,14 +144,14 @@ Visual Studio.
   * **Framework:** Pick the .NET Version you want the server components (control
     library, control designer project) targeted against. **NOTE:** At this point
     the client projects will always target classic .NET Framework 4.7.2, as this
-    is the Visual Studio target framework version. The type editor
+    is the Visual Studio target framework version. The Type Editor
     templates support .NET Versions from 6.0 on.
-  * **PropertyTypeName:** This is the name of the individual custom property, the
-    type editor will offer the editing functionality for. In the sample project
+  * **PropertyTypeName:** This is the name of the individual custom property the
+    Type Editor will offer the editing functionality for. In the sample project
     the templates are based on, this is the `CustomPropertyStore` type. Every
     reference to this type name or file name will be renamed to the class name
-    you’re entering here.
-  * **Type Editor Name:** This is the name of the type editor. In the sample
+    you enter here.
+  * **Type Editor Name:** This is the name of the Type Editor. In the sample
     project the templates are based on, this is the `CustomTypeEditor` type.
     Every reference to this type name or file name will be renamed to the class
     name you’re entering here.
@@ -166,17 +164,18 @@ Visual Studio.
 
 ### Creating a new Type Editor Solution from the dotnet CLI
 
-After installing the templates, you are using the type editor solution templates
+After installing the templates, you are using the Type Editor solution templates
 like every other Visual Basic or C\# templates from the CLI. Refer to the help
 option for the exact parameter names. The parameters are the same as in the
 above *additional options* description:
 
 ## Introduction to the Template Solution
 
-Since .NET 3.1 started to support the WinForms Runtime, a new WinForms designer
-was needed to support .NET applications. This work required a near-complete
-re-architect of the designer, as we responded to the differences between .NET
-and the .NET Framework based WinForms designer everyone knows and loves.
+Since .NET Core 3.0 started to support the WinForms Runtime, a new WinForms
+designer was needed to support .NET applications. This work required a
+near-complete re-architect of the designer as we responded to the differences
+between .NET and the .NET Framework based WinForms designer everyone knows and
+loves.
 
 Until we added support for .NET Core applications there was only a single
 process, *devenv.exe*, that both the Visual Studio environment and the application
@@ -189,17 +188,17 @@ actual Form at design time, the server process or short *DesignToolsServer*.
 ### Enter the DesignToolsServer
 
 While simple control designer scenarios like type converters, action lists or
-CodeDom serializers don’t need any substantial rewrites, type editors are a
+CodeDom serializers don’t need any substantial rewrites, Type Editors are a
 different beast altogether.
 
 To illustrate the additional requirements which arose by introducing different
-processes, let’s look at a typical type editor for any property of type
+processes, let’s look at a typical Type Editor for any property of type
 `Image` like the Button’s *BackgroundImage* property: While the actual image
 that you picked will be rendered on a button in the server process, the dialog
 you picked the Image *with* runs in the context of Visual Studio. That in turn
 means there is communication between the two processes necessary, which custom
-type editors for the modern WinForms Designer need to take care of. In addition,
-type editor solutions also need to provide a NuGet package whose individual
+Type Editors for the modern WinForms Designer need to take care of. In addition,
+Type Editor solutions also need to provide a NuGet package whose individual
 assemblies gets partly loaded into the Visual Studio process and partly into the
 DesignToolsServer. And to that end, this NuGet needs to have a special
 structure, which a dedicated Package project takes care of. If you want to learn
@@ -217,17 +216,15 @@ needs for both C\# and Visual Basic. Let’s look at the projects which are part
 of the template solution in detail:
 
 * **\_Solution Items:** This is not really a project, but rather a solution
-  folder, which holds the readme, the *Directory.Build* Target which determines
-  the NuGet package version for the used Designer SDK version and the
-  *NuGet.config* setting. If at any point you would need to change the Designer
-  SDK version which is used throughout the solution, you would only need to
-  change them in one spot: here.
+  folder, which holds the readme, the *Directory.Build* target which determines
+  the NuGet package version for the WinForms Designer Extensibility SDK version
+  used, and the *NuGet.config* setting. If at any point you need to change
+  the Designer SDK version which is used throughout the solution, you would only
+  need to change them in this one spot.
 * **CustomControlLibrary.Client** This is a project of the same target framework
-  version as Visual Studio, and it holds the actual type editor UI running in
+  version as Visual Studio, and it holds the actual Type Editor UI running in
   the context of Visual Studio. It also contains the so-called client *view
-  model*, which is a UI controller class. It communicates on the one side with
-  its pendant in the server process and controls the client-based UI (a modal
-  WinForms Dialog) on the other side based on the server-provided data.
+  model*, which is a UI controller class. There are actually two view model versions. One in the client, and one in the server. Only the latter has access to the actual server types, while only the client one has direct access to the UI - that's why both are needed. Both are communicating, so that the client view model can control the UI based on that.
 * **CustomControlLibrary.Server:** This project holds every aspect of the
   control designer, which needs to be executed in the context of the server
   process. Those are
@@ -235,26 +232,25 @@ of the template solution in detail:
   * The server-side view model, which provides the necessary data to the
     client-side view model.
   * The factory class, which generates the server-side view model.
-  * A custom CodeDom serializer for the custom property type the type editor is
+  * A custom CodeDom serializer for the custom property type the Type Editor is
     handling, should one be needed.
   * A custom designer action list which can be accessed at design time through
     the designer action glyph of the control. Please note, that although these
     classes are hosted purely in the server-side designer assembly, the UI for
     the respective action list is still shown in the context of Visual Studio.
     The necessary communication with the client is done completely behind the
-    scenes by the Designer SDK. So, even if it looks like the designer action
-    lists are handled exclusively by the server process, they are not.
-  * The actual control designer, which – as one example – paints the adornments
-    for the controls. This is the only part of the UI which is actually rendered
-    server-side, and although it looks like this rendering is done in the
-    context of Visual Studio, it is not. The rendering of the Form and all its
-    components at design time is done by the DesignToolsServer and just
-    projected on the client-area of Visual Studio Design surface. But! Although
-    rendered on the server-side, there is no direct interaction with the message
-    queue of the server. Every keyboard- and mouse-input is still received in the
-    Visual Studio-based client process, and the results of that are communicated
-    to the server. That is the way the WinForms Designer ensures that no
-    deadlocks will occur due to competing message queues of different processes.
+    scenes by the Designer SDK.
+  * The actual control designer, among other things, paints the adorners for the
+    controls. This is the only part of the UI which is rendered server-side.
+    Although it looks like this rendering is done in the context of Visual
+    Studio, it is not. The rendering of the Form and all its components at
+    design time is done by the DesignToolsServer process and projected on the
+    client-area of Visual Studio Design surface. Although rendered on the
+    server-side, there is no direct interaction with the message queue of the
+    server. Every keyboard- and mouse-input is still received in the Visual
+    Studio-based client process, and then communicated to the server. This is
+    how the WinForms Designer ensures that no deadlocks can occur due to
+    competing message queues of different processes.
 
 * **CustomControlLibrary.Protocol:** This project contains all the classes
   which are necessary for the communication between the client and the server
@@ -266,38 +262,38 @@ of the template solution in detail:
 * **CustomControlLibrary:** This is the project, which contains your actual
   custom control(s).
 
-* **CustomControlLibrary.Package:** This is the project which creates the NuGet
-  package. This NuGet package organizes the individual control designer
-  components for the DesignToolsServer server process and the Visual Studio
-  client process in respective folders, so that the required parts are
-  available for the processes at design time.
+* **CustomControlLibrary.Package:** This is the project which creates the
+  control library's NuGet package. This NuGet package organizes the individual
+  control designer components for the DesignToolsServer server process and the
+  Visual Studio client process in respective folders, so that the required parts
+  are available for the processes at design time.
 
 ### Invoking Type Editors, In Process vs. Out-Of-Process
 
-In the classic framework, invoking of a type editor is a straightforward
+In the classic framework, invoking of a Type Editor is a straightforward
 procedure. Here is what happens, when the user starts to edit a value of a
-property by opening a type editor via the Visual Studio’s property browser:
+property by opening a Type Editor via the Visual Studio’s property browser:
 
 * The user wants to set a value for a property of a control which either
   doesn’t have a default string representation (like an image or a sound file)
   or is a composite property type, which demands a more complex user
-  interaction. A type editor for that property type is defined by the
+  interaction. A Type Editor for that property type is defined by the
   `EditorAttribute` (see class `CustomPropertyStore` in the template
   project as an example).
 
-* The custom type editor class, which is usually provided along with the type
+* The custom Type Editor class, which is usually provided along with the type
   the custom control provides for that special property, is instantiated when
   the user clicks on the …-Button in the property’s cell of Visual Studio’s
   property browser.
 
-* The property browser now calls the `EditValue` method of the type editor
-  and passes the value of the property to set. In other words: The type editor
+* The property browser now calls the `EditValue` method of the Type Editor
+  and passes the value of the property to set. In other words: The Type Editor
   receives the instance of the custom property. In the example of the
   `BackgroundImage` property of the Button control, the instance would be
   the actual image. In our template example, that instance would be of type
   `CustomPropertyStore`.
 
-* The type editor now gets the `UIDialogService`, which enables the type
+* The Type Editor now gets the `UIDialogService`, which enables the type
   editor to display a modal (WinForms) dialog in the context of Visual Studio.
   It is important to show the dialog in the context of Visual Studio, because
   otherwise Windows message processing queues of different processes would run
@@ -306,7 +302,7 @@ property by opening a type editor via the Visual Studio’s property browser:
 
 * The UI converts the value in an editable format, gets the updates from the
   users, and then converts the edits back to the type of that control’s custom
-  property. The value, which the type editor returns, is now assigned by the
+  property. The value, which the Type Editor returns, is now assigned by the
   property browser to the property.
 
 And here now is the all-important difference compared to the out-of-process
@@ -322,40 +318,37 @@ custom/special property’s value directly, it’s handing it via a so-called *p
 object*.
 
 The concept of proxy objects in the client (Visual Studio) process does require
-a special infrastructure for handling user inputs in custom type editors. Let’s
+a special infrastructure for handling user inputs in custom Type Editors. Let’s
 look at what infrastructure components of the Designer we need to understand,
-before we talk about the workflow for setting the value in the OOP scenario:
+before we talk about the workflow for setting the value in the out-of-process
+scenario:
 
-* **Using View Models:** View models are for controlling aspects of a UI
-    without having a direct reference to the UI specific components. Don’t
-    confuse view models in the context of the WinForms Designer with view models
-    you might know from XAML languages, though! They are only remote relatives.
-    Yes, they are controlling the UI in a UI-technology independent way – and
-    that’s the main aspect of a view model. But no, in contrast to XAML, they
-    are not doing this by direct data binding. View models in the context of the
-    Designer are rather used to sync certain conditions of the UI between the
-    client and the server process. The class `CustomTypeEditorVMClient`
-    provides a static method `Create`, which is the dedicated way to create a
-    view model. You pass it the service provider and also the proxy object of
-    the instance of the property value to edit, which the client-side type
-    editor just got from the property browser.
+* **Using View Models:** View models are for controlling aspects of a UI without
+    having a direct reference to the UI specific components. Don’t confuse view
+    models we use here with view models you might know from XAML languages:
+    While they are also controlling the UI without having any direct
+    dependencies on the UI technology, in contrast to XAML, they are not doing
+    this by direct data binding. Here, they are used to sync certain conditions
+    of the UI between the client and the server process. The class
+    `CustomTypeEditorVMClient` provides a static method `Create`, which is the
+    dedicated way to create a view model. You pass it the service provider and
+    also the proxy object of the instance of the property value to edit, which
+    the client-side type editor just got from the property browser.
 
 * **Sessions and the DesignToolsClient:** For the communication with the
-    DesignToolsServer server process, the Designer not only need a communication
-    endpoint on the server, but also on the client side. The
-    `DesignToolsClient` class represents that client-side endpoint and
-    provides the basic mechanisms for communication with the server. To separate
-    the concerns of each open designable WinForms document within Visual Studio,
-    each open designer is associated with a session. The `Create` method in
-    the sample shows how to retrieve a session along with and the
-    `DesignToolsClient` through the service provider, and can now, with both
-    objects, talk to the server – in this case to create the respective
-    *server-side* view model.
+    DesignToolsServer server process, the Designer needs a sending and a
+    receiving endpoint. The `DesignToolsClient` class represents the client-side
+    sending endpoint and provides the basic mechanisms for communication with
+    the server. To separate the concerns of each WinForms document within Visual Studio which has been opened, each of those designer document is associated
+    with a session. The `Create` method in the sample shows how to retrieve a
+    session along with and the `DesignToolsClient` through the service provider,
+    and can now, with both objects, talk to the server – in this case to create
+    the respective *server-side* view model.
 
-* **Proxy classes:** These classes solve the basic challenge: Representing
+* **Proxy classes:** These classes solve the basic challenge of representing
     objects of server-side .NET version types which are not known to the client.
     If you select a component in the Designer, what the property browser “sees”
-    is a proxy object which kind of points to the real object in the server
+    is a proxy object which represents the real object in the server
     process. A value of a property of a complex type is also represented by a
     proxy object, since – again – its type only exists on the server, because
     it’s targeting a different .NET version. And yet again: Also, the view model
@@ -366,83 +359,87 @@ before we talk about the workflow for setting the value in the OOP scenario:
     the process boundaries.
 
 * **Data transport and remote procedure calls:** The communication between
-    client and server is always synchronous, so blocking: You define endpoints
-    in the server-process, which the client calls. The client waits, until the
-    server has finished processing those remote procedure calls. Basically, each
-    endpoint needs three dedicated classes: A *Request* class, defined in the
-    Protocol project (see below), which transports necessary data to the
-    DesignToolsServer. A *Response* class, which transports result data back to
-    the client process – also defined in the Protocol project. And lastly a
-    *Handler* class, which is the server-side remote-procedure to call, if you
-    will. In this template, two endpoints are already predefined:
-    `CreateCustomTypeEditorVM` creates the server-side view model, whose
-    instance is then hosted as a proxy-object in the client-side view model, so
-    the communication and data exchange can be simplified over those two
-    instances. And then there is also the `TypeEditorOKClick` endpoint: This
-    method is called when the user clicked the OK button of the type editor
-    during design time to indicate that they changed the value passed by the
-    property browser. Since the custom property type only exists in the
-    DesignToolsServer, the client can only pass over the individual data
-    fragments from what the user entered in the dialog to the server process.
-    But it is the server which then creates the actual instance of the value of
-    what it got passed from the client. And it eventually assigns that value to
-    the property of the user control.
+    client and server is always synchronous, in other word, blocking. You define
+    endpoints in the server-process, which the client calls. The client waits,
+    until the server has finished processing those remote procedure calls.
+    Basically, each endpoint needs three dedicated classes: 
+
+  * A *Request* class, defined in the Protocol project (see below), which
+    transports necessary data to the DesignToolsServer. 
+  * A *Response* class, which transports result data back to the client process
+    – also defined in the Protocol project.
+  * A *Handler* class, which is the server-side remote-procedure to call, if you
+    will.
+
+In this template, two endpoints are already predefined:
+`CreateCustomTypeEditorVM` creates the server-side view model, whose instance is
+then hosted as a proxy-object in the client-side view model. The communication
+and data exchange can be simplified over those two instances. And then there is
+also the `TypeEditorOKClick` endpoint: This method is called when the user
+clicked the OK button of the Type Editor during design time to indicate that
+they changed the value passed by the property browser. Since the custom property
+type only exists in the DesignToolsServer, the client can only pass over the
+individual data fragments from what the user entered in the dialog to the server
+process. But it is the server which then creates the actual instance of the
+value of what it got passed from the client. And it eventually assigns that
+value to the property of the user control.
 
 Now, with these important basics in mind, here is the workflow for setting a
-property value via a type editor in the out-of-process Designer scenario in
+property value via a Type Editor in the out-of-process Designer scenario in
 detail:
 
 * As in the classic in-process-Scenario, the user wants to set a value for a
-custom property. And again, a type editor for that property type is defined by
-the `EditorAttribute` (see class `CustomPropertyStore` in the template
-project). The first important difference: Since the type in question might not
-be available in the client process’ target framework, the type can only be
-defined as a string. Also as before, the custom type editor class is
-instantiated, when the user clicks on the …-Button in the property’s cell of the
-property browser. Now, here is a first exciting challenge that the modern
-designer faces: When the custom control lives only in the server process, and
-the actual type editor lives only in the client, how does the WinForms Designer
-finds the type editor on the client side? This is where an important component
-in the client designer project comes into play: the `TypeRoutingProvider`. It
-holds a table of `TypeRoutingDefinition` objects and assigns the names of the
-editors to the actual types. That means, if you were ever to add additional type
-editors for other property types or controls to your control library solution,
-this table must be ament and maintained accordingly. It’s best practice to use
-the `EditorNames`definitions in the Protocol project to that end, since it
-minimizes typos by providing IntelliSense support.
+custom property. And again, a Type Editor for that property type is defined by
+the `EditorAttribute` (see class `CustomPropertyStore` in the template project).
+The first important difference: Since the type in question might not be
+available in the client process’ target framework, the type can only be defined
+as a string. Also as before, the custom Type Editor class is instantiated, when
+the user clicks on the …-Button in the property’s cell of the property browser.
+Now, here is a first exciting challenge that the modern designer faces: When the
+custom control lives only in the server process, and the actual Type Editor
+lives only in the client, how does the WinForms Designer finds the Type Editor
+on the client side? This is where an important component in the client designer
+project comes into play: the `TypeRoutingProvider`. It holds a table of
+`TypeRoutingDefinition` objects and assigns the names of the editors to the
+actual types. That means, if you were ever to add additional type editors for
+other property types or controls to your control library solution, this table
+must be maintained accordingly. It’s best practice to use the
+`EditorNames`definitions in the Protocol project to that end, since it minimizes
+typos by providing IntelliSense support.
 
-* Now, yet again, the property browser calls the `EditValue` method of the
-  type editor and passes the value of the property to set. But the value now is
-  not the actual value of the property. It’s rather the proxy object, which
+* Now, as before, the property browser calls the `EditValue` method of the Type
+  Editor and passes the value of the property to set. But now the value is not
+  the actual value of the property. Instead, it is the proxy object, which
   points to the actual instance of the value in the server process. This also
-  means, processing the value must be happening in the server-process. To this
-  end, the two view model types to control the edit procedure need now to be
-  used: one on the client side (`CustomTypeEditorVMClient`), and one on the
-  server side (`CustomTypeEditorVM`). The template creates both classes for
-  you, along with the infrastructure methods to set them up.
+  means the processing the value must in the server-process. To this end, the
+  two view model types to control the edit procedure need now to be used: one on
+  the client side (`CustomTypeEditorVMClient`), and one on the server side
+  (`CustomTypeEditorVM`). The template creates both classes for you, along with
+  the infrastructure methods to set them up.
 
 * The static `Create` method of the client-side view model has now all the
-  information to create the actual client-side view model by calling the
-  `CreateViewModelClient` method of the Designer service provider, and for
-  that it passes the server-side proxy to the server view model.
+  information to create the client-side view model, and it can call the
+  `CreateViewModelClient` method of the Designer service provider. To that end,
+  it passes the server-side proxy to the server view model.
 
-* The type editor’s main task is to edit the value of type
+* The Type Editor’s main task is to edit the value of type
   `CustomPropertyStore`. To keep the example simple, this is just a composite
   type, composed of a `string`, a `DateTime`, a list of `string` elements and a
   custom Enum. As a reminder: since this type only exists server-side, the UI
-  (being in the context of Visual Studio) cannot use this type. This is where
+  (living in the context of Visual Studio) cannot use this type. This is where
   the Protocol project/assembly comes into play. The Protocol project defines
   all the transport classes, which can be used in either process. It is defined
   as a .NET standard library, so all its types can be projected and used in both
-  .NET and .NET Framework projects equally. So, to solve this requirement, we
-  mirror the `CustomPropertyStore` type with a special data class we define in
-  the Protocol project named `CustomPropertyStoreData`. This type also provides
-  the necessary methods to convert the data its hosting into the JSON format and
-  back from it, which is needed to transport it across the process’s boundaries.
-  With that, the response class for the endpoint to create the server-side view
-  model not only takes the proxy of the server-side view model, but also the
-  original values of the types, the custom property type is composed of. And
-  this data we now use to populate the type editor’s dialog client side.
+  .NET and .NET Framework projects. We mirror the `CustomPropertyStore` type
+  with a special data class we define in the Protocol project named
+  `CustomPropertyStoreData`, so that it becomes available on both sides. This
+  type also provides the necessary methods to convert the data its hosting into
+  the JSON format and back from it, which is needed to transport it across the
+  process’s boundaries. The response class for the endpoint to create the
+  server-side view model not only takes the proxy of the server-side view model,
+  but also the original values of the types which the custom property type is
+  composed of. And this data we now use to populate the Type Editor’s dialog
+  client side.
 
 * The user now edits the values.
 
@@ -453,21 +450,22 @@ minimizes typos by providing IntelliSense support.
   the `CustomTypeEditorOKClickRequest` to the server and passes the individual
   retrieved data from the user’s input of the dialog along. The endpoint’s
   handler gets those data and passes - in turn - that data to the server-side
-  view model, which then again calls its `OnClick` method, composes the actual
+  view model. That again calls its `OnClick` method, composes the actual
   instance of the custom control’s property type, and stores it in the
-  `PropertyStore` property of the server-side view model. And with that the call
-  chain seems to end here. So, the server-side view model now holds the edited
-  and committed result. But wait! How does the view model property find the way
-  back to the control’s property? That last step is done client-side, and it’s
-  kind of subtle: Remember? When the client-side view model got created, it not
-  only triggered the creation of the server-side view model. It also requested
-  the proxy of that view model to be returned to the client side. On the client,
-  the client-side view model holds the reference to the server-side view model’s
-  `PropertyStore` property over a proxy object. When the user clicks *OK* in the
-  editor, that code flow is returned to the type editor (running in the context
-  of Visual Studio), which had opened the modal dialog to begin with. Now, back in
-  the actual type editor class, it is where the assignment from this view model
-  to the actual property of the control happens:
+  `PropertyStore` property of the server-side view model. And with that, the
+  call chain seems to end here. So, the server-side view model now holds the
+  edited and committed result. One question remains! How does the view model
+  property find the way back to the control’s property? That last step is done
+  client-side, and it’s kind of subtle: Remember? When the client-side view
+  model got created, it not only triggered the creation of the server-side view
+  model. It also requested the proxy of that view model to be returned to the
+  client side. On the client, the client-side view model holds the reference to
+  the server-side view model’s `PropertyStore` property over a proxy object.
+  When the user clicks *OK* in the editor, that code flow is returned to the
+  Type Editor (running in the context of Visual Studio), which had opened the
+  modal dialog to begin with. Now, back in the actual Type Editor class, it is
+  where the assignment from this view model to the actual property of the
+  control happens:
 
 ```cs
     var dialogResult = editorService.ShowDialog(_customTypeEditorDialog);
@@ -477,7 +475,7 @@ minimizes typos by providing IntelliSense support.
         // to run the code which updates the property value. It passes the data to
         // the server, which in turn updates the server-side ViewModel.
         // When it's time to return the value from the client-side ViewModel back to the
-        // Property Browser (which has called the type editor in the first place), the client-side
+        // Property Browser (which has called the Type Editor in the first place), the client-side
         // ViewModel accesses its PropertyStore property, which in turn gets the required PropertyStore
         // proxy object directly from the server-side ViewModel.
         value = viewModelClient.PropertyStore;
