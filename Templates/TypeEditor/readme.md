@@ -8,11 +8,11 @@ so that they can cooperate with the new realities of the modern WinForms
 Designer. This template package for C# and Visual Basic .NET Type Editors helps
 with that process.
 
-## 30.000 feet view of this template solution
+## 30,000 feet view of this template solution
 
 Disclaimer: Don't get confused with the terminology around templates. When we
 are talking about templates, we mean Visual Studio templates. Those are the
-templates that you see, when you create a new project or solution inside of
+templates that you see when you create a new project or solution inside of
 Visual Studio, or at the dotnet CLI. There are these types of templates:
 
 * Project template results in a new project.
@@ -62,10 +62,10 @@ These solutions provide:
     holds the actual WinForms Type Editor, the Type Editor’s UI, and the
     client-side view model.
   * The *CustomControlLibrary.Server* project, which targets .NET 6. It holds
-    the actual control designer, a custom CodeDom serializer which
+    the actual control designer, along with a custom CodeDom serializer which
     determines the necessary steps to generate custom property code for
-    `InitializeComponent`, a designer action list implementation for the
-    control (see screenshot above) and finally a couple of methods in the
+    `InitializeComponent`. The project also contains a designer action list implementation for the
+    control (see screenshot above). Finally it includes a couple of methods in the
     server-side view model, which are called by the client to control aspects of
     the UI.
   * The *CustomControlLibrary.Protocol* project which holds all the classes
@@ -154,7 +154,7 @@ Visual Studio.
   * **Type Editor Name:** This is the name of the Type Editor. In the sample
     project the templates are based on, this is the `CustomTypeEditor` type.
     Every reference to this type name or file name will be renamed to the class
-    name you’re entering here.
+    name you enter here.
   * **CustomControlName:** This is the name of the custom control. In the sample
   project the templates are based on, this is the `CustomControl` type. And
   again, every reference to this type name or file name will be renamed to the
@@ -223,7 +223,7 @@ of the template solution in detail:
   need to change them in this one spot.
 * **CustomControlLibrary.Client** This is a project of the same target framework
   version as Visual Studio, and it holds the actual Type Editor UI running in
-  the context of Visual Studio. It also contains the so-called client *view
+  the context of Visual Studio. It also contains the client *view
   model*, which is a UI controller class. There are actually two view model versions. One in the client, and one in the server. Only the latter has access to the actual server types, while only the client one has direct access to the UI - that's why both are needed. Both are communicating, so that the client view model can control the UI based on that.
 * **CustomControlLibrary.Server:** This project holds every aspect of the
   control designer, which needs to be executed in the context of the server
@@ -240,7 +240,7 @@ of the template solution in detail:
     the respective action list is still shown in the context of Visual Studio.
     The necessary communication with the client is done completely behind the
     scenes by the Designer SDK.
-  * The actual control designer, among other things, paints the adorners for the
+  * The actual control designer, which among other things, paints the adorners for the
     controls. This is the only part of the UI which is rendered server-side.
     Although it looks like this rendering is done in the context of Visual
     Studio, it is not. The rendering of the Form and all its components at
@@ -270,8 +270,8 @@ of the template solution in detail:
 
 ### Invoking Type Editors, In Process vs. Out-Of-Process
 
-In the classic framework, invoking of a Type Editor is a straightforward
-procedure. Here is what happens, when the user starts to edit a value of a
+In the classic framework the invoking of a Type Editor is a straightforward
+procedure. Here is what happens - when the user starts to edit a value of a
 property by opening a Type Editor via the Visual Studio’s property browser:
 
 * The user wants to set a value for a property of a control which either
@@ -328,15 +328,15 @@ scenario:
     models we use here with view models you might know from XAML languages:
     While they are also controlling the UI without having any direct
     dependencies on the UI technology, in contrast to XAML, they are not doing
-    this by direct data binding. Here, they are used to sync certain conditions
+    this by direct data binding. Here, they are used to synchronize certain conditions
     of the UI between the client and the server process. The class
     `CustomTypeEditorVMClient` provides a static method `Create`, which is the
-    dedicated way to create a view model. You pass it the service provider and
-    also the proxy object of the instance of the property value to edit, which
+    dedicated way to create a view model. You pass the `create` method the service provider and
+    also the proxy object representing the instance of the property value to edit, which
     the client-side type editor just got from the property browser.
 
 * **Sessions and the DesignToolsClient:** For the communication with the
-    DesignToolsServer server process, the Designer needs a sending and a
+    DesignToolsServer server process the Designer needs a sending and a
     receiving endpoint. The `DesignToolsClient` class represents the client-side
     sending endpoint and provides the basic mechanisms for communication with
     the server. To separate the concerns of each WinForms document within Visual Studio which has been opened, each of those designer document is associated
