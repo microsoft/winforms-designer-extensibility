@@ -1,22 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-	<PropertyGroup>
-		<TargetFramework>net472</TargetFramework>
-		<UseWindowsForms>true</UseWindowsForms>
-		<LangVersion>9.0</LangVersion>
-		<Nullable>enable</Nullable>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\TileRepeater\TileRepeater.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TileRepeater\TileRepeater.csproj" />
+  </ItemGroup>
 
-	<ItemGroup>
-	  <Reference Include="System.Design" />
-	</ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Design" />
+  </ItemGroup>
 
-	<ItemGroup>
-	  <Compile Update="Properties\Resources.Designer.cs">
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>Resources.resx</DependentUpon>
@@ -25,8 +25,8 @@
 
 	<ItemGroup>
 	  <EmbeddedResource Update="Properties\Resources.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
-	</ItemGroup>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

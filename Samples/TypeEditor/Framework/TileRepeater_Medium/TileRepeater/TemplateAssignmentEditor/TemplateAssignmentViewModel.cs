@@ -26,6 +26,12 @@ namespace WinForms.Tiles.Designer
             _typeResolutionService = (ITypeDiscoveryService)serviceProvider.GetService(typeof(ITypeDiscoveryService));
         }
 
+        public TypeInfoData[]? TemplateTypes { get; private set; }
+        public TypeInfoData[]? TileContentTypes { get; private set; }
+        public string? TemplateQualifiedTypename { get; set; }
+        public string? TileContentQualifiedTypename { get; set; }
+        public TemplateAssignment? TemplateAssignment { get; set; }
+
         /// <summary>
         ///  Creates an instance of this ViewModelClient and initializes it with the ServerTypes 
         ///  from which the Data Sources can be generated.
@@ -42,6 +48,7 @@ namespace WinForms.Tiles.Designer
             clientViewModel.Initialize(templateAssignment);
             return clientViewModel;
         }
+
         public void Initialize(TemplateAssignment? templateAssignment)
         {
             // We need the template type list...
@@ -111,11 +118,5 @@ namespace WinForms.Tiles.Designer
             var tileContentType = Type.GetType(TileContentQualifiedTypename!);
             TemplateAssignment = new(templateType, tileContentType);
         }
-
-        public TypeInfoData[]? TemplateTypes { get; private set; }
-        public TypeInfoData[]? TileContentTypes { get; private set; }
-        public string? TemplateQualifiedTypename { get; set; }
-        public string? TileContentQualifiedTypename { get; set; }
-        public TemplateAssignment? TemplateAssignment { get; set; }
     }
 }
