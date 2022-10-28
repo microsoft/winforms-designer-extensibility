@@ -26,13 +26,15 @@ namespace WinForms.Tiles
             "in the data source what TileContent based type UserControl should be used for rendering " +
             "a visual separator on binding.";
 
-        private const string DataSourceDescription = 
+        private const string DataSourceDescription =
             "Gets or sets the data source for the TileRepeater control.";
 
         private IBindingList? _dataSource;
         private Action? _listUnbinder;
 
         private int _previousListCount;
+        private TemplateAssignment? _itemTemplate;
+        private TemplateAssignment? _separatorTemplate;
 
         public TileRepeater()
         {
@@ -56,10 +58,46 @@ namespace WinForms.Tiles
         /// the data on binding.
         /// </summary>
         [Description(ItemTemplateDescription)]
-        public TemplateAssignment? ItemTemplate { get; set; }
+        public TemplateAssignment? ItemTemplate
+        {
+            get => _itemTemplate;
+            set
+            {
+                if (_itemTemplate == value)
+                {
+                    return;
+                }
+
+                _itemTemplate = value;
+
+                // We update the rendered content only at design-time, not at runtime.
+                if (IsHandleCreated && this.IsAncestorSiteInDesignMode())
+                {
+                    Invalidate();
+                }
+            }
+        }
 
         [Description(SeparatorTemplateDescription)]
-        public TemplateAssignment? SeparatorTemplate { get; set; }
+        public TemplateAssignment? SeparatorTemplate
+        {
+            get => _separatorTemplate;
+            set
+            {
+                if (_separatorTemplate == value)
+                {
+                    return;
+                }
+
+                _separatorTemplate = value;
+
+                // We update the rendered content only at design-time, not at runtime.
+                if (IsHandleCreated && this.IsAncestorSiteInDesignMode())
+                {
+                    Invalidate();
+                }
+            }
+        }
 
         /// <summary>
         /// Gets or sets the data source for the TileRepeater control.
@@ -153,7 +191,7 @@ namespace WinForms.Tiles
             var templateTypes = new[] { ItemTemplate };
 
             if (_dataSource is null ||
-                ItemTemplate is null || 
+                ItemTemplate is null ||
                 ItemTemplate.TileContentControlType is null)
             {
                 ResumeLayout();
@@ -162,7 +200,7 @@ namespace WinForms.Tiles
 
             foreach (var item in _dataSource)
             {
-                if (GetTemplateControlInstance(item.GetType(),templateTypes) is Tile tileControl &&
+                if (GetTemplateControlInstance(item.GetType(), templateTypes) is Tile tileControl &&
                     tileControl.TileContent.BindingSourceComponent is { })
                 {
                     tileControl.TileContent.BindingSourceComponent.DataSource = item;
@@ -260,7 +298,7 @@ namespace WinForms.Tiles
                             tileControl.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
                         }
 
-                        currentY += tileControl.Margin.Top+tileControl.Height+tileControl.Margin.Bottom;
+                        currentY += tileControl.Margin.Top + tileControl.Height + tileControl.Margin.Bottom;
                     }
                     else
                     {
@@ -277,7 +315,7 @@ namespace WinForms.Tiles
                         tileControl.Top = currentY;
 
                         currentX += tileControl.Margin.Left + tileControl.Width + tileControl.Margin.Right;
-                        
+
                         maxRowHeight = Math.Max(
                             maxRowHeight,
                             tileControl.Margin.Top + tileControl.Height + tileControl.Margin.Bottom);

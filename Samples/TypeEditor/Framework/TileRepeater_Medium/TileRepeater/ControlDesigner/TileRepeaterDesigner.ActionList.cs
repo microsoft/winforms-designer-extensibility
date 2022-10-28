@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.Design;
+using System.Diagnostics;
 using System.Drawing.Design;
 
 namespace WinForms.Tiles.Designer
@@ -43,10 +44,10 @@ namespace WinForms.Tiles.Designer
             }
 
             public void InvokeItemTemplateDialog()
-                => _designer.InvokePropertyEditor(nameof(TileRepeater.ItemTemplate));
+                => InvokePropertyEditor(nameof(TileRepeater.ItemTemplate));
 
             public void InvokeSeparatorTemplateDialog()
-                => _designer.InvokePropertyEditor(nameof(TileRepeater.SeparatorTemplate));
+                => InvokePropertyEditor(nameof(TileRepeater.SeparatorTemplate));
 
             public override DesignerActionItemCollection GetSortedActionItems()
             {
@@ -81,34 +82,22 @@ namespace WinForms.Tiles.Designer
 
                 return actionItems;
             }
-        }
-    }
 
-    public static class ComponentDesignerExtension
-    {
-        public static void InvokePropertyEditor(this ComponentDesigner componentDesigner, string PropertyName)
-        {
-            if (!(componentDesigner?.Component?.Site is { } site))
+            private void InvokePropertyEditor(string PropertyName)
             {
-                throw new NullReferenceException($"ComponentDesigner's component or component's site is null.");
-            }
+                if (Debugger.IsAttached)
+                    Debugger.Break();
 
-            IComponent component = componentDesigner.Component;
-            IServiceProvider serviceProvider = site;
+                var property = TypeDescriptor.GetProperties(Component)[PropertyName];
+                var typeDescriptor = new TypeDescriptorContext(Component, property);
 
-            var property = TypeDescriptor.GetProperties(component)[PropertyName];
-            if (property is not null)
-            {
-                var editor = property.GetEditor(typeof(UITypeEditor)) as UITypeEditor;
-                if (editor is not null)
+                var editor = (UITypeEditor)property.GetEditor(typeof(UITypeEditor));
+                var value = property.GetValue(Component);
+                var newValue = editor.EditValue(typeDescriptor, value);
+
+                if (!Equals(newValue, value))
                 {
-                    var value = property.GetValue(component);
-                    var newValue = editor.EditValue(site, value);
-
-                    if (!Equals(newValue, value))
-                    {
-                        property.SetValue(component, newValue);
-                    }
+                    property.SetValue(Component, newValue);
                 }
             }
         }
