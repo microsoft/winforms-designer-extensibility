@@ -11,11 +11,11 @@ namespace WinForms.Tiles.Designer
         ///  Helper class, so we can show a Type Editor from an ActionList.
         /// </summary>
         /// <remarks>
-        ///  The idea is, that we use this as a service provider (<see cref="ITypeDescriptorContext"/> derives
+        ///  The idea is, that we use this as a service provider (<see cref="ITypeDescriptorContext"/> derived
         ///  from <see cref="IServiceProvider"/>) and a <see cref="IWindowsFormsEditorService"/> at the same time.
         ///  The latter is needed inside a Type Editor to show the actual Dialog. Unfortunately, that service is
         ///  not available, neither via the Site nor the DesignerHost in the context of the ActionList.
-        ///  So, we use this class to reroute the showing of the dialog to this class.
+        ///  So, we use this class to reroute the responsibility to show the dialog to this class.
         /// </remarks>
         private class TypeDescriptorContext : ITypeDescriptorContext, IWindowsFormsEditorService
         {
@@ -57,6 +57,8 @@ namespace WinForms.Tiles.Designer
                 return _component.Site?.GetService(serviceType);
             }
 
+            // Don't need this since the content update of the control at design time
+            // is done by the control itself.
             public void OnComponentChanged()
             {
             }

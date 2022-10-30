@@ -8,11 +8,6 @@ namespace WinForms.Tiles.Designer
 {
     internal partial class TileRepeaterDesigner : ControlDesigner
     {
-        private readonly string NotDefinedText =
-            $"No assignments.\n" +
-            $"Please set the {nameof(TileRepeater.ItemTemplate)} property\n" +
-            $"for Data Template selection assignments.";
-
         private const int DescriptionOffset = 5;
 
         public override DesignerActionListCollection ActionLists

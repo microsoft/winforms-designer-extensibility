@@ -7,7 +7,7 @@ namespace WinForms.Tiles.Serialization
 {
     internal class TemplateAssignmentCodeDomSerializer : CodeDomSerializer
     {
-        private int s_variableOccuranceCounter = 1;
+        private int variableOccuranceCounter = 1;
 
         internal const string TemplateAssignmentNamespace = "WinForms.Tiles";
 
@@ -20,13 +20,14 @@ namespace WinForms.Tiles.Serialization
 
             if (manager.Context.Current is ExpressionContext expressionContext)
             {
-                // This is the left-side assignment target, we want to generate.
-                // And it describes the current context, for which we need the
+                // This is the left-side assignment target we want to generate.
+                // And it describes the current context for which we need the
                 // object generation. Like:
                 // this.tileRepeater1.TemplateAssignmentProperty
                 var contextExpression = expressionContext.Expression;
 
                 CodeStatementCollection statements = new CodeStatementCollection();
+
                 // Let's get the actual typed instance first.
                 TemplateAssignment templateAssignment = (TemplateAssignment)value;
 
@@ -36,9 +37,9 @@ namespace WinForms.Tiles.Serialization
                 //    {codeExpression} = new TemplateAssignment(templateType1, tileContentType1);
 
 
-                // We define the locale variables upfront.
-                string templateTypeVariableName = $"templateType{s_variableOccuranceCounter}";
-                string tileContentVariableName = $"tileContentType{s_variableOccuranceCounter++}";
+                // We define the locale variables up front.
+                string templateTypeVariableName = $"templateType{variableOccuranceCounter}";
+                string tileContentVariableName = $"tileContentType{variableOccuranceCounter++}";
 
                 // Type templateType1;
                 CodeVariableDeclarationStatement templateTypeVarDeclStatement = new(
@@ -62,7 +63,7 @@ namespace WinForms.Tiles.Serialization
                     nameof(Type.GetType),
                     new CodePrimitiveExpression(templateAssignment.TileContentControlType!.AssemblyQualifiedName));
 
-                // You could also consolidate these into VariableDeclarationStatements. We didn't.
+                // One could also consolidate these into VariableDeclarationStatements. We didn't to illustrate this usage.
 
                 // templateType1 = Type.GetType("templateType");
                 CodeAssignStatement templateTypeVariableAssignment = new(

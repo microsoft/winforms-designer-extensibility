@@ -1,15 +1,13 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
-using System;
 
 namespace WinForms.Tiles
 {
     internal static class ControlExtension
     {
         public static bool IsAncestorSiteInDesignMode(this Control control)
-            => GetSitedParentSite(control) is ISite parentSite
-                ? parentSite.DesignMode
-                : false;
+            => GetSitedParentSite(control) is ISite parentSite && parentSite.DesignMode;
 
         private static ISite? GetSitedParentSite(Control control)
         {

@@ -78,8 +78,8 @@ namespace WinForms.Tiles.Designer
         // There is no OKButton_Click handler. Don't be confused!
         // This is a modal dialog. Setting the DialogResult closes it.
         // And even that can be automated: By setting the DialogResult value
-        // for the respective buttons. We then simply check here,
-        // what caused the closing of the Dialog.
+        // for the respective buttons. We then simply check here
+        // what triggered the Dialog to close.
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
             base.OnFormClosed(e);

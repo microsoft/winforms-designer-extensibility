@@ -6,7 +6,6 @@ namespace WinForms.Tiles
 {
     public partial class Tile : UserControl
     {
-        private const int SelectionFramePadding = 20;
         private bool _isInParentClientArea;
 
         public Tile()
@@ -26,6 +25,11 @@ namespace WinForms.Tiles
         protected override void OnLocationChanged(EventArgs e)
         {
             base.OnLocationChanged(e);
+            CheckIdInParentClientArea();
+        }
+
+        private void CheckIdInParentClientArea()
+        {
             if (Parent is not null)
             {
                 IsInParentClientArea =
@@ -36,10 +40,16 @@ namespace WinForms.Tiles
             }
         }
 
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+            CheckIdInParentClientArea();
+        }
+
         public virtual bool IsInParentClientArea
         {
             get => _isInParentClientArea;
-            set
+            private set
             {
                 if (_isInParentClientArea!=value)
                 {

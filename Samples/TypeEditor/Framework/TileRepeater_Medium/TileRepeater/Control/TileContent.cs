@@ -14,14 +14,14 @@ namespace WinForms.Tiles
         }
 
         /// <summary>
-        /// Controls, if the tile should unconditionally start in a new row, and also
-        /// that the next row starts in the left column.
+        ///  Controls, if the tile should unconditionally start in a new row, and also
+        ///  that the next row starts in the left column.
         /// </summary>
         [Browsable(false)]
         public virtual bool IsSeparator => false;
 
         /// <summary>
-        /// Requests the far side of this control to be anchored on the right side of its parent.
+        ///  Requests the far side of this control to be anchored on the right side of its parent.
         /// </summary>
         [Browsable(false)]
         public virtual bool RequestFarSideAnchoring => false;
@@ -41,7 +41,6 @@ namespace WinForms.Tiles
 
         protected virtual async Task<bool> LoadContentCoreAsync() 
             => await Task.FromResult(false);
-
 
         public virtual void DisposeContent()
         { }

@@ -9,7 +9,7 @@ using WinForms.Tiles.Designer;
 namespace WinForms.Tiles
 {
     [Designer(typeof(TileRepeaterDesigner)),
-     System.ComponentModel.ComplexBindingProperties("DataSource")]
+     System.ComponentModel.ComplexBindingProperties(nameof(DataSource))]
     public partial class TileRepeater : Panel
     {
         private const string AutoLayoutResizeDescription =
@@ -18,12 +18,12 @@ namespace WinForms.Tiles
 
         private const string ItemTemplateDescription =
             "Gets or sets the type assignments, which determines based on the item type " +
-            "in the data source what TileContent based type UserControl should be used for rendering " +
+            "in the data source what TileContent UserControl should be used for rendering " +
             "the data on binding.";
 
         private const string SeparatorTemplateDescription =
             "Gets or sets the type assignments, which determines based on the item type " +
-            "in the data source what TileContent based type UserControl should be used for rendering " +
+            "in the data source what TileContent UserControl should be used for rendering " +
             "a visual separator on binding.";
 
         private const string DataSourceDescription =
@@ -46,16 +46,16 @@ namespace WinForms.Tiles
         public override bool AutoScroll { get => true; set => base.AutoScroll = true; }
 
         /// <summary>
-        /// Gets or sets a value which determines, if the Layout should be recalculated on resizing automatically.
+        ///  Gets or sets a value which determines if the layout should be recalculated automatically on resizing.
         /// </summary>
         [DefaultValue(false),
          Description(AutoLayoutResizeDescription)]
         public bool AutoLayoutOnResize { get; set; }
 
         /// <summary>
-        /// Gets or sets the collection of type assignments, which determines based on the item type 
-        /// in the data source what TileContent based type UserControl should be used for rendering 
-        /// the data on binding.
+        ///  Gets or sets the collection of type assignments, which determine - based on the item type 
+        ///  in the data source - what TileContent UserControl should be used for rendering 
+        ///  the data on binding.
         /// </summary>
         [Description(ItemTemplateDescription)]
         public TemplateAssignment? ItemTemplate
@@ -78,6 +78,9 @@ namespace WinForms.Tiles
             }
         }
 
+        /// <summary>
+        ///  Gets or sets the template which should act as a separator indicator.
+        /// </summary>
         [Description(SeparatorTemplateDescription)]
         public TemplateAssignment? SeparatorTemplate
         {
@@ -100,7 +103,7 @@ namespace WinForms.Tiles
         }
 
         /// <summary>
-        /// Gets or sets the data source for the TileRepeater control.
+        ///  Gets or sets the data source for the TileRepeater control.
         /// </summary>
         [Description(DataSourceDescription)]
         [AttributeProvider(typeof(IListSource)),
@@ -241,8 +244,8 @@ namespace WinForms.Tiles
 
             return tileControl;
 
-            TileContent DefaultInstanceGetter()
-                => new TileContent() { BackColor = Color.Red };
+            static TileContent DefaultInstanceGetter()
+                => new() { BackColor = Color.Red };
         }
 
         protected override void Dispose(bool disposing)
@@ -268,7 +271,7 @@ namespace WinForms.Tiles
             lastControl.Tag = true;
 
             int currentX = Padding.Left;
-            int currentY = Padding.Top;
+            int currentY = Padding.Top + AutoScrollPosition.Y;
             int maxRowHeight = 0;
             int tilesInRow = 1;
 
