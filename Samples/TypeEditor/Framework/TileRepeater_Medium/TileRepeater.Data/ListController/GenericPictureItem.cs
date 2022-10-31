@@ -1,15 +1,22 @@
-﻿using MetadataExtractor;
-using System;
+﻿using System;
+using CommunityToolkit.Mvvm.ComponentModel;
 using TileRepeater.Data.Image;
 
 namespace TileRepeater.Data.ListController
 {
-    public class GenericPictureItem : GenericTemplateItem
+    public partial class GenericPictureItem : GenericTemplateItem
     {
-        private Tag? _metaDataTag;
+        // This attribute automatically generates the Property in a way so it's raising the correct INotifyPropertyChanged.
+        [ObservableProperty]
         private string? _filename;
+
+        [ObservableProperty]
         private int _width;
+
+        [ObservableProperty]
         private int _height;
+
+        [ObservableProperty]
         private DateTime? _dateTaken;
 
         public GenericPictureItem(ImageMetaData imageMetaData)
@@ -18,36 +25,6 @@ namespace TileRepeater.Data.ListController
             Height = imageMetaData.Height;
             DateTaken = imageMetaData.DateTaken;
             Filename = imageMetaData.Filename;
-        }
-
-        public string? Filename
-        {
-            get => _filename;
-            set => SetProperty(ref _filename, value);
-        }
-
-        public Tag? MetadataTag
-        {
-            get => _metaDataTag;
-            set => SetProperty(ref _metaDataTag, value);
-        }
-
-        public int Width
-        {
-            get => _width;
-            set => SetProperty(ref _width, value);
-        }
-
-        public int Height
-        {
-            get => _height;
-            set => SetProperty(ref _height, value);
-        }
-
-        public DateTime? DateTaken
-        {
-            get => _dateTaken;
-            set => SetProperty(ref _dateTaken, value);
         }
     }
 }

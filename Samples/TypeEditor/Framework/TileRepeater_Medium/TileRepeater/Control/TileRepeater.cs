@@ -230,7 +230,7 @@ namespace WinForms.Tiles
 
                 try
                 {
-                    tileContentInstance = (Activator.CreateInstance(tileContentType) as TileContent)!;
+                    tileContentInstance = (TileContent) Activator.CreateInstance(tileContentType);
                     tileContentInstance.Size = tileContentInstance.PreferredSize;
                 }
                 catch (Exception)
@@ -278,55 +278,58 @@ namespace WinForms.Tiles
             foreach (Control control in Controls)
             {
                 // We only touching Tile controls.
-                if (control is Tile tileControl)
+                if (control is not Tile tileControl)
                 {
-                    tileControl.Size = control.PreferredSize;
+                    continue;
+                }
 
-                    if (tileControl.TileContent.IsSeparator)
+                tileControl.Size = control.PreferredSize;
+
+                if (tileControl.TileContent.IsSeparator)
+                {
+                    currentY += maxRowHeight;
+                    currentX = Padding.Left;
+                    maxRowHeight = 0;
+
+                    tileControl.Left = currentX;
+                    tileControl.Top = currentY;
+
+                    if (tileControl.TileContent.RequestFarSideAnchoring)
+                    {
+                        tileControl.Width = Right -
+                            (Padding.Right + Padding.Left +
+                             tileControl.Margin.Left + tileControl.Margin.Right +
+                             SystemInformation.VerticalScrollBarWidth);
+
+                        tileControl.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+                    }
+
+                    currentY += tileControl.Margin.Top + tileControl.Height + tileControl.Margin.Bottom;
+                }
+                else
+                {
+                    if (currentX +
+                        tileControl.Margin.Left +
+                        tileControl.Width +
+                        tileControl.Margin.Right > ClientSize.Width && tilesInRow > 1)
                     {
                         currentY += maxRowHeight;
                         currentX = Padding.Left;
                         maxRowHeight = 0;
-
-                        tileControl.Left = currentX;
-                        tileControl.Top = currentY;
-
-                        if (tileControl.TileContent.RequestFarSideAnchoring)
-                        {
-                            tileControl.Width = Right -
-                                (Padding.Right + Padding.Left +
-                                 tileControl.Margin.Left + tileControl.Margin.Right +
-                                 SystemInformation.VerticalScrollBarWidth);
-
-                            tileControl.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-                        }
-
-                        currentY += tileControl.Margin.Top + tileControl.Height + tileControl.Margin.Bottom;
+                        tilesInRow = 1;
                     }
-                    else
-                    {
-                        if (currentX + tileControl.Margin.Left + tileControl.Width + tileControl.Margin.Right > ClientSize.Width &&
-                            tilesInRow > 1)
-                        {
-                            currentY += maxRowHeight;
-                            currentX = Padding.Left;
-                            maxRowHeight = 0;
-                            tilesInRow = 1;
-                        }
 
-                        tileControl.Left = currentX;
-                        tileControl.Top = currentY;
+                    tileControl.Left = currentX;
+                    tileControl.Top = currentY;
 
-                        currentX += tileControl.Margin.Left + tileControl.Width + tileControl.Margin.Right;
+                    currentX += tileControl.Margin.Left + tileControl.Width + tileControl.Margin.Right;
 
-                        maxRowHeight = Math.Max(
-                            maxRowHeight,
-                            tileControl.Margin.Top + tileControl.Height + tileControl.Margin.Bottom);
+                    maxRowHeight = Math.Max(
+                        maxRowHeight,
+                        tileControl.Margin.Top + tileControl.Height + tileControl.Margin.Bottom);
 
-
-                        lastControl = tileControl;
-                        tilesInRow++;
-                    }
+                    lastControl = tileControl;
+                    tilesInRow++;
                 }
             }
 

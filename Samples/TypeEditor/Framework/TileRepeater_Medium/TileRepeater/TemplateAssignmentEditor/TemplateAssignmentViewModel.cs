@@ -7,8 +7,6 @@ namespace WinForms.Tiles.Designer
 {
     internal partial class TemplateAssignmentViewModel 
     {
-        private ITypeDiscoveryService _typeResolutionService;
- 
         private const string SystemNamespace = "System";
         private const string MicrosoftNamespace = "Microsoft";
         private const string AccessibilityNamespace = "Accessibility";
@@ -20,6 +18,8 @@ namespace WinForms.Tiles.Designer
             $"{SystemNamespace}.",
             $"{MicrosoftNamespace}."
         };
+
+        private ITypeDiscoveryService _typeResolutionService;
 
         private TemplateAssignmentViewModel(IServiceProvider serviceProvider)
         {

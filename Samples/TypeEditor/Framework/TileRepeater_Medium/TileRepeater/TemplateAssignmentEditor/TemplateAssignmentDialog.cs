@@ -33,7 +33,7 @@ namespace WinForms.Tiles.Designer
         public IServiceProvider ServiceProvider { get; }
         public ITypeDescriptorContext? Context { get; set; }
         public IDesignerHost? Host { get; set; }
-        public TemplateAssignmentViewModel? ViewModel { get; set; }
+        public TemplateAssignmentViewModel ViewModel { get; protected set; }
 
         private void PopulateContent()
         {
@@ -42,8 +42,9 @@ namespace WinForms.Tiles.Designer
             RepopulateTemplateTypes();
 
             _tileContentTilesListbox.BeginUpdate();
+
             _tileContentTilesListbox.Items.AddRange(
-                ViewModel!.TileContentTypes
+                ViewModel.TileContentTypes
                     .Select((tileTypeItem) => new ListBoxTypeItem(tileTypeItem))
                     .Cast<object>()
                     .ToArray());
@@ -59,7 +60,7 @@ namespace WinForms.Tiles.Designer
             _templateTypesListBox.BeginUpdate();
             _templateTypesListBox.Items.Clear();
 
-            var templateTypes = ViewModel!.TemplateTypes
+            var templateTypes = ViewModel.TemplateTypes
                     .Select((templateTypeItem) => new ListBoxTypeItem(templateTypeItem));
 
             if (_INotifyPropertyChangedFilterCheckBox.Checked)
@@ -83,6 +84,7 @@ namespace WinForms.Tiles.Designer
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
             base.OnFormClosed(e);
+
             if (DialogResult == DialogResult.OK)
             {
                 ExecuteOkCommand();
@@ -95,10 +97,8 @@ namespace WinForms.Tiles.Designer
             {
                 return;
             }
-            else
-            {
-                UpdateUI();
-            }
+
+            UpdateUI();
         }
 
         private void TileContentTilesListbox_SelectedIndexChanged(object sender, EventArgs e)
@@ -107,10 +107,8 @@ namespace WinForms.Tiles.Designer
             {
                 return;
             }
-            else
-            {
-                UpdateUI();
-            }
+
+            UpdateUI();
         }
 
         private void ClearSelectionsButton_Click(object sender, EventArgs e)
@@ -132,8 +130,8 @@ namespace WinForms.Tiles.Designer
                 : ((ListBoxTypeItem)_tileContentTilesListbox.SelectedItem).TypeInfo;
 
             // Assign the AssemblyQualifiedName, so we can look up the type server-side for both.
-            ViewModel!.TemplateQualifiedTypename = templateType?.AssemblyQualifiedName;
-            ViewModel!.TileContentQualifiedTypename = tileContentType?.AssemblyQualifiedName;
+            ViewModel.TemplateQualifiedTypename = templateType?.AssemblyQualifiedName;
+            ViewModel.TileContentQualifiedTypename = tileContentType?.AssemblyQualifiedName;
 
             // Controlling the UI...
             if (templateType is null && tileContentType is null)
@@ -167,10 +165,10 @@ namespace WinForms.Tiles.Designer
 
         internal void ExecuteOkCommand()
         {
-            ViewModel!.OKClick();
+            ViewModel.OKClick();
         }
 
         public TemplateAssignment? TemplateAssignment
-            => ViewModel!.TemplateAssignment;
+            => ViewModel.TemplateAssignment;
     }
 }

@@ -109,11 +109,17 @@ namespace TileRepeaterDemo.TileTemplates
 
         protected async virtual void OnImageFilenameChanged(EventArgs e)
         {
-            ImageFilenameChanged?.Invoke(this, e);
-
-            if (AutoLoad)
+            try
             {
-                await LoadImageAsync();
+                ImageFilenameChanged?.Invoke(this, e);
+
+                if (AutoLoad)
+                {
+                    await LoadImageAsync();
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
@@ -148,7 +154,6 @@ namespace TileRepeaterDemo.TileTemplates
             {
                 Image?.Dispose();
                 Image = await LoadImageAsync(_imageFilename!, rescaleTo);
-
             }
             catch (Exception)
             {

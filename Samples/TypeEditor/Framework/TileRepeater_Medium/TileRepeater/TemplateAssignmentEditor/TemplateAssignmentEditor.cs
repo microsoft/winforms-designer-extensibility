@@ -31,7 +31,6 @@ namespace WinForms.Tiles.Designer
             _templateAssignmentDialog ??= new TemplateAssignmentDialog(provider, viewModel);
             _templateAssignmentDialog.Context = context;
             _templateAssignmentDialog.Host = designerHost;
-            _templateAssignmentDialog.ViewModel = viewModel;
 
             // We don't need to do anything, since the Dialog has already set the
             // property server-side.

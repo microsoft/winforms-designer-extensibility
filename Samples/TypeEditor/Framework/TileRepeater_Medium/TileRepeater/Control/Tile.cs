@@ -15,9 +15,8 @@ namespace WinForms.Tiles
 
         public override Size GetPreferredSize(Size proposedSize)
         {
-            var size=TileContent.GetPreferredSize(proposedSize);
-            size += new Size(Padding.Left, Padding.Top) + 
-                new Size(Padding.Right, Padding.Bottom);
+            var size = TileContent.GetPreferredSize(proposedSize);
+            size += new Size(Padding.Left, Padding.Top) + new Size(Padding.Right, Padding.Bottom);
 
             return size;
         }
@@ -51,7 +50,7 @@ namespace WinForms.Tiles
             get => _isInParentClientArea;
             private set
             {
-                if (_isInParentClientArea!=value)
+                if (_isInParentClientArea != value)
                 {
                     _isInParentClientArea = value;
                     OnIsInParentClientAreaChanged();
@@ -65,10 +64,8 @@ namespace WinForms.Tiles
             {
                 try
                 {
-                    // This is a fire-and-forget,
-                    // so we need to catch a potential
-                    // exception of the async content load
-                    // and just swallow it.
+                    // This is a fire-and-forget, so we need to catch a potential
+                    // exception of the async content load and just swallow it.
                     await TileContent.LoadContentAsync();
                 }
                 catch (Exception)
@@ -89,7 +86,7 @@ namespace WinForms.Tiles
                     });
                 }
 
-                return (_contentPanel.Controls[0] as TileContent)!;
+                return (TileContent) _contentPanel.Controls[0];
             }
             set
             {

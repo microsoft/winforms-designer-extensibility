@@ -2,14 +2,17 @@
 
 namespace TileRepeater.Data.ListController
 {
-    public class GenericTemplateItem : ObservableObject
+    public partial class GenericTemplateItem : ObservableObject
     {
+        // This attribute automatically generates the Property in a way ...
+        [ObservableProperty]
         private string? _label;
 
-        public string? Label
-        {
-            get => _label;
-            set => SetProperty(ref _label, value);
-        }
+        // ...so it's raising the correct INotifyPropertyChanged. Like this:
+        // public string? Label
+        // {
+        //     get => _label;
+        //     set => SetProperty(ref _label, value);
+        // }
     }
 }

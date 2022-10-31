@@ -20,7 +20,6 @@ namespace TileRepeaterDemo.TileTemplates
         public TileSize TileSize
         {
             get => _tileSize;
-
             set
             {
                 if (Equals(_tileSize, value))
@@ -39,11 +38,10 @@ namespace TileRepeaterDemo.TileTemplates
         protected virtual Size BaseDefaultSize => new(200, 200);
 
         public override Size GetPreferredSize(Size proposedSize)
-
             => new Size(
                 BaseDefaultSize.Width * (int)TileSize,
                 BaseDefaultSize.Height * (int)TileSize)
-            + new Size(0, _infoLabel.Height);
+                + new Size(0, _infoLabel.Height);
 
         protected async override Task<bool> LoadContentCoreAsync()
         {
