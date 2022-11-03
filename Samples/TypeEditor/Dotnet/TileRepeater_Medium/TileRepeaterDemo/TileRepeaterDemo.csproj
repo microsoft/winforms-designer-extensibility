@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TileRepeater.Package" Version="1.2211.31234" />
+  </ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\TileRepeater.Controls\TileRepeater.Controls.csproj" />
+	  <ProjectReference Include="..\TileRepeater.Data\TileRepeater.Data.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="TileTemplates\ImageContent.cs" />
+	</ItemGroup>
+</Project>
