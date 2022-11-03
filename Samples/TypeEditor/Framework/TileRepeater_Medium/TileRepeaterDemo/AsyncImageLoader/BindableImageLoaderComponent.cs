@@ -9,17 +9,17 @@ namespace TileRepeaterDemo.TileTemplates
 {
     public partial class BindableAsyncImageLoaderComponent : Component, IBindableComponent
     {
-        public event EventHandler? ImageChanged;
-        public event EventHandler? ImageFilenameChanged;
+        // We're running no more than 2 worker tasks for the image resizing at a time.
+        private static readonly SemaphoreSlim s_semaphore = new(2);
 
         private BindingContext? _bindingContext;
         private ControlBindingsCollection? _dataBindings;
-        public event EventHandler? BindingContextChanged;
         private Image? _image;
         private string? _imageFilename;
 
-        // We're running no more than 2 worker tasks for the image resizing at a time.
-        static readonly SemaphoreSlim s_semaphore = new(2);
+        public event EventHandler? ImageChanged;
+        public event EventHandler? ImageFilenameChanged;
+        public event EventHandler? BindingContextChanged;
 
         public BindableAsyncImageLoaderComponent()
         {

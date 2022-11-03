@@ -41,10 +41,11 @@ namespace TileRepeaterDemo.TileTemplates
             this._groupTextLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this._groupTextLabel.AutoSize = true;
             this._groupTextLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._genericTemplateItemBindingSource, "Label", true));
-            this._groupTextLabel.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this._groupTextLabel.Location = new System.Drawing.Point(26, 7);
+            this._groupTextLabel.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold);
+            this._groupTextLabel.Location = new System.Drawing.Point(20, 8);
+            this._groupTextLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._groupTextLabel.Name = "_groupTextLabel";
-            this._groupTextLabel.Size = new System.Drawing.Size(237, 31);
+            this._groupTextLabel.Size = new System.Drawing.Size(200, 25);
             this._groupTextLabel.TabIndex = 0;
             this._groupTextLabel.Text = "Group seperator text";
             this._groupTextLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -55,12 +56,13 @@ namespace TileRepeaterDemo.TileTemplates
             // 
             // GroupSeperatorContent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this._groupTextLabel);
+            this.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.MinimumSize = new System.Drawing.Size(0, 0);
             this.Name = "GroupSeperatorContent";
-            this.Size = new System.Drawing.Size(328, 46);
+            this.Size = new System.Drawing.Size(254, 36);
             ((System.ComponentModel.ISupportInitialize)(this._genericTemplateItemBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

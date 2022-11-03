@@ -44,11 +44,11 @@ namespace TileRepeaterDemo.TileTemplates
             this._infoLabel.AutoEllipsis = true;
             this._infoLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", this._genericPictureItemBindingSource, "Filename", true));
             this._infoLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this._infoLabel.Font = new System.Drawing.Font("Segoe UI", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this._infoLabel.Location = new System.Drawing.Point(0, 592);
-            this._infoLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this._infoLabel.Font = new System.Drawing.Font("Segoe UI", 7.875F);
+            this._infoLabel.Location = new System.Drawing.Point(0, 227);
+            this._infoLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._infoLabel.Name = "_infoLabel";
-            this._infoLabel.Size = new System.Drawing.Size(866, 48);
+            this._infoLabel.Size = new System.Drawing.Size(382, 20);
             this._infoLabel.TabIndex = 3;
             this._infoLabel.Text = "label1";
             this._infoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -62,9 +62,9 @@ namespace TileRepeaterDemo.TileTemplates
             this._pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._pictureBox.Location = new System.Drawing.Point(0, 0);
-            this._pictureBox.Margin = new System.Windows.Forms.Padding(5);
+            this._pictureBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this._pictureBox.Name = "_pictureBox";
-            this._pictureBox.Size = new System.Drawing.Size(866, 592);
+            this._pictureBox.Size = new System.Drawing.Size(382, 227);
             this._pictureBox.TabIndex = 2;
             this._pictureBox.TabStop = false;
             this._pictureBox.Paint += new System.Windows.Forms.PaintEventHandler(this._pictureBox_Paint);
@@ -75,14 +75,14 @@ namespace TileRepeaterDemo.TileTemplates
             // 
             // ImageContent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this._pictureBox);
             this.Controls.Add(this._infoLabel);
-            this.Margin = new System.Windows.Forms.Padding(8);
-            this.MinimumSize = new System.Drawing.Size(52, 26);
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.MinimumSize = new System.Drawing.Size(24, 11);
             this.Name = "ImageContent";
-            this.Size = new System.Drawing.Size(866, 640);
+            this.Size = new System.Drawing.Size(382, 247);
             ((System.ComponentModel.ISupportInitialize)(this._genericPictureItemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._pictureBox)).EndInit();
             this.ResumeLayout(false);

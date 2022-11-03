@@ -32,11 +32,12 @@
             // 
             // TileContent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.MinimumSize = new System.Drawing.Size(20, 10);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MinimumSize = new System.Drawing.Size(15, 6);
             this.Name = "TileContent";
-            this.Size = new System.Drawing.Size(100, 100);
+            this.Size = new System.Drawing.Size(77, 67);
             this.ResumeLayout(false);
 
         }

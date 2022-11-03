@@ -32,8 +32,8 @@ namespace WinForms.Tiles.Serialization
                 TemplateAssignment templateAssignment = (TemplateAssignment)value;
 
                 // Now, we want to generate:
-                //    Type templateType1 = Type.GetType("templateType");
-                //    Type tileContentType1 = Type.GetType("tileContentTime");
+                //    Type templateType1 = typeof(templateType);
+                //    Type tileContentType1 = typeof(templateType);
                 //    {codeExpression} = new TemplateAssignment(templateType1, tileContentType1);
 
                 // We define the locale variables up front.
@@ -50,29 +50,23 @@ namespace WinForms.Tiles.Serialization
                     new CodeTypeReference(nameof(Type)),
                     tileContentVariableName);
 
-                //  Type.GetType("templateType");
-                CodeMethodInvokeExpression getTypeInvokeTemplateTypeExpression = new(
-                    new CodeTypeReferenceExpression(nameof(Type)),
-                    nameof(Type.GetType),
-                    new[] { new CodePrimitiveExpression(templateAssignment.TemplateType!.AssemblyQualifiedName) });
+                //  typeof(templateType);
+                CodeTypeOfExpression getTypeOfTemplateExpression =
+                    new CodeTypeOfExpression(new CodeTypeReference(templateAssignment.TemplateType!));
 
-                // Type.GetType("tileContentTime");
-                CodeMethodInvokeExpression getTypeInvokeTileContentTypeExpression = new(
-                    new CodeTypeReferenceExpression(nameof(Type)),
-                    nameof(Type.GetType),
-                    new CodePrimitiveExpression(templateAssignment.TileContentControlType!.AssemblyQualifiedName));
+                //  typeof(tileType);
+                CodeTypeOfExpression getTypeOfTileExpression = 
+                    new CodeTypeOfExpression(new CodeTypeReference(templateAssignment.TileContentControlType!));
 
-                // One could also consolidate these into VariableDeclarationStatements. We didn't - to illustrate this usage.
-
-                // templateType1 = Type.GetType("templateType");
+                // templateType1 = typeof(templateType);
                 CodeAssignStatement templateTypeVariableAssignment = new(
                     new CodeVariableReferenceExpression(templateTypeVariableName),
-                    getTypeInvokeTemplateTypeExpression);
+                    getTypeOfTemplateExpression);
 
-                // tileContentType1 = Type.GetType("tileContentTime");
+                // tileContentType1 = typeof(tileType);
                 CodeAssignStatement tileContentTypeVariableAssignment = new(
                     new CodeVariableReferenceExpression(tileContentVariableName),
-                    getTypeInvokeTileContentTypeExpression);
+                    getTypeOfTileExpression);
 
                 // new TemplateAssignment(templateType1, tileContentType1);
                 CodeObjectCreateExpression templateAssignmentCreateExpression = new(

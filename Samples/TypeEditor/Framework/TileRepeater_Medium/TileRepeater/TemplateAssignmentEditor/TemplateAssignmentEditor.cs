@@ -16,7 +16,7 @@ namespace WinForms.Tiles.Designer
             IServiceProvider provider,
             object? value)
         {
-            if (provider is null || !(value is null or TemplateAssignment))
+            if (provider is null || value is not (null or TemplateAssignment))
             {
                 return value;
             }
