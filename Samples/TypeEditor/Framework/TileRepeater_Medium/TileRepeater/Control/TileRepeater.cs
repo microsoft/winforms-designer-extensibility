@@ -191,7 +191,7 @@ namespace WinForms.Tiles
             SuspendLayout();
             Controls.Clear();
 
-            var templateTypes = new[] { ItemTemplate };
+            var templateTypes = new[] { ItemTemplate, SeparatorTemplate };
 
             if (_dataSource is null ||
                 ItemTemplate is null ||
