@@ -9,11 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="TileRepeater.Package" Version="1.2211.31234" />
+    <PackageReference Include="TileRepeater.Package" Version="1.2211.111439" />
   </ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\TileRepeater.Controls\TileRepeater.Controls.csproj" />
 	  <ProjectReference Include="..\TileRepeater.Data\TileRepeater.Data.csproj" />
 	</ItemGroup>
 

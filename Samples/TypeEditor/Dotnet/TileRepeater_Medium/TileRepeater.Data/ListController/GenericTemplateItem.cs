@@ -14,5 +14,7 @@ namespace TileRepeater.Data.ListController
         //     get => _label;
         //     set => SetProperty(ref _label, value);
         // }
+
+        public override string ToString() => $"{{{Label}}}";
     }
 }

@@ -2,7 +2,7 @@
 
 namespace TileRepeaterDemo
 {
-    partial class TileRepeaterTestForm
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -61,8 +61,10 @@ namespace TileRepeaterDemo
             // 
             // _pictureTileRepeater
             // 
+            this._pictureTileRepeater.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this._pictureTileRepeater.DataSource = this._templateItemsBindingSource;
             this._pictureTileRepeater.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._pictureTileRepeater.ForeColor = System.Drawing.SystemColors.HighlightText;
             this._pictureTileRepeater.ItemTemplate = new WinForms.Tiles.TemplateAssignment(templateType1, tileContentType1);
             this._pictureTileRepeater.Location = new System.Drawing.Point(0, 28);
             this._pictureTileRepeater.Name = "_pictureTileRepeater";
@@ -136,7 +138,7 @@ namespace TileRepeaterDemo
             this._imagePathStatusLabel.Spring = true;
             this._imagePathStatusLabel.Text = "ImagePath";
             // 
-            // TileRepeaterTestForm
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -146,7 +148,7 @@ namespace TileRepeaterDemo
             this.Controls.Add(this._mainMenuStrip);
             this.MainMenuStrip = this._mainMenuStrip;
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "TileRepeaterTestForm";
+            this.Name = "MainForm";
             this.Text = "WinForms PictureViewer";
             ((System.ComponentModel.ISupportInitialize)(this._templateItemsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._uiControllerBindingSource)).EndInit();

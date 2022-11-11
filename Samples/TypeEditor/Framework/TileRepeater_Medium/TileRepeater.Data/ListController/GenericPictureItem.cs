@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using CommunityToolkit.Mvvm.ComponentModel;
 using TileRepeater.Data.Image;
 
@@ -25,6 +26,12 @@ namespace TileRepeater.Data.ListController
             Height = imageMetaData.Height;
             DateTaken = imageMetaData.DateTaken;
             Filename = imageMetaData.Filename;
+        }
+
+        public override string ToString()
+        {
+            FileInfo fileInfo = new FileInfo(Filename);
+            return $"{{{fileInfo.Name},W:{Width} H:{Height}}}";
         }
     }
 }

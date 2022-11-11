@@ -66,7 +66,7 @@ namespace WinForms.Tiles
                 _itemTemplate = value;
 
                 // We update the rendered content only at design-time, not at runtime.
-                if (IsHandleCreated && IsAncestorSiteInDesignMode)
+                if (IsHandleCreated && this.IsAncestorSiteInDesignMode)
                 {
                     Invalidate();
                 }
@@ -90,7 +90,7 @@ namespace WinForms.Tiles
                 _separatorTemplate = value;
 
                 // We update the rendered content only at design-time, not at runtime.
-                if (IsHandleCreated && IsAncestorSiteInDesignMode)
+                if (IsHandleCreated && this.IsAncestorSiteInDesignMode)
                 {
                     Invalidate();
                 }
@@ -130,7 +130,7 @@ namespace WinForms.Tiles
         {
             base.CreateHandle();
 
-            if (IsAncestorSiteInDesignMode)
+            if (this.IsAncestorSiteInDesignMode)
             {
                 PopulateDesignerContent();
             }
@@ -186,7 +186,7 @@ namespace WinForms.Tiles
             SuspendLayout();
             Controls.Clear();
 
-            var templateTypes = new[] { ItemTemplate };
+            var templateTypes = new[] { ItemTemplate, SeparatorTemplate };
 
             if (_dataSource is null ||
                 ItemTemplate is null ||
@@ -225,7 +225,7 @@ namespace WinForms.Tiles
 
                 try
                 {
-                    tileContentInstance = (TileContent)Activator.CreateInstance(tileContentType);
+                    tileContentInstance = (TileContent)Activator.CreateInstance(tileContentType)!;
                     tileContentInstance.Size = tileContentInstance.PreferredSize;
                 }
                 catch (Exception)
