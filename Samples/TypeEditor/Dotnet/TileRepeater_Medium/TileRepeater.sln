@@ -1,0 +1,89 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32130.36
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TileRepeaterDemo", "TileRepeaterDemo\TileRepeaterDemo.csproj", "{4DBCD8F8-DC91-4F9B-8F85-03478C7C1B1E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{00DCF7F4-3F97-4C3F-AFD0-1FD21F628220} = {00DCF7F4-3F97-4C3F-AFD0-1FD21F628220}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TileRepeater.Controls", "TileRepeater.Controls\TileRepeater.Controls.csproj", "{BCAE2509-A3BE-429F-A84B-BDEC1F30A120}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TileRepeater", "TileRepeater", "{C37D05FA-C525-46A8-8B4C-01F393B15E1E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TileRepeater.Designer.Client", "TileRepeater.Designer.Client\TileRepeater.Designer.Client.csproj", "{804E07B0-1D20-43FA-8191-D73982063F66}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TileRepeater.ClientServerProtocol", "TileRepeater.ClientServerProtocol\TileRepeater.ClientServerProtocol.csproj", "{4174E646-363A-4B0F-8107-FEAB9953896C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Designer", "Designer", "{4353B7BF-07E2-4F07-994C-30A6A17A88ED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TileRepeater.Designer.Server", "TileRepeater.Designer.Server\TileRepeater.Designer.Server.csproj", "{FAEF2531-D827-41EB-88ED-59D71693D894}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TileRepeater.Package", "TitleRepeater.Package\TileRepeater.Package.csproj", "{00DCF7F4-3F97-4C3F-AFD0-1FD21F628220}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BCAE2509-A3BE-429F-A84B-BDEC1F30A120} = {BCAE2509-A3BE-429F-A84B-BDEC1F30A120}
+		{FAEF2531-D827-41EB-88ED-59D71693D894} = {FAEF2531-D827-41EB-88ED-59D71693D894}
+		{4174E646-363A-4B0F-8107-FEAB9953896C} = {4174E646-363A-4B0F-8107-FEAB9953896C}
+		{804E07B0-1D20-43FA-8191-D73982063F66} = {804E07B0-1D20-43FA-8191-D73982063F66}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TileRepeater.Data", "TileRepeater.Data\TileRepeater.Data.csproj", "{B5F27F16-E2DA-4C66-A112-2C18E8BAE16C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution_Items", "Solution_Items", "{8888F7EE-F983-4B83-858A-B2505CD9458A}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.targets = Directory.Build.targets
+		NuGet.config = NuGet.config
+		readme.md = readme.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4DBCD8F8-DC91-4F9B-8F85-03478C7C1B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DBCD8F8-DC91-4F9B-8F85-03478C7C1B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DBCD8F8-DC91-4F9B-8F85-03478C7C1B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DBCD8F8-DC91-4F9B-8F85-03478C7C1B1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCAE2509-A3BE-429F-A84B-BDEC1F30A120}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCAE2509-A3BE-429F-A84B-BDEC1F30A120}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCAE2509-A3BE-429F-A84B-BDEC1F30A120}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCAE2509-A3BE-429F-A84B-BDEC1F30A120}.Release|Any CPU.Build.0 = Release|Any CPU
+		{804E07B0-1D20-43FA-8191-D73982063F66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{804E07B0-1D20-43FA-8191-D73982063F66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{804E07B0-1D20-43FA-8191-D73982063F66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{804E07B0-1D20-43FA-8191-D73982063F66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4174E646-363A-4B0F-8107-FEAB9953896C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4174E646-363A-4B0F-8107-FEAB9953896C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4174E646-363A-4B0F-8107-FEAB9953896C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4174E646-363A-4B0F-8107-FEAB9953896C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAEF2531-D827-41EB-88ED-59D71693D894}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAEF2531-D827-41EB-88ED-59D71693D894}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAEF2531-D827-41EB-88ED-59D71693D894}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAEF2531-D827-41EB-88ED-59D71693D894}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00DCF7F4-3F97-4C3F-AFD0-1FD21F628220}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00DCF7F4-3F97-4C3F-AFD0-1FD21F628220}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00DCF7F4-3F97-4C3F-AFD0-1FD21F628220}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00DCF7F4-3F97-4C3F-AFD0-1FD21F628220}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5F27F16-E2DA-4C66-A112-2C18E8BAE16C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5F27F16-E2DA-4C66-A112-2C18E8BAE16C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5F27F16-E2DA-4C66-A112-2C18E8BAE16C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5F27F16-E2DA-4C66-A112-2C18E8BAE16C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BCAE2509-A3BE-429F-A84B-BDEC1F30A120} = {C37D05FA-C525-46A8-8B4C-01F393B15E1E}
+		{804E07B0-1D20-43FA-8191-D73982063F66} = {4353B7BF-07E2-4F07-994C-30A6A17A88ED}
+		{4174E646-363A-4B0F-8107-FEAB9953896C} = {4353B7BF-07E2-4F07-994C-30A6A17A88ED}
+		{4353B7BF-07E2-4F07-994C-30A6A17A88ED} = {C37D05FA-C525-46A8-8B4C-01F393B15E1E}
+		{FAEF2531-D827-41EB-88ED-59D71693D894} = {4353B7BF-07E2-4F07-994C-30A6A17A88ED}
+		{00DCF7F4-3F97-4C3F-AFD0-1FD21F628220} = {C37D05FA-C525-46A8-8B4C-01F393B15E1E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ED24AAF5-3FB6-43A3-991E-9E10A798B727}
+	EndGlobalSection
+EndGlobal

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-using WinForms.Tiles;
+﻿using WinForms.Tiles;
 
 namespace TileRepeaterDemo
 {
@@ -37,6 +35,7 @@ namespace TileRepeaterDemo
             Type tileContentType1;
             Type templateType2;
             Type tileContentType2;
+            this._pictureTileRepeater = new WinForms.Tiles.TileRepeater();
             this._templateItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._uiControllerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._mainMenuStrip = new System.Windows.Forms.MenuStrip();
@@ -46,16 +45,32 @@ namespace TileRepeaterDemo
             this._quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._statusStrip = new System.Windows.Forms.StatusStrip();
             this._imagePathStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this._pictureTileRepeater = new WinForms.Tiles.TileRepeater();
-            templateType1 = typeof(TileRepeater.Data.ListController.GenericPictureItem);
-            tileContentType1 = typeof(TileRepeaterDemo.TileTemplates.ImageContent);
-            templateType2 = typeof(TileRepeater.Data.ListController.GenericTemplateItem);
-            tileContentType2 = typeof(TileRepeaterDemo.TileTemplates.GroupSeperatorContent);
+            templateType1 = Type.GetType("TileRepeater.Data.ListController.GenericPictureItem, TileRepeater.Data, Version=1" +
+        ".0.0.0, Culture=neutral, PublicKeyToken=null");
+            tileContentType1 = Type.GetType("TileRepeaterDemo.TileTemplates.ImageContent, TileRepeaterDemo, Version=1.0.0.0, C" +
+        "ulture=neutral, PublicKeyToken=null");
+            templateType2 = Type.GetType("TileRepeater.Data.ListController.GenericTemplateItem, TileRepeater.Data, Version=" +
+        "1.0.0.0, Culture=neutral, PublicKeyToken=null");
+            tileContentType2 = Type.GetType("TileRepeaterDemo.TileTemplates.GroupSeperatorContent, TileRepeaterDemo, Version=1" +
+        ".0.0.0, Culture=neutral, PublicKeyToken=null");
             ((System.ComponentModel.ISupportInitialize)(this._templateItemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._uiControllerBindingSource)).BeginInit();
             this._mainMenuStrip.SuspendLayout();
             this._statusStrip.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // _pictureTileRepeater
+            // 
+            this._pictureTileRepeater.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this._pictureTileRepeater.DataSource = this._templateItemsBindingSource;
+            this._pictureTileRepeater.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._pictureTileRepeater.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this._pictureTileRepeater.ItemTemplate = new WinForms.Tiles.TemplateAssignment(templateType1, tileContentType1);
+            this._pictureTileRepeater.Location = new System.Drawing.Point(0, 28);
+            this._pictureTileRepeater.Name = "_pictureTileRepeater";
+            this._pictureTileRepeater.SeparatorTemplate = new WinForms.Tiles.TemplateAssignment(templateType2, tileContentType2);
+            this._pictureTileRepeater.Size = new System.Drawing.Size(946, 624);
+            this._pictureTileRepeater.TabIndex = 0;
             // 
             // _templateItemsBindingSource
             // 
@@ -73,8 +88,7 @@ namespace TileRepeaterDemo
             this.fileToolStripMenuItem});
             this._mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this._mainMenuStrip.Name = "_mainMenuStrip";
-            this._mainMenuStrip.Padding = new System.Windows.Forms.Padding(5, 1, 0, 1);
-            this._mainMenuStrip.Size = new System.Drawing.Size(855, 26);
+            this._mainMenuStrip.Size = new System.Drawing.Size(946, 28);
             this._mainMenuStrip.TabIndex = 1;
             this._mainMenuStrip.Text = "menuStrip1";
             // 
@@ -111,47 +125,31 @@ namespace TileRepeaterDemo
             this._statusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this._statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._imagePathStatusLabel});
-            this._statusStrip.Location = new System.Drawing.Point(0, 463);
+            this._statusStrip.Location = new System.Drawing.Point(0, 652);
             this._statusStrip.Name = "_statusStrip";
-            this._statusStrip.Padding = new System.Windows.Forms.Padding(1, 0, 13, 0);
-            this._statusStrip.Size = new System.Drawing.Size(855, 26);
+            this._statusStrip.Size = new System.Drawing.Size(946, 26);
             this._statusStrip.TabIndex = 2;
             this._statusStrip.Text = "statusStrip1";
             // 
             // _imagePathStatusLabel
             // 
             this._imagePathStatusLabel.Name = "_imagePathStatusLabel";
-            this._imagePathStatusLabel.Size = new System.Drawing.Size(802, 20);
+            this._imagePathStatusLabel.Size = new System.Drawing.Size(931, 20);
             this._imagePathStatusLabel.Spring = true;
             this._imagePathStatusLabel.Text = "ImagePath";
             // 
-            // _pictureTileRepeater
-            // 
-            this._pictureTileRepeater.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
-            this._pictureTileRepeater.DataSource = this._templateItemsBindingSource;
-            this._pictureTileRepeater.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._pictureTileRepeater.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this._pictureTileRepeater.ItemTemplate = new WinForms.Tiles.TemplateAssignment(templateType1, tileContentType1);
-            this._pictureTileRepeater.Location = new System.Drawing.Point(0, 26);
-            this._pictureTileRepeater.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this._pictureTileRepeater.Name = "_pictureTileRepeater";
-            this._pictureTileRepeater.SeparatorTemplate = new WinForms.Tiles.TemplateAssignment(templateType2, tileContentType2);
-            this._pictureTileRepeater.Size = new System.Drawing.Size(855, 437);
-            this._pictureTileRepeater.TabIndex = 0;
-            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(855, 489);
+            this.ClientSize = new System.Drawing.Size(946, 678);
             this.Controls.Add(this._pictureTileRepeater);
             this.Controls.Add(this._statusStrip);
             this.Controls.Add(this._mainMenuStrip);
-            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.MainMenuStrip = this._mainMenuStrip;
-            this.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
-            this.Text = "WinForms Picture Browser";
+            this.Text = "WinForms PictureViewer";
             ((System.ComponentModel.ISupportInitialize)(this._templateItemsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._uiControllerBindingSource)).EndInit();
             this._mainMenuStrip.ResumeLayout(false);

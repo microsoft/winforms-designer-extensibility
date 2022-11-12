@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-using TileRepeater.Data.ListController;
+﻿using TileRepeater.Data.ListController;
 
 namespace TileRepeaterDemo
 {
@@ -30,7 +28,7 @@ namespace TileRepeaterDemo
             using FolderBrowserDialog folderBrowserDialog = new()
             {
                 Description = "Open Path to Images",
-                RootFolder = Environment.SpecialFolder.Desktop
+                UseDescriptionForTitle = true
             };
 
             var dialogResult = folderBrowserDialog.ShowDialog();

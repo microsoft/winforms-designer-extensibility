@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "ClientDesigner": {
+      "commandName": "Executable",
+      "executablePath": "$(DevEnvDir)\\devenv.exe",
+      "commandLineArgs": "/rootSuffix Exp \"$(RootDir)\\TileRepeater.sln\""
+    }
+  }
+}

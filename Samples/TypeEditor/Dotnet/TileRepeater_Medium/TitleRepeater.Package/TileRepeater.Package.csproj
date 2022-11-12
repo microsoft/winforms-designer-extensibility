@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<ProduceReferenceAssembly>false</ProduceReferenceAssembly>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<RepositoryUrl>https://github.com/dotnet/winforms-designer</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_GetFilesToPackage</TargetsForTfmSpecificContentInPackage>
+		<RunPostBuildEvent>Always</RunPostBuildEvent>
+		<PackageVersion>$([System.DateTime]::Now.ToString("1.yM.dHmm"))</PackageVersion>
+		<AssemblyVersion>$([System.DateTime]::Now.ToString("yyyy.MM.dd.HHmm"))</AssemblyVersion>
+	</PropertyGroup>
+
+	<Target Name="_GetFilesToPackage">
+		<ItemGroup>
+			<_File Include="$(SolutionDir)\TileRepeater.Controls\bin\$(Configuration)\net6.0-windows\TileRepeater.Controls.dll" />
+
+			<!--We need this during Control development, so we get proper Debug-Support at runtime. -->
+			<_File Include="$(SolutionDir)\TileRepeater.Controls\bin\$(Configuration)\net6.0-windows\TileRepeater.Controls.pdb" />
+
+			<_File Include="$(SolutionDir)\TileRepeater.Designer.Client\bin\$(Configuration)\net472\TileRepeater.Designer.Client.dll" TargetDir="Design/WinForms" />
+			<_File Include="$(SolutionDir)\TileRepeater.ClientServerProtocol\bin\$(Configuration)\net472\TileRepeater.ClientServerProtocol.dll" TargetDir="Design/WinForms" />
+			<_File Include="$(SolutionDir)\TileRepeater.Designer.Server\bin\$(Configuration)\net6.0-windows\TileRepeater.Designer.Server.dll" TargetDir="Design/WinForms/Server" />
+			<_File Include="$(SolutionDir)\TileRepeater.ClientServerProtocol\bin\$(Configuration)\net6.0-windows\TileRepeater.ClientServerProtocol.dll" TargetDir="Design/WinForms/Server" />
+		</ItemGroup>
+
+		<ItemGroup>
+			<TfmSpecificPackageFile Include="@(_File)" PackagePath="$(BuildOutputTargetFolder)/$(TargetFramework)/%(_File.TargetDir)" />
+		</ItemGroup>
+	</Target>
+
+	<Target Name="CopyPackage" AfterTargets="Pack">
+		<Copy SourceFiles="$(OutputPath)..\$(PackageId).$(PackageVersion).nupkg" 
+			  DestinationFolder="$(SolutionDir)\NuGet\BuildOut\"/>
+	</Target>
+	
+</Project>

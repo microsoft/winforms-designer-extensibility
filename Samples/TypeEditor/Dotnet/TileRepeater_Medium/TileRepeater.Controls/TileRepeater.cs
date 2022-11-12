@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
-using WinForms.Tiles.Designer;
 
 namespace WinForms.Tiles
 {
-    [Designer(typeof(TileRepeaterDesigner)),
-     System.ComponentModel.ComplexBindingProperties(nameof(DataSource))]
+    [Designer("TileRepeaterDesigner"),
+     System.ComponentModel.ComplexBindingProperties("DataSource")]
     public partial class TileRepeater : Panel
     {
         private const string AutoLayoutResizeDescription =
@@ -71,7 +66,7 @@ namespace WinForms.Tiles
                 _itemTemplate = value;
 
                 // We update the rendered content only at design-time, not at runtime.
-                if (IsHandleCreated && this.IsAncestorSiteInDesignMode())
+                if (IsHandleCreated && this.IsAncestorSiteInDesignMode)
                 {
                     Invalidate();
                 }
@@ -95,7 +90,7 @@ namespace WinForms.Tiles
                 _separatorTemplate = value;
 
                 // We update the rendered content only at design-time, not at runtime.
-                if (IsHandleCreated && this.IsAncestorSiteInDesignMode())
+                if (IsHandleCreated && this.IsAncestorSiteInDesignMode)
                 {
                     Invalidate();
                 }
@@ -135,7 +130,7 @@ namespace WinForms.Tiles
         {
             base.CreateHandle();
 
-            if (this.IsAncestorSiteInDesignMode())
+            if (this.IsAncestorSiteInDesignMode)
             {
                 PopulateDesignerContent();
             }
@@ -230,7 +225,7 @@ namespace WinForms.Tiles
 
                 try
                 {
-                    tileContentInstance = (TileContent) Activator.CreateInstance(tileContentType);
+                    tileContentInstance = (TileContent)Activator.CreateInstance(tileContentType)!;
                     tileContentInstance.Size = tileContentInstance.PreferredSize;
                 }
                 catch (Exception)
