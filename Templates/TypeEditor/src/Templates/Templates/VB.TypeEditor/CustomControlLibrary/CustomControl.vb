@@ -9,7 +9,7 @@ Imports System.Windows.Forms
 ''' <remarks>
 '''  This sample custom control implements one custom property named <see cref="CustomPropertyStoreProperty"/> 
 '''  of type <see cref="CustomPropertyStore"/>. Its sole purpose is to demonstrate how to implement
-'''  a custom TypeEditor for editing this property's content at design time with the Out-Of-Process
+'''  a custom TypeEditor for editing this property's content at design time with the out-of-process
 '''  WinForms Designer. 
 ''' </remarks>
 <Designer("CustomControlDesigner")>
@@ -17,10 +17,10 @@ Public Class CustomControl
     Inherits Control
 
     ' Backing field for CustomProperty.
-    Private _customProperty As CustomPropertyStore
+    Private _customPropertyStoreProperty As CustomPropertyStore
 
     ''' <summary>
-    '''  Raised when CustomProperty changes.
+    '''  Occurs when the CustomPropertyStoreProperty changes.
     ''' </summary>
     Public Event CustomPropertyStorePropertyChanged As EventHandler
 
@@ -37,12 +37,12 @@ Public Class CustomControl
      DesignerSerializationVisibility(DesignerSerializationVisibility.Content)>
     Public Property CustomPropertyStoreProperty() As CustomPropertyStore
         Get
-            Return _customProperty
+            Return _customPropertyStoreProperty
         End Get
 
         Set(ByVal value As CustomPropertyStore)
-            If Not Equals(value, _customProperty) Then
-                _customProperty = value
+            If Not Equals(value, _customPropertyStoreProperty) Then
+                _customPropertyStoreProperty = value
                 OnCustomPropertyStoreProperty(EventArgs.Empty)
 
                 ' We update this property only at design-time, not at runtime.
@@ -61,17 +61,17 @@ Public Class CustomControl
     End Sub
 
     ''' <summary>
-    '''  Controls the Reset-Property function in the PropertyBrowser.
+    '''  Resets the <see cref="CustomPropertyStoreProperty"/>.
     ''' </summary>
     Private Sub ResetCustomPropertyStoreProperty()
         CustomPropertyStoreProperty = Nothing
     End Sub
 
     ''' <summary>
-    '''  Controls the Serialization of the Property.
+    '''  Indicates whether the <see cref="CustomPropertyStoreProperty"/> property should be persisted.
     ''' </summary>
     ''' <returns>
-    '''  <see langword="true"/>, if the CodeDOM serializer should emit code for 
+    '''  <see langword="true"/> if the CodeDOM serializer should emit code for 
     '''  assigning a valid content to the property in InitializeComponent.
     ''' </returns>
     Private Function ShouldSerializeCustomPropertyStoreProperty() As Boolean

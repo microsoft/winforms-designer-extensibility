@@ -10,7 +10,7 @@ Imports System.Drawing.Design
 '''  meaningfull way when we are editing the value at design-time from within the property grid. That is the 
 '''  reason we need a dedidcated editor (CustomTypeEditor) deriving from <see cref="UITypeEditor"/> which does
 '''  that job.
-'''  Note for CodeDom serialization: Since this is a complex type, serializing a property of this type in the 
+'''  Note for CodeDom serialization: since this is a complex type, serializing a property of this type in the 
 '''  custom control won't procude the correct code in the InitializeComponent method. Therefore, we need a 
 '''  custom serializer. Since we cannot refer to the types directly, we need to refer to them as full qualified names
 '''  and pass them to the <see cref="DesignerSerializerAttribute"/> as strings. 

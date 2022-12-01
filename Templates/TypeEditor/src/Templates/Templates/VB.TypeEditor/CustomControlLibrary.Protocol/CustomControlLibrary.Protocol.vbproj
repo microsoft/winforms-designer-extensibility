@@ -4,10 +4,7 @@
     <TargetFrameworks>net6.0-windows;net472</TargetFrameworks>
     <RootNamespace>CustomControlLibrary.Protocol</RootNamespace>
     <OptionStrict>On</OptionStrict>
+    <UseDesignerSdk>true</UseDesignerSdk>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.WinForms.Designer.SDK" Version="1.1.0-prerelease-preview3.22076.5" />
-  </ItemGroup>
 
 </Project>

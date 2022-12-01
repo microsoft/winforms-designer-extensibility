@@ -9,14 +9,14 @@ namespace CustomControlLibrary
     /// <remarks>
     ///  This sample custom control implements one custom property named <see cref="CustomPropertyStoreProperty"/> 
     ///  of type <see cref="CustomPropertyStore"/>. Its sole purpose is to demonstrate how to implement
-    ///  a custom TypeEditor for editing this property's content at design time with the Out-Of-Process
+    ///  a custom TypeEditor for editing this property's content at design time with the out-of-process
     ///  WinForms Designer. 
     /// </remarks>
     [Designer("CustomControlDesigner")]
     public class CustomControl : Control
     {
         // Backing field for CustomProperty.
-        private CustomPropertyStore? _customProperty;
+        private CustomPropertyStore? _customPropertyStoreProperty;
 
         /// <summary>
         ///  Raised when CustomProperty changes.
@@ -37,13 +37,13 @@ namespace CustomControlLibrary
          DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public CustomPropertyStore? CustomPropertyStoreProperty
         {
-            get => _customProperty;
+            get => _customPropertyStoreProperty;
 
             set
             {
-                if (!Equals(value, _customProperty))
+                if (!Equals(value, _customPropertyStoreProperty))
                 {
-                    _customProperty = value;
+                    _customPropertyStoreProperty = value;
                     OnCustomPropertyStoreProperty(EventArgs.Empty);
 
                     // We update this property only at design-time, not at runtime.
@@ -58,13 +58,13 @@ namespace CustomControlLibrary
         /// <summary>
         ///  Raises the <see cref="CustomPropertyStorePropertyChanged"/> event.
         /// </summary>
-        protected virtual void OnCustomPropertyStoreProperty(EventArgs e) 
+        protected virtual void OnCustomPropertyStoreProperty(EventArgs e)
             => CustomPropertyStorePropertyChanged?.Invoke(this, e);
 
         /// <summary>
         ///  Controls the Reset-Property function in the PropertyBrowser.
         /// </summary>
-        private void ResetCustomPropertyStoreProperty() 
+        private void ResetCustomPropertyStoreProperty()
             => CustomPropertyStoreProperty = null;
 
         /// <summary>
@@ -85,22 +85,22 @@ namespace CustomControlLibrary
 
             // We show this only at Design time, not at runtime.
             if (IsAncestorSiteInDesignMode)
-            { 
+            {
 
-            // Drawing a frame around the control's borders:
-            var pen = new Pen(ForeColor);
-            var brush = new SolidBrush(ForeColor);
+                // Drawing a frame around the control's borders:
+                var pen = new Pen(ForeColor);
+                var brush = new SolidBrush(ForeColor);
 
-            // Drawing the contents of the CustomProperty.
-            e.Graphics.DrawString(
-                BuildContentString(CustomPropertyStoreProperty),
-                Font,
-                brush, 
-                point: new(10, 10));
+                // Drawing the contents of the CustomProperty.
+                e.Graphics.DrawString(
+                    BuildContentString(CustomPropertyStoreProperty),
+                    Font,
+                    brush,
+                    point: new(10, 10));
 
-            // Builds a long string with the text representation of 
-            // the CustomPropertyStoreProperty property of this control.
-            string BuildContentString(CustomPropertyStore? propertyData)
+                // Builds a long string with the text representation of 
+                // the CustomPropertyStoreProperty property of this control.
+                string BuildContentString(CustomPropertyStore? propertyData)
                 {
                     StringBuilder stringBuilder = new();
 

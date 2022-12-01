@@ -68,7 +68,7 @@ Partial Friend Class CustomTypeEditorDialog
     End Sub
 
     Private Function FormValidating() As Boolean
-        ' If we're not OK'ing then the validation is always correct.
+        ' If the user doesn't click OK but cancels then we dont validate but return false.
         ' In this case, the existing content of _propertyStore stays current.
         If DialogResult <> System.Windows.Forms.DialogResult.OK Then
             Return False
