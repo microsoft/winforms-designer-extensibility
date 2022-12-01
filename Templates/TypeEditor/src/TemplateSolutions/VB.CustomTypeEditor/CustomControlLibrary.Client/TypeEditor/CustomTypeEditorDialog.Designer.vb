@@ -72,17 +72,17 @@ Partial Class CustomTypeEditorDialog
         Me._mainTableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me._mainTableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me._mainTableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me._mainTableLayoutPanel.Size = New System.Drawing.Size(614, 330)
+        Me._mainTableLayoutPanel.Size = New System.Drawing.Size(494, 322)
         Me._mainTableLayoutPanel.TabIndex = 1
         '
         '_customEnumValueLabel
         '
         Me._customEnumValueLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me._customEnumValueLabel.AutoSize = True
-        Me._customEnumValueLabel.Location = New System.Drawing.Point(5, 305)
-        Me._customEnumValueLabel.Margin = New System.Windows.Forms.Padding(5)
+        Me._customEnumValueLabel.Location = New System.Drawing.Point(4, 301)
+        Me._customEnumValueLabel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me._customEnumValueLabel.Name = "_customEnumValueLabel"
-        Me._customEnumValueLabel.Size = New System.Drawing.Size(128, 16)
+        Me._customEnumValueLabel.Size = New System.Drawing.Size(104, 13)
         Me._customEnumValueLabel.TabIndex = 6
         Me._customEnumValueLabel.Text = "Custom Enum value:"
         '
@@ -90,10 +90,10 @@ Partial Class CustomTypeEditorDialog
         '
         Me._listOfStringsLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me._listOfStringsLabel.AutoSize = True
-        Me._listOfStringsLabel.Location = New System.Drawing.Point(5, 172)
-        Me._listOfStringsLabel.Margin = New System.Windows.Forms.Padding(5)
+        Me._listOfStringsLabel.Location = New System.Drawing.Point(4, 168)
+        Me._listOfStringsLabel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me._listOfStringsLabel.Name = "_listOfStringsLabel"
-        Me._listOfStringsLabel.Size = New System.Drawing.Size(88, 16)
+        Me._listOfStringsLabel.Size = New System.Drawing.Size(73, 13)
         Me._listOfStringsLabel.TabIndex = 4
         Me._listOfStringsLabel.Text = "List of Strings:"
         '
@@ -101,10 +101,10 @@ Partial Class CustomTypeEditorDialog
         '
         Me._dateCreatedLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me._dateCreatedLabel.AutoSize = True
-        Me._dateCreatedLabel.Location = New System.Drawing.Point(5, 40)
-        Me._dateCreatedLabel.Margin = New System.Windows.Forms.Padding(5)
+        Me._dateCreatedLabel.Location = New System.Drawing.Point(4, 35)
+        Me._dateCreatedLabel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me._dateCreatedLabel.Name = "_dateCreatedLabel"
-        Me._dateCreatedLabel.Size = New System.Drawing.Size(88, 16)
+        Me._dateCreatedLabel.Size = New System.Drawing.Size(72, 13)
         Me._dateCreatedLabel.TabIndex = 2
         Me._dateCreatedLabel.Text = "Date created:"
         '
@@ -115,11 +115,11 @@ Partial Class CustomTypeEditorDialog
         Me.flowLayoutPanel1.Controls.Add(Me._okButton)
         Me.flowLayoutPanel1.Controls.Add(Me._cancelButton)
         Me.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.flowLayoutPanel1.Location = New System.Drawing.Point(500, 2)
-        Me.flowLayoutPanel1.Margin = New System.Windows.Forms.Padding(15, 2, 2, 2)
+        Me.flowLayoutPanel1.Location = New System.Drawing.Point(407, 2)
+        Me.flowLayoutPanel1.Margin = New System.Windows.Forms.Padding(11, 2, 2, 2)
         Me.flowLayoutPanel1.Name = "flowLayoutPanel1"
         Me._mainTableLayoutPanel.SetRowSpan(Me.flowLayoutPanel1, 5)
-        Me.flowLayoutPanel1.Size = New System.Drawing.Size(112, 84)
+        Me.flowLayoutPanel1.Size = New System.Drawing.Size(85, 70)
         Me.flowLayoutPanel1.TabIndex = 0
         '
         '_okButton
@@ -128,7 +128,7 @@ Partial Class CustomTypeEditorDialog
         Me._okButton.Location = New System.Drawing.Point(2, 2)
         Me._okButton.Margin = New System.Windows.Forms.Padding(2)
         Me._okButton.Name = "_okButton"
-        Me._okButton.Size = New System.Drawing.Size(108, 34)
+        Me._okButton.Size = New System.Drawing.Size(81, 28)
         Me._okButton.TabIndex = 0
         Me._okButton.Text = "OK"
         Me._okButton.UseVisualStyleBackColor = True
@@ -136,10 +136,10 @@ Partial Class CustomTypeEditorDialog
         '_cancelButton
         '
         Me._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me._cancelButton.Location = New System.Drawing.Point(2, 48)
-        Me._cancelButton.Margin = New System.Windows.Forms.Padding(2, 10, 2, 2)
+        Me._cancelButton.Location = New System.Drawing.Point(2, 40)
+        Me._cancelButton.Margin = New System.Windows.Forms.Padding(2, 8, 2, 2)
         Me._cancelButton.Name = "_cancelButton"
-        Me._cancelButton.Size = New System.Drawing.Size(108, 34)
+        Me._cancelButton.Size = New System.Drawing.Size(81, 28)
         Me._cancelButton.TabIndex = 1
         Me._cancelButton.Text = "Cancel"
         Me._cancelButton.UseVisualStyleBackColor = True
@@ -147,40 +147,40 @@ Partial Class CustomTypeEditorDialog
         '_dateCreated
         '
         Me._dateCreated.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me._dateCreated.Location = New System.Drawing.Point(143, 37)
-        Me._dateCreated.Margin = New System.Windows.Forms.Padding(5)
+        Me._dateCreated.Location = New System.Drawing.Point(116, 32)
+        Me._dateCreated.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me._dateCreated.Name = "_dateCreated"
-        Me._dateCreated.Size = New System.Drawing.Size(337, 22)
+        Me._dateCreated.Size = New System.Drawing.Size(276, 20)
         Me._dateCreated.TabIndex = 3
         '
         '_customEnumValueListBox
         '
         Me._customEnumValueListBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me._customEnumValueListBox.FormattingEnabled = True
-        Me._customEnumValueListBox.Location = New System.Drawing.Point(143, 301)
-        Me._customEnumValueListBox.Margin = New System.Windows.Forms.Padding(5)
+        Me._customEnumValueListBox.Location = New System.Drawing.Point(116, 297)
+        Me._customEnumValueListBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me._customEnumValueListBox.Name = "_customEnumValueListBox"
-        Me._customEnumValueListBox.Size = New System.Drawing.Size(337, 24)
+        Me._customEnumValueListBox.Size = New System.Drawing.Size(276, 21)
         Me._customEnumValueListBox.TabIndex = 7
         '
         '_requiredIdLabel
         '
         Me._requiredIdLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me._requiredIdLabel.AutoSize = True
-        Me._requiredIdLabel.Location = New System.Drawing.Point(5, 8)
-        Me._requiredIdLabel.Margin = New System.Windows.Forms.Padding(5)
+        Me._requiredIdLabel.Location = New System.Drawing.Point(4, 7)
+        Me._requiredIdLabel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me._requiredIdLabel.Name = "_requiredIdLabel"
-        Me._requiredIdLabel.Size = New System.Drawing.Size(88, 16)
+        Me._requiredIdLabel.Size = New System.Drawing.Size(72, 13)
         Me._requiredIdLabel.TabIndex = 0
         Me._requiredIdLabel.Text = "A required ID:"
         '
         '_requiredIdTextBox
         '
         Me._requiredIdTextBox.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me._requiredIdTextBox.Location = New System.Drawing.Point(143, 5)
-        Me._requiredIdTextBox.Margin = New System.Windows.Forms.Padding(5)
+        Me._requiredIdTextBox.Location = New System.Drawing.Point(116, 4)
+        Me._requiredIdTextBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me._requiredIdTextBox.Name = "_requiredIdTextBox"
-        Me._requiredIdTextBox.Size = New System.Drawing.Size(337, 22)
+        Me._requiredIdTextBox.Size = New System.Drawing.Size(276, 20)
         Me._requiredIdTextBox.TabIndex = 1
         '
         '_listOfStringTextBox
@@ -189,10 +189,11 @@ Partial Class CustomTypeEditorDialog
         Me._listOfStringTextBox.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me._listOfStringTextBox.Location = New System.Drawing.Point(141, 67)
+        Me._listOfStringTextBox.Location = New System.Drawing.Point(114, 58)
+        Me._listOfStringTextBox.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me._listOfStringTextBox.Multiline = True
         Me._listOfStringTextBox.Name = "_listOfStringTextBox"
-        Me._listOfStringTextBox.Size = New System.Drawing.Size(341, 226)
+        Me._listOfStringTextBox.Size = New System.Drawing.Size(280, 233)
         Me._listOfStringTextBox.TabIndex = 5
         '
         'ErrorProvider1
@@ -201,12 +202,11 @@ Partial Class CustomTypeEditorDialog
         '
         'CustomTypeEditorDialog
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(614, 330)
+        Me.ClientSize = New System.Drawing.Size(494, 322)
         Me.Controls.Add(Me._mainTableLayoutPanel)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "CustomTypeEditorDialog"

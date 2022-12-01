@@ -45,14 +45,10 @@ namespace TileRepeaterDemo
             this._quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._statusStrip = new System.Windows.Forms.StatusStrip();
             this._imagePathStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            templateType1 = Type.GetType("TileRepeater.Data.ListController.GenericPictureItem, TileRepeater.Data, Version=1" +
-        ".0.0.0, Culture=neutral, PublicKeyToken=null");
-            tileContentType1 = Type.GetType("TileRepeaterDemo.TileTemplates.ImageContent, TileRepeaterDemo, Version=1.0.0.0, C" +
-        "ulture=neutral, PublicKeyToken=null");
-            templateType2 = Type.GetType("TileRepeater.Data.ListController.GenericTemplateItem, TileRepeater.Data, Version=" +
-        "1.0.0.0, Culture=neutral, PublicKeyToken=null");
-            tileContentType2 = Type.GetType("TileRepeaterDemo.TileTemplates.GroupSeperatorContent, TileRepeaterDemo, Version=1" +
-        ".0.0.0, Culture=neutral, PublicKeyToken=null");
+            templateType1 = typeof(TileRepeater.Data.ListController.GenericPictureItem);
+            tileContentType1 = typeof(TileRepeaterDemo.TileTemplates.ImageContent);
+            templateType2 = typeof(TileRepeater.Data.ListController.GenericTemplateItem);
+            tileContentType2 = typeof(TileRepeaterDemo.TileTemplates.GroupSeperatorContent);
             ((System.ComponentModel.ISupportInitialize)(this._templateItemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._uiControllerBindingSource)).BeginInit();
             this._mainMenuStrip.SuspendLayout();
@@ -142,6 +138,7 @@ namespace TileRepeaterDemo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(946, 678);
             this.Controls.Add(this._pictureTileRepeater);
             this.Controls.Add(this._statusStrip);

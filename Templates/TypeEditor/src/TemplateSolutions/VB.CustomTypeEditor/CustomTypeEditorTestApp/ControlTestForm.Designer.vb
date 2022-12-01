@@ -36,23 +36,28 @@ Partial Class ControlTestForm
         '
         'CustomControl2
         '
+        Me.CustomControl2.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.CustomControl2.CustomPropertyStoreProperty = New CustomControlLibrary.CustomPropertyStore()
         Me.CustomControl2.CustomPropertyStoreProperty.CustomEnumValue = CustomControlLibrary.CustomPropertyStoreEnum.ThirdValue
         Me.CustomControl2.CustomPropertyStoreProperty.DateCreated = New Date(2022, 10, 7, 0, 0, 0, 0)
         Me.CustomControl2.CustomPropertyStoreProperty.ListOfStrings = CType(resources.GetObject("resource.ListOfStrings"), System.Collections.Generic.List(Of String))
         Me.CustomControl2.CustomPropertyStoreProperty.SomeMustHaveId = "SomeID"
-        Me.CustomControl2.Location = New System.Drawing.Point(38, 29)
+        Me.CustomControl2.Location = New System.Drawing.Point(11, 14)
+        Me.CustomControl2.Margin = New System.Windows.Forms.Padding(2, 1, 2, 1)
         Me.CustomControl2.Name = "CustomControl2"
-        Me.CustomControl2.Size = New System.Drawing.Size(995, 745)
+        Me.CustomControl2.Size = New System.Drawing.Size(569, 323)
         Me.CustomControl2.TabIndex = 0
         Me.CustomControl2.Text = "CustomControl2"
         '
         'ControlTestForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(13.0!, 32.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1207, 841)
+        Me.ClientSize = New System.Drawing.Size(591, 358)
         Me.Controls.Add(Me.CustomControl2)
+        Me.Margin = New System.Windows.Forms.Padding(2, 1, 2, 1)
         Me.Name = "ControlTestForm"
         Me.Text = "Form1"
         Me.ResumeLayout(False)

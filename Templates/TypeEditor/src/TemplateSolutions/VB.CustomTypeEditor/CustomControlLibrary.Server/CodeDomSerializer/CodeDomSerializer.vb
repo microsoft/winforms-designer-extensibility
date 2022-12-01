@@ -29,11 +29,11 @@ Namespace Serialization
                 Dim statements As New CodeStatementCollection()
 
                 ' Now, we want to generate:
-                '      me.customControl1.CustomProperty = new CustomControlLibrary.CustomPropertyStore()
-                '      me.customControl1.CustomProperty.CustomEnumValue = CustomControlLibrary.CustomEnum.FourthValue
-                '      me.customControl1.CustomProperty.DateCreated = new System.DateTime(2022, 7, 13, 0, 0, 0, 0)
-                '      me.customControl1.CustomProperty.ListOfStrings = ((System.Collections.Generic.List<string>)(resources.GetObject("resource.ListOfStrings")))
-                '      me.customControl1.CustomProperty.SomeMustHaveId = "{C0E03E00-EFDA-47AA-9BA9-B69671F7A565}"
+                '      Me.customControl1.CustomProperty = New CustomControlLibrary.CustomPropertyStore()
+                '      Me.customControl1.CustomProperty.CustomEnumValue = CustomControlLibrary.CustomEnum.FourthValue
+                '      Me.customControl1.CustomProperty.DateCreated = New System.DateTime(2022, 7, 13, 0, 0, 0, 0)
+                '      Me.customControl1.CustomProperty.ListOfStrings = ((System.Collections.Generic.List<string>)(resources.GetObject("resource.ListOfStrings")))
+                '      Me.customControl1.CustomProperty.SomeMustHaveId = "{C0E03E00-EFDA-47AA-9BA9-B69671F7A565}"
 
                 ' We start with 'new CustomPropertyStore()'
                 Dim customPropertyCreateExpression As New CodeObjectCreateExpression(New CodeTypeReference(GetType(CustomPropertyStore)))

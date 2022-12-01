@@ -36,23 +36,23 @@ namespace WinForms.Tiles
             // _contentPanel
             // 
             this._contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._contentPanel.Location = new System.Drawing.Point(20, 16);
-            this._contentPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this._contentPanel.Location = new System.Drawing.Point(15, 13);
+            this._contentPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this._contentPanel.Name = "_contentPanel";
-            this._contentPanel.Size = new System.Drawing.Size(88, 68);
+            this._contentPanel.Size = new System.Drawing.Size(66, 57);
             this._contentPanel.TabIndex = 0;
             // 
             // Tile
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
             this.Controls.Add(this._contentPanel);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "Tile";
-            this.Padding = new System.Windows.Forms.Padding(20, 16, 20, 16);
-            this.Size = new System.Drawing.Size(128, 100);
+            this.Padding = new System.Windows.Forms.Padding(15, 13, 15, 13);
+            this.Size = new System.Drawing.Size(96, 83);
             this.ResumeLayout(false);
 
         }
