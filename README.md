@@ -2,14 +2,14 @@
 
 
 ## Documents
-- TBD
+* Using Visual Studio Solution Templates for creating Control Designers/Type Editors for the Out-Of-Process .NET Core WinForms Designer.
 
+## Templates and Code Samples
 
-## Code Samples
-
-- TBD
-
-
+* Creating a simple (one-project-based) Control Designer, which doesn't use a custom Type Editor.
+* Creating a complex Control Designer with a dedicated Type Editor.
+* C# Visual Studio Template Solution for creating a custom Type Editor.
+* Visual Basic Visual Studio Template Solution for creating a custom Type Editor.
 
 ## Code of Conduct
 
