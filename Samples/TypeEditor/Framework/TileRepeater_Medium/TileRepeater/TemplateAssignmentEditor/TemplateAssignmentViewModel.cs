@@ -19,11 +19,11 @@ namespace WinForms.Tiles.Designer
             $"{MicrosoftNamespace}."
         };
 
-        private ITypeDiscoveryService _typeResolutionService;
+        private ITypeDiscoveryService _typeDiscoveryService;
 
         private TemplateAssignmentViewModel(IServiceProvider serviceProvider)
         {
-            _typeResolutionService = (ITypeDiscoveryService)serviceProvider.GetService(typeof(ITypeDiscoveryService));
+            _typeDiscoveryService = (ITypeDiscoveryService)serviceProvider.GetService(typeof(ITypeDiscoveryService));
         }
 
         public TypeInfoData[]? TemplateTypes { get; private set; }
@@ -62,7 +62,7 @@ namespace WinForms.Tiles.Designer
 
         private TypeInfoData[] GetTemplateTypelist()
         {
-            var types = _typeResolutionService.GetTypes(typeof(object), true)
+            var types = _typeDiscoveryService.GetTypes(typeof(object), true)
                 .Cast<Type>()
 
                 .Where(typeItem => !typeItem.IsAbstract && !typeItem.IsInterface &&
@@ -87,7 +87,7 @@ namespace WinForms.Tiles.Designer
 
         private TypeInfoData[] GetTileTypeList()
         {
-            var types = _typeResolutionService.GetTypes(typeof(object), true)
+            var types = _typeDiscoveryService.GetTypes(typeof(object), true)
                 .Cast<Type>()
                 .Where(typeItem => !typeItem.IsAbstract && !typeItem.IsInterface &&
                                    !typeItem.IsEnum && typeItem.IsPublic && !typeItem.IsGenericType &&

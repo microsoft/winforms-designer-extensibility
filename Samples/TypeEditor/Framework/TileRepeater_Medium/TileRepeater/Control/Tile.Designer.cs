@@ -35,12 +35,11 @@ namespace WinForms.Tiles
             // 
             // _contentPanel
             // 
-            this._contentPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._contentPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._contentPanel.Location = new System.Drawing.Point(15, 13);
             this._contentPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this._contentPanel.Name = "_contentPanel";
-            this._contentPanel.Size = new System.Drawing.Size(66, 55);
+            this._contentPanel.Size = new System.Drawing.Size(66, 57);
             this._contentPanel.TabIndex = 0;
             // 
             // Tile
@@ -53,7 +52,7 @@ namespace WinForms.Tiles
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "Tile";
             this.Padding = new System.Windows.Forms.Padding(15, 13, 15, 13);
-            this.Size = new System.Drawing.Size(96, 81);
+            this.Size = new System.Drawing.Size(96, 83);
             this.ResumeLayout(false);
 
         }

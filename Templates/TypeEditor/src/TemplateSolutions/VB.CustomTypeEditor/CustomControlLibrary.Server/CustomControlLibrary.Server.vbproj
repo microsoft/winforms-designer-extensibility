@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>CustomControlLibrary.Designer.Server</RootNamespace>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseDesignerSdk>true</UseDesignerSdk>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CustomControlLibrary.Protocol\CustomControlLibrary.Protocol.vbproj" />
+    <ProjectReference Include="..\CustomControlLibrary\CustomControlLibrary.vbproj" />
+  </ItemGroup>
+
+
+</Project>
