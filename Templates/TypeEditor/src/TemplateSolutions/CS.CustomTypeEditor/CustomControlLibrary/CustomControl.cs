@@ -19,7 +19,7 @@ namespace CustomControlLibrary
         private CustomPropertyStore? _customPropertyStoreProperty;
 
         /// <summary>
-        ///  Raised when CustomProperty changes.
+        ///  Occurs when the CustomPropertyStoreProperty changes.
         /// </summary>
         public event EventHandler? CustomPropertyStorePropertyChanged;
 
@@ -62,16 +62,16 @@ namespace CustomControlLibrary
             => CustomPropertyStorePropertyChanged?.Invoke(this, e);
 
         /// <summary>
-        ///  Controls the Reset-Property function in the PropertyBrowser.
+        ///  Resets the <see cref="CustomPropertyStoreProperty"/>.
         /// </summary>
         private void ResetCustomPropertyStoreProperty()
             => CustomPropertyStoreProperty = null;
 
         /// <summary>
-        ///  Controls the Serialization of the Property.
+        ///  Indicates whether the <see cref="CustomPropertyStoreProperty"/> property should be persisted.
         /// </summary>
         /// <returns>
-        ///  <see langword="true"/>, if the CodeDOM serializer should emit code for 
+        ///  <see langword="true"/> if the CodeDOM serializer should emit code for 
         ///  assigning a valid content to the property in InitializeComponent.
         /// </returns>
         private bool ShouldSerializeCustomPropertyStoreProperty()

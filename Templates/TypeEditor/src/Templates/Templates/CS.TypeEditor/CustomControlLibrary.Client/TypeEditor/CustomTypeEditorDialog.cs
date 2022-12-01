@@ -76,7 +76,7 @@ namespace CustomControlLibrary.Designer.Client
 
         private bool FormValidating()
         {
-            // If we're not OK'ing then the validation is always correct.
+            // If the user doesn't click OK but cancels then we dont validate but return false.
             // In this case, the existing content of _propertyStore stays current.
             if (DialogResult != DialogResult.OK)
                 return false;

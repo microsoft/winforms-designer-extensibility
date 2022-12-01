@@ -6,7 +6,7 @@ namespace CustomControlLibrary.Designer.Client
     internal static class ErrorProviderExtension
     {
         /// <summary>
-        /// Extension method to simplify the usage of the ErrorProvider component.
+        ///  Marks the provided control as errored if the <see paramref="errorCondition"/> is not met.
         /// </summary>
         /// <param name="errorProvider">ErrorProvider component instance.</param>
         /// <param name="control">Control, on which the Error to set on if errorCondition is true.</param>
