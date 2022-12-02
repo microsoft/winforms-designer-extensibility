@@ -2,14 +2,14 @@
 
 
 ## Documents
-* Using Visual Studio Solution Templates for creating Control Designers/Type Editors for the Out-Of-Process .NET Core WinForms Designer.
+* [Using Visual Studio Solution Templates for creating Control Designers/Type Editors for the Out-Of-Process .NET Core WinForms Designer](https://github.com/microsoft/winforms-designer-extensibility/tree/main/Templates/TypeEditor).
 
 ## Templates and Code Samples
 
-* Creating a simple (one-project-based) Control Designer, which doesn't use a custom Type Editor.
-* Creating a complex Control Designer with a dedicated Type Editor.
-* C# Visual Studio Template Solution for creating a custom Type Editor.
-* Visual Basic Visual Studio Template Solution for creating a custom Type Editor.
+* [Creating a Framework-based Control Designer, which doesn't use a custom Type Editor.](https://github.com/microsoft/winforms-designer-extensibility/tree/main/Samples/TypeEditor/Framework/TileRepeater_Medium)
+* [Creating a complex Control Designer with a dedicated Type Editor.](https://github.com/microsoft/winforms-designer-extensibility/tree/main/Samples/TypeEditor/Dotnet/TileRepeater_Medium)
+* [C# Visual Studio Template Solution for creating a custom Type Editor.](https://github.com/microsoft/winforms-designer-extensibility/tree/main/Templates/TypeEditor/src/TemplateSolutions/CS.CustomTypeEditor)
+* [Visual Basic Visual Studio Template Solution for creating a custom Type Editor.](https://github.com/microsoft/winforms-designer-extensibility/tree/main/Templates/TypeEditor/src/TemplateSolutions/VB.CustomTypeEditor)
 
 ## Code of Conduct
 
