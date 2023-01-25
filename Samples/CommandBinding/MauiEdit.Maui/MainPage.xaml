@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiEdit.MainPage">
+
+    <Shell.TitleView>
+        <Grid Margin="0,8,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label 
+                Margin="20,0,0,0"
+                Text="WinForms/Maui Edit"
+                FontAttributes="Bold"
+                FontSize="32"/>
+
+            <HorizontalStackLayout 
+                Grid.Column="1">
+
+                <Button 
+                    Margin="0,0,10,0"
+                    Text="New..." 
+                    HeightRequest="40"
+                    Command="{Binding NewDocumentCommand}"/>
+
+                <Button 
+                    Margin="0,0,10,0"
+                    Text="Insert Demo Text" 
+                    HeightRequest="40"
+                    Command="{Binding InsertDemoTextCommand}"/>
+
+                <Button 
+                    Margin="0,0,10,0"
+                    Text="To upper" 
+                    HeightRequest="40"
+                    Command="{Binding ToUpperCommand}"/>
+
+                <Button 
+                    Margin="0,0,10,0"
+                    Text="Rewrap" 
+                    HeightRequest="40"
+                    Command="{Binding RewrapCommand}"/>
+
+            </HorizontalStackLayout>
+        </Grid>
+    </Shell.TitleView>
+
+    <Grid
+        Margin="0,20,0,10"
+        VerticalOptions="Fill"
+        HorizontalOptions="Fill">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Editor 
+            x:Name="_editor"
+            Grid.ColumnSpan="2"
+            MinimumWidthRequest="2000"
+            AutoSize="Disabled"
+            Grid.Row="0"
+            Keyboard="Chat"
+            IsSpellCheckEnabled="True"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
+            Text="{Binding TextDocument, Mode=TwoWay}"
+            CursorPosition="{Binding SelectionIndex, Mode=TwoWay}"
+            SelectionLength="{Binding SelectionLength, Mode=TwoWay}">
+
+            <Editor.FontFamily>
+                <OnPlatform x:TypeArguments="x:String">
+                    <On Platform="Windows" Value="Cascadia Code"/>
+                    <On Platform="Android" Value="Droid Sans Mono"/>
+                </OnPlatform>
+            </Editor.FontFamily>
+
+            <Editor.FontSize>
+                <OnPlatform x:TypeArguments="x:Double">
+                    <On Platform="Windows" Value="18"/>
+                    <On Platform="Android" Value="24"/>
+                </OnPlatform>
+            </Editor.FontSize>
+        </Editor>
+
+        <HorizontalStackLayout
+            Grid.Row="1"
+            Grid.Column="0"
+            HorizontalOptions="End"
+            VerticalOptions="End">
+
+            <Label 
+                Margin="0,0,10,0"
+                Text="Wrap after"
+                VerticalOptions="Center"/>
+
+            <Slider
+                Margin="0,0,10,0"
+                WidthRequest="200"
+                Maximum="120"
+                Minimum="20"
+                Value="{Binding CharCountWrapThreshold, Mode=TwoWay}"/>
+
+            <Entry 
+                MinimumWidthRequest="40"
+                MaximumWidthRequest="60"
+                Margin="0,0,20,0"
+                Keyboard="Numeric"
+                Text="{Binding CharCountWrapThreshold}"/>
+
+            <Label 
+                Margin="0,0,30,0"
+                Text="Characters"
+                VerticalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout
+            Grid.Row="1"
+            Grid.Column="1"
+            HorizontalOptions="End">
+
+            <Label 
+                Margin="0,0,5,0"
+                Text="Row:"
+                VerticalOptions="Center"/>
+
+            <Label 
+                Margin="0,0,5,0"
+                Text="{Binding SelectionRow}"
+                VerticalOptions="Center" />
+
+            <Label 
+                Margin="10,0,5,0"
+                Text="Column:"
+                VerticalOptions="Center"/>
+
+            <Label 
+                Margin="0,0,5,0"
+                Text="{Binding SelectionColumn}"
+                VerticalOptions="Center"/>
+
+        </HorizontalStackLayout>
+    </Grid>
+</ContentPage>
