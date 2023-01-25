@@ -8,6 +8,9 @@ namespace MauiEdit.ViewModels;
 /// </summary>
 public partial class MainFormController : ViewController
 {
+    // This is right for WinForms and Android.
+    public const string PlatformCrLf = "\r\n";
+    
     // Holds the whole editor document.
     private string? _textDocument;
 
@@ -99,7 +102,8 @@ public partial class MainFormController : ViewController
 
     // The CarriageReturn string we detect.
     private string CarriageReturn
-        => GetCarriageReturnStringBasedOnDocument() ?? "\r\n";
+        // For other Platforms, we would need to detect the correct line ending.
+        => PlatformCrLf;
 
     /// <summary>
     ///  Returns a list of lines of the document.
@@ -129,43 +133,6 @@ public partial class MainFormController : ViewController
         SelectionLines = (
             SelectionRow,
             GetRowAndColumnFromPosition(_selectionIndex + _selectionLength).Row);
-    }
-
-    // Finds out, how the line breaks are coded, which unfortunately
-    // is different for the respected textbox controls on different platforms.
-    //
-    // This could be done more reliably, by having a dedicated
-    // Property, which determines the platform's behavior directly
-    // through a platform-depending binding.
-    // But this here works too.
-    private string? GetCarriageReturnStringBasedOnDocument()
-    {
-        if (TextDocument is null)
-        {
-            return null;
-        }
-
-        if (TextDocument?.IndexOf("\r\n") > -1)
-        {
-            // Android & WinForms TextBox.
-            return "\r\n";
-        }
-        else if (TextDocument?.IndexOf("\n\r") > -1)
-        {
-            // This should not happen.
-            return "\n\r";
-        }
-        else if (TextDocument?.IndexOf("\r") > -1)
-        {
-            // WinUI TextBox.
-            return "\r";
-        }
-
-        else
-        {
-            // No CrLf yet.
-            return null;
-        }
     }
 
     // Calculates the line start- and endings.
