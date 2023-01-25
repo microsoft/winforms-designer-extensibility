@@ -7,13 +7,13 @@ public partial class App : Application
 {
     public App(IServiceProvider serviceProvider)
     {
-		InitializeComponent();
+        InitializeComponent();
 
         var dialogService = serviceProvider.GetRequiredService<IDialogService>();
 
         MainPage = new AppShell();
         dialogService.SetMarshallingContext(MainPage);
 
-		MainPage.BindingContext = new MainFormController(serviceProvider);
-	}
+        MainPage.BindingContext = new MainFormController(serviceProvider);
+    }
 }

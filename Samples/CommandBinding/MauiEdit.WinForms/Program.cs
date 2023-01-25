@@ -16,21 +16,21 @@ static partial class Program
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
 
-        // // Comment this out, to enable the simple WinForms binding demo.
+        // // Uncomment this, to enable the simple WinForms binding demo.
         // Application.Run(new SimpleTestForm());
         // return;
-        
+
         var mainForm = new MainForm();
 
-        // We need a marshalling control.
+        // We need a marshalling control to asynchronously invoke.
         WinFormsDialogService.RegisterWinFormsAsyncHelper(WinFormsAsyncHelper.GetInstance(mainForm));
 
-        var serviceProvider=SimpleServiceProvider.GetInstance();
-        
+        var serviceProvider = SimpleServiceProvider.GetInstance();
+
         serviceProvider
             .GetRequiredService<WinFormsDialogService>()
             .RegisterUIController(
-                uiController: typeof(OptionsFormController), 
+                uiController: typeof(OptionsFormController),
                 viewAsForm: typeof(OptionsForm));
 
         Application.Run(mainForm);

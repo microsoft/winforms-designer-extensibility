@@ -135,7 +135,7 @@ public partial class MainFormController : ViewController
                 wrappedPart = wrappedPart.Replace("\r", CarriageReturn);
             }
 
-            return (firstPart + wrappedPart.ToString() + CarriageReturn + lastPart);
+            return ($"{firstPart}{wrappedPart}{CarriageReturn}{lastPart}");
         });
 
         SelectionIndex = cursorPos;

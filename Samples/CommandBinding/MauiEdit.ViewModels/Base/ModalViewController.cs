@@ -29,7 +29,7 @@ public abstract partial class ModalViewController : ViewController
     }
 
     /// <summary>
-    /// Handler for the Cancel command. Bind this resulting command to the Cancel Button of a modal view.
+    ///  Handler for the Cancel command. Bind this resulting command to the Cancel Button of a modal view.
     /// </summary>
     [RelayCommand()]
     protected virtual void OnCancel()

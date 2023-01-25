@@ -8,9 +8,7 @@ public static class ServiceProviderExtension
         {
             return service;
         }
-        else
-        {
-            throw new InvalidOperationException($"Service {typeof(T).Name} not found.");
-        }
+        
+        throw new InvalidOperationException($"Service {typeof(T).Name} not found.");
     }
 }

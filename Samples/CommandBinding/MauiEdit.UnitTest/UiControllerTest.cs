@@ -15,28 +15,28 @@ public class MainFormUiControllerTest {
 
         MainFormController mainFormController = new(service)
         {
-            // We clear the main document.
+            // Clear the main document.
             TextDocument = string.Empty
         };
 
-        // We assert, that the New command is disabled, and cannot be called.
+        // Assert that the New command is disabled, and cannot be called.
         Assert.False(mainFormController.NewDocumentCommand.CanExecute(null));
 
-        // We assign a new document.
+        // Assign a new document.
         mainFormController.TextDocument = MainFormController.GetTestText();
 
-        // We assert, that the New command is enabled, and _can_ be called.
+        // Assert that the New command is enabled, and _can_ be called.
         Assert.True(mainFormController.NewDocumentCommand.CanExecute(null));
 
-        // We simulate the user requesting to 'New' the document,
-        // but says "No" on the MessageDialogBox to actually clear it.
+        // Simulate that the user is requesting to 'New' the document,
+        // but return "No" on the MessageDialogBox to actually clear it.
         dialogService!.ShowMessageBoxRequested += DialogService_ShowMessageBoxRequested;
 
-        // We test the first time; our state machine returns "No" the first time.
+        // Test the first time; the state machine returns "No" the first time.
         await mainFormController.NewDocumentCommand.ExecuteAsync(null);
         Assert.Equal(MainFormController.GetTestText(), mainFormController.TextDocument);
 
-        // We test the second time; our state machine returns "Yes" the first time.
+        // Test the second time; our state machine returns "Yes" the second time.
         await mainFormController.NewDocumentCommand.ExecuteAsync(null);
         Assert.Equal(string.Empty, mainFormController.TextDocument);
 

@@ -77,7 +77,7 @@ internal class EditorControl : TextBox
     protected virtual void OnCursorPositionChanged(EventArgs e)
         => CursorPositionChanged?.Invoke(this, e);
 
-    // We want to listen to the EM_LINEFORMCHAR message. When it occurs, we know, the Selection has been
+    // We want to listen to the EM_LINEFORMCHAR message. When it occurs, we know the selection has been
     // changed in a way. Then we queue a call to update CursorPosition and notify both for CursorPosition
     // and SelectionLength.
     protected override void WndProc(ref Message m)

@@ -1,9 +1,9 @@
-namespace MauiEdit;
+﻿namespace MauiEdit;
 
 public partial class OptionsPage : ContentPage
 {
-	public OptionsPage()
-	{
-		InitializeComponent();
-	}
+    public OptionsPage()
+    {
+        InitializeComponent();
+    }
 }

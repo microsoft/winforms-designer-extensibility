@@ -4,7 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 namespace MauiEdit.ViewModels;
 
 /// <summary>
-///  Main ViewModel for the WinForms/MAUI-Editor sample app. Encapsulated the full logic of the app.
+///  Main ViewModel for the WinForms/MAUI-Editor sample app. Encapsulates the full logic of the app.
 /// </summary>
 public partial class MainFormController : ViewController
 {
@@ -15,7 +15,7 @@ public partial class MainFormController : ViewController
     private ReadOnlyMemory<char>[] _lines = Array.Empty<ReadOnlyMemory<char>>();
 
     /// <summary>
-    ///  Gets the selection start- and end line based on SelectionIndex and SelectionLength.
+    ///  Gets the selection start and end line based on SelectionIndex and SelectionLength.
     ///  Annotated with <see cref="ObservablePropertyAttribute"/>, so the property is automatically code-generated.
     /// </summary>
     [ObservableProperty]
@@ -82,7 +82,7 @@ public partial class MainFormController : ViewController
 
         set
         {
-            var wasEmpty = string.IsNullOrEmpty(_textDocument);
+            bool wasEmpty = string.IsNullOrEmpty(_textDocument);
 
             if (SetProperty(ref _textDocument, value))
             {
@@ -152,7 +152,7 @@ public partial class MainFormController : ViewController
         }
         else if (TextDocument?.IndexOf("\n\r") > -1)
         {
-            // We shouldn't have this.
+            // This should not happen.
             return "\n\r";
         }
         else if (TextDocument?.IndexOf("\r") > -1)
@@ -161,9 +161,9 @@ public partial class MainFormController : ViewController
             return "\r";
         }
 
-        // We don't have CrLf yet.
         else
         {
+            // No CrLf yet.
             return null;
         }
     }
