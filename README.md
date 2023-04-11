@@ -1,5 +1,6 @@
 # Windows Forms Designer Extensibility Documents & Samples
 
+Before you start developing Custom Controls for the Out-Of-Process WinForms Designer, please read the [Blog Post covering this topic](https://devblogs.microsoft.com/dotnet/custom-controls-for-winforms-out-of-process-designer/). To ramp up with the Out-Of-Process WinForms Designer in general and the motivation and necessity of its redesign, please [read the basic overview in this blog post](https://devblogs.microsoft.com/dotnet/state-of-the-windows-forms-designer-for-net-applications/).
 
 ## Documents
 * [Using Visual Studio Solution Templates for creating Control Designers/Type Editors for the Out-Of-Process .NET Core WinForms Designer](https://github.com/microsoft/winforms-designer-extensibility/tree/main/Templates/TypeEditor).
