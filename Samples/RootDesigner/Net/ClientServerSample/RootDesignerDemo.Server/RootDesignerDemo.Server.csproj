@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <UseDesignerSdk>true</UseDesignerSdk>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RootDesignerDemo.Controls\RootDesignerDemo.Controls.csproj" />
+    <ProjectReference Include="..\RootDesignerDemo.Protocol\RootDesignerDemo.Protocol.csproj" />
+  </ItemGroup>
+</Project>

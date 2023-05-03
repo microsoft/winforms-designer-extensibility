@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33209.295
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RootDesignerDemo", "RootDesignerDemo\RootDesignerDemo.csproj", "{5887C1E1-5924-4A07-84F8-BA9C616F4BAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RootDesignerSupportLib", "RootDesignerSupportLib\RootDesignerSupportLib.csproj", "{548CC959-438A-4BCB-9AF3-D0F019F4C3BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5887C1E1-5924-4A07-84F8-BA9C616F4BAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5887C1E1-5924-4A07-84F8-BA9C616F4BAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5887C1E1-5924-4A07-84F8-BA9C616F4BAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5887C1E1-5924-4A07-84F8-BA9C616F4BAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{548CC959-438A-4BCB-9AF3-D0F019F4C3BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{548CC959-438A-4BCB-9AF3-D0F019F4C3BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{548CC959-438A-4BCB-9AF3-D0F019F4C3BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{548CC959-438A-4BCB-9AF3-D0F019F4C3BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {48A19B94-7503-4753-AEA9-A7C03F2EF695}
+	EndGlobalSection
+EndGlobal
