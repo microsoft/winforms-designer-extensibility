@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Design;
 using System.Windows.Forms;
@@ -8,7 +7,6 @@ using Microsoft.DotNet.DesignTools.Client.Designers;
 
 namespace RootDesignerDemo.Client.RootDesignerProxy
 {
-    [ToolboxItemFilter(ToolboxCategory, ToolboxItemFilterType.Require)]
     public class ShapeRootProxyDesigner : RootComponentProxyDesigner, IToolboxUser
     {
         private const string ToolboxCategory = "SdkShapeRootDesigner";
@@ -25,11 +23,11 @@ namespace RootDesignerDemo.Client.RootDesignerProxy
 
         private void SetupToolboxItems()
         {
-            CreateToolboxItem("Line Tool", "LineTool", "ShapeRootDesigner",
+            CreateToolboxItem("Line Tool", "LineTool", ToolboxCategory,
                 RootDesignerDemo.Client.Properties.Resources.Line);
-            CreateToolboxItem("Rectangle Tool", "RectangleTool", "ShapeRootDesigner",
+            CreateToolboxItem("Rectangle Tool", "RectangleTool", ToolboxCategory,
                 RootDesignerDemo.Client.Properties.Resources.Rectangle);
-            CreateToolboxItem("Text Tool", "TextTool", "ShapeRootDesigner",
+            CreateToolboxItem("Text Tool", "TextTool", ToolboxCategory,
                 RootDesignerDemo.Client.Properties.Resources.Text);
         }
  

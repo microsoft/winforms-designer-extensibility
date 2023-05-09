@@ -6,7 +6,7 @@ using Microsoft.DotNet.DesignTools.Designers;
 namespace RootDesignerDemo.Designer.Server;
 
 [ToolboxItemFilter(ToolboxCategory, ToolboxItemFilterType.Require)]
-public partial class ShapeRootDesigner : ComponentDesigner, IRootDesigner 
+public partial class ShapeRootDesigner : ComponentDesigner, IRootDesigner
 {
     private const string ToolboxCategory = "SdkShapeRootDesigner";
 
