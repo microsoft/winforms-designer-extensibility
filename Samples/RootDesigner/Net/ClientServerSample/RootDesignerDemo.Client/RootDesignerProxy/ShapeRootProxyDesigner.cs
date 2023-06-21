@@ -7,6 +7,7 @@ using Microsoft.DotNet.DesignTools.Client.Designers;
 
 namespace RootDesignerDemo.Client.RootDesignerProxy
 {
+    [ToolboxItemFilter(ToolboxCategory, ToolboxItemFilterType.Require)]
     public class ShapeRootProxyDesigner : RootComponentProxyDesigner, IToolboxUser
     {
         private const string ToolboxCategory = "SdkShapeRootDesigner";

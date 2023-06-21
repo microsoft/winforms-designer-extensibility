@@ -36,12 +36,13 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBoxEx1 = new RootDesignerDemo.Controls.TextBoxEx();
+            this.textBoxEx2 = new RootDesignerDemo.Controls.TextBoxEx();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lkjlkjhlkfhjlkfToolStripMenuItem,
@@ -49,14 +50,14 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(811, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(721, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // lkjlkjhlkfhjlkfToolStripMenuItem
             // 
             this.lkjlkjhlkfhjlkfToolStripMenuItem.Name = "lkjlkjhlkfhjlkfToolStripMenuItem";
-            this.lkjlkjhlkfhjlkfToolStripMenuItem.Size = new System.Drawing.Size(124, 29);
+            this.lkjlkjhlkfhjlkfToolStripMenuItem.Size = new System.Drawing.Size(105, 24);
             this.lkjlkjhlkfhjlkfToolStripMenuItem.Text = "lkjlkjhlkfhjlkf";
             // 
             // hkkjhkjhkjkjhkToolStripMenuItem
@@ -65,28 +66,28 @@
             this.kjhkjhkjhkToolStripMenuItem,
             this.klkjlkjljToolStripMenuItem});
             this.hkkjhkjhkjkjhkToolStripMenuItem.Name = "hkkjhkjhkjkjhkToolStripMenuItem";
-            this.hkkjhkjhkjkjhkToolStripMenuItem.Size = new System.Drawing.Size(138, 29);
+            this.hkkjhkjhkjkjhkToolStripMenuItem.Size = new System.Drawing.Size(113, 24);
             this.hkkjhkjhkjkjhkToolStripMenuItem.Text = "hkkjhkjhkjkjhk";
             // 
             // kjhkjhkjhkToolStripMenuItem
             // 
             this.kjhkjhkjhkToolStripMenuItem.Name = "kjhkjhkjhkToolStripMenuItem";
-            this.kjhkjhkjhkToolStripMenuItem.Size = new System.Drawing.Size(192, 34);
+            this.kjhkjhkjhkToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
             this.kjhkjhkjhkToolStripMenuItem.Text = "kjhkjhkjhk";
             // 
             // klkjlkjljToolStripMenuItem
             // 
             this.klkjlkjljToolStripMenuItem.Name = "klkjlkjljToolStripMenuItem";
-            this.klkjlkjljToolStripMenuItem.Size = new System.Drawing.Size(192, 34);
+            this.klkjlkjljToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
             this.klkjlkjljToolStripMenuItem.Text = "klkjlkjlj";
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(165, 334);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.checkBox1.Location = new System.Drawing.Point(147, 267);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(113, 24);
+            this.checkBox1.Size = new System.Drawing.Size(95, 20);
             this.checkBox1.TabIndex = 1;
             this.checkBox1.Text = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -94,27 +95,43 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(393, 334);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comboBox1.Location = new System.Drawing.Point(349, 267);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(354, 28);
+            this.comboBox1.Size = new System.Drawing.Size(315, 24);
             this.comboBox1.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(166, 125);
+            this.label1.Location = new System.Drawing.Point(148, 100);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 20);
+            this.label1.Size = new System.Drawing.Size(44, 16);
             this.label1.TabIndex = 3;
             this.label1.Text = "label1";
             // 
+            // textBoxEx1
+            // 
+            this.textBoxEx1.Location = new System.Drawing.Point(157, 151);
+            this.textBoxEx1.Name = "textBoxEx1";
+            this.textBoxEx1.Size = new System.Drawing.Size(377, 22);
+            this.textBoxEx1.TabIndex = 4;
+            // 
+            // textBoxEx2
+            // 
+            this.textBoxEx2.Location = new System.Drawing.Point(228, 239);
+            this.textBoxEx2.Name = "textBoxEx2";
+            this.textBoxEx2.Size = new System.Drawing.Size(100, 22);
+            this.textBoxEx2.TabIndex = 5;
+            // 
             // Form3
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(811, 414);
+            this.ClientSize = new System.Drawing.Size(721, 331);
+            this.Controls.Add(this.textBoxEx2);
+            this.Controls.Add(this.textBoxEx1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.checkBox1);
@@ -140,6 +157,8 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
+        private Controls.TextBoxEx textBoxEx1;
+        private Controls.TextBoxEx textBoxEx2;
     }
 }
 

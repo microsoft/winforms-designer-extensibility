@@ -2,7 +2,7 @@
 <Project>
 
   <ItemGroup Condition="'$(UseDesignerSDK)' == 'true'">
-    <PackageReference Include="Microsoft.WinForms.Designer.SDK" Version="1.7.4-dev" />
+    <PackageReference Include="Microsoft.WinForms.Designer.SDK" Version="1.7.5-dev" />
   </ItemGroup>
 
 </Project>
