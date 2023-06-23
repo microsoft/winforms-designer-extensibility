@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.Design;
+using System.Diagnostics;
 using Microsoft.DotNet.DesignTools.Designers;
 
 namespace RootDesignerDemo.Designer.Server;
@@ -26,6 +27,11 @@ public partial class ShapeRootDesigner : ComponentDesigner, IRootDesigner
         if (technology != ViewTechnology.Default)
         {
             throw new ArgumentException("Not a supported view technology", "technology");
+        }
+
+        if (Debugger.IsAttached)
+        {
+            Debugger.Break();
         }
         
         if (_designerSurface == null)

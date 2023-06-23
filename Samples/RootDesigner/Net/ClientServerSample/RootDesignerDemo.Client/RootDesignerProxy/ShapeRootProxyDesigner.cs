@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
-using System.Windows.Forms;
 using Microsoft.DotNet.DesignTools.Client.Designers;
 
 namespace RootDesignerDemo.Client.RootDesignerProxy
@@ -77,20 +76,6 @@ namespace RootDesignerDemo.Client.RootDesignerProxy
 
         void IToolboxUser.ToolPicked(ToolboxItem tool)
         {
-        }
-
-        protected override void OnAfterGetView()
-        {
-            // If an IToolboxService was located, update the 
-            // category list.
-            if (_toolboxService is null)
-            {
-                MessageBox.Show("Couldn't retrieve Toolbox Service!");
-            }
-            else
-            {
-                SetupToolboxItems();
-            }
         }
     }
 }
