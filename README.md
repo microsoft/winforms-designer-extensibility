@@ -4,6 +4,7 @@ Before you start developing Custom Controls for the Out-Of-Process WinForms Desi
 
 ## Documents
 * [Using Visual Studio Solution Templates for creating Control Designers/Type Editors for the Out-Of-Process .NET Core WinForms Designer](https://github.com/microsoft/winforms-designer-extensibility/tree/main/Templates/TypeEditor).
+* [Structuring Control Library nuget packages](/docs/sdk/control-library-nuget-package-spec.md)
 
 ## Templates and Code Samples
 
