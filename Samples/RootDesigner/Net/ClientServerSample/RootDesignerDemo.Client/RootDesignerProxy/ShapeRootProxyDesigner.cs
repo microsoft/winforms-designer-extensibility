@@ -7,7 +7,7 @@ using Microsoft.DotNet.DesignTools.Client.Designers;
 namespace RootDesignerDemo.Client.RootDesignerProxy
 {
     [ToolboxItemFilter(ToolboxCategory, ToolboxItemFilterType.Require)]
-    public class ShapeRootProxyDesigner : RootComponentProxyDesigner, IToolboxUser
+    public class ShapeRootProxyDesigner : ComponentProxyDesigner, IToolboxUser
     {
         private const string ToolboxCategory = "SdkShapeRootDesigner";
 
@@ -17,7 +17,6 @@ namespace RootDesignerDemo.Client.RootDesignerProxy
         public override void Initialize(IComponent component)
         {
             base.Initialize(component);
-
             _toolboxService = (IToolboxService?) GetService(typeof(IToolboxService));
         }
 
@@ -39,7 +38,7 @@ namespace RootDesignerDemo.Client.RootDesignerProxy
 
             string toolboxItemName = $"{ToolboxCategory}.{toolTypeName}";
 
-            foreach (ToolboxItem existingToolboxItem in _toolboxService.GetToolboxItems(ToolboxCategory))
+            foreach (ToolboxItem existingToolboxItem in _toolboxService!.GetToolboxItems(ToolboxCategory))
             {
                 if (existingToolboxItem.TypeName != toolboxItemName)
                 {
@@ -68,6 +67,10 @@ namespace RootDesignerDemo.Client.RootDesignerProxy
 
             return;
         }
+
+        protected override RootDesignerSupport EnableRootDesigner() => RootDesignerSupport.Default;
+
+        protected override void PopulateToolbox() => SetupToolboxItems();
 
         bool IToolboxUser.GetToolSupported(ToolboxItem tool)
         {

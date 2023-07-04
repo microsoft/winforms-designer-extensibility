@@ -15,7 +15,7 @@ public partial class ShapeRootDesigner : ComponentDesigner, IRootDesigner
     // will be shown in the Forms designer view. This member is 
     // cached to reduce processing needed to recreate the 
     // view control on each call to GetView().
-    private RootDesignerView? _designerSurface;
+    private ShapeDesignerView? _designerView;
 
     public ViewTechnology[] SupportedTechnologies => new[] { ViewTechnology.Default };
 
@@ -29,20 +29,8 @@ public partial class ShapeRootDesigner : ComponentDesigner, IRootDesigner
             throw new ArgumentException("Not a supported view technology", "technology");
         }
 
-        if (Debugger.IsAttached)
-        {
-            Debugger.Break();
-        }
-        
-        if (_designerSurface == null)
-        {
-            // Some type of displayable Form or control is required 
-            // for a root designer that overrides GetView(). In this 
-            // example, a Control of type RootDesignerView is used.
-            // Any class that inherits from Control will work.
-            _designerSurface = new SampleRootDesignerView(this);
-        }
-
-        return _designerSurface;
+        // Important: This method must return the same instance every time it is called!
+        _designerView ??= new ShapeDesignerView(this);
+        return _designerView;
     }
 }

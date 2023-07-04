@@ -1,25 +1,24 @@
-﻿using System.Drawing;
+﻿using System.ComponentModel.Design;
+using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.DotNet.DesignTools.Designers;
-
+using Timer = System.Threading.Timer;
 namespace RootDesignerDemo.Designer.Server;
 
 public partial class ShapeRootDesigner
 {
     // RootDesignerView is a simple control that will be displayed 
     // in the designer window.
-    private class SampleRootDesignerView : RootDesignerView
+    private class ShapeDesignerView : DesignerScrollableControl
     {
-        private ShapeRootDesigner _designer;
-        private System.Threading.Timer _timer;
+        private Timer? _timer;
         private bool _guard;
         private int _counter = 0;
 
-        public SampleRootDesignerView(ShapeRootDesigner designer)
+        public ShapeDesignerView(IRootDesigner rootDesigner) : base(rootDesigner)
         {
-            _designer = designer;
             BackColor = Color.LightGray;
             Font = new Font(Font.FontFamily.Name, 24.0f);
 
@@ -43,10 +42,8 @@ public partial class ShapeRootDesigner
 
         protected override void OnPaint(PaintEventArgs pe)
         {
-            base.OnPaint(pe);
-
             // Draws the name of the component in large letters.
-            pe.Graphics.DrawString($"{_designer.Component.Site.Name}: {_counter}", Font, Brushes.Black, ClientRectangle);
+            pe.Graphics.DrawString($"{RootDesigner?.Component?.Site?.Name}: {_counter}", Font, Brushes.Black, ClientRectangle);
         }
     }
 }
