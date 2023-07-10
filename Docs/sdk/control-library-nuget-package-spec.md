@@ -2,9 +2,9 @@
 
 Windows Forms has a rich ecosystem of vendors that provide controls and other UI components the developers can use to quickly build a fully functioning app.  
 
-In the past (with .NET Framework Windows Forms), control vendors could depend on their designer being loaded into the same process as Visual Studio (VS). This enabled them to call Visual Sudio API and manipulate the painting of their controls directly from within VS.  
+In the past (with .NET Framework Windows Forms), control vendors could depend on their designer being loaded into the same process as Visual Studio (VS). This enabled them to call Visual Studio API and manipulate the painting of their controls directly from within Visual Studio.  
 
-However, .NET Core Windows Forms is rendered in a separate process from VS, so control authors are going to need a mechanism to package their controls that works with this new architecture.  
+However, .NET Core Windows Forms is rendered in a separate process from Visual Studio, so control authors are going to need a mechanism to package their controls that works with this new architecture.  
 
 NuGet is the most popular way to package libraries in .NET, and vendors tend to ship their proprietary libraries by installing them to a local folder as NuGet packages, and turning that into a NuGet feed for the developer.  
 
@@ -36,7 +36,7 @@ If `lib\<tfm>\Design\WinForms` exists, we will only load files under that root. 
 
 For a runtime control that does not have a custom designer (`ProgressBar`, for example) we would simply use the default designer. The control files go under `lib\<tfm>`:
 
-  ![](/docs/sdk/images/1.png)
+  ![Image of the NuGet package for control that does not have a designer](/docs/sdk/images/no-designer.png)
 
 ### Scenario 2: A control designer with custom designer UI only
 
@@ -44,7 +44,7 @@ For a control that needs a custom designer (but does not need complex UI interac
 
 The designer files go under `lib\<tfm>\Design\WinForms\Server`:
 
-  ![](/docs/sdk/images/2.png)
+  ![Image of hte NuGet package structure for a control with only custom designer UI](/docs/sdk/images/custom-designer-only.png)
     
 ### Scenario 3: A control designer with custom interactions (using our communication protocol)
 
@@ -52,9 +52,9 @@ Control designers that are more complicated (intercepts interactive events, inte
 
 The designer files go in `lib\<tfm>\Design\WinForms`: 
 
-  ![](/docs/sdk/images//3.png)
+  ![Image of the NuGet package structure of a control with custom interactions](/docs/sdk/images/custom-interactions.png)
    
-These assemblies will be loaded into VS and MEF composed by the WinForms code. 
+These assemblies will be loaded into Visual Studio and MEF composed by the WinForms code. 
 
 ### Scenario 4: A control designer with custom interactions (using its own communication protocol) 
 
@@ -62,15 +62,15 @@ Control designers that are more complicated and wish to use their own communicat
 
 Microsoft.VisualStudio.WinForms.Protocol multi-targets two different frameworks: `net472` (.NET Framework 4.7.2) and `netcoreapp3.1` (.NET Core 3.1). Customers would need to create a multi-targeted project for their protocol extension and ship both versions: 
 
-  ![](/docs/sdk/images/4.png)
+  ![Image of the structure of a control NuGet package that uses their own custom protocal](/docs/sdk/images/custom-protocol.png)
 
-These assemblies are loaded in both the Server process and the VS process and used to pass messages between the two processes. 
+These assemblies are loaded in both the Server process and the Visual Studio process and used to pass messages between the two processes. 
 
 ### Scenario 5: A control with different designers depending on the runtime 
 
 Controls that have different designers depending on the runtime target can specify additional assemblies. These will be loaded based upon what the referencing project is targeting: 
 
-  ![](/docs/sdk/images//5.png)
+  ![Image of the NuGet package structure when the control has different designers depending on the specific runtime targeted ](/docs/sdk/images/different-runtime.png)
 
 ## Frequently Asked Questions
 
