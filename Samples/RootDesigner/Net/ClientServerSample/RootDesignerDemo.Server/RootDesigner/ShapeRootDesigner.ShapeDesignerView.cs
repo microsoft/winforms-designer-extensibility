@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.Design;
-using System.Diagnostics;
 using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,9 +18,8 @@ public partial class ShapeRootDesigner
         private bool _guard;
         private int _counter = 0;
         private bool _drawControlInProgress;
-        private Rectangle _currentSelectionArea;
         private Point _initialPosition;
-        private int _debugCount;
+        private Rectangle _screenRectangle;
 
         public ShapeDesignerView(IRootDesigner rootDesigner) : base(rootDesigner)
         {
@@ -45,38 +43,40 @@ public partial class ShapeRootDesigner
 
             await Task.Delay(0);
 
-            Invalidate();
+            // We are requesting an Invalidation of the internal adorner windows, which we inserted in the stack,
+            // since this component overwrites SupportPostPaint, and therefore requests a transparent overlay window
+            // to be created. Its paint event can then be handled in OnPostPaint.
+            RequestPostPaint();
 
             _counter++;
             _guard = false;
         }
 
-        protected override void OnPaint(PaintEventArgs pe)
-        {
-            // Draws the name of the component in large letters.
-            pe.Graphics.DrawString($"{RootDesigner?.Component?.Site?.Name}: {_counter}", Font, Brushes.Black, ClientRectangle);
-        }
-
+        // When SupportPostPaint returns true, we create a transparent overlay, and its OnPaint is handled here.
         protected override void OnPostPaint(PaintEventArgs e)
         {
-            base.OnPostPaint(e);
+            // Draws the name of the component in large letters.
+            e.Graphics.DrawString($"{RootDesigner?.Component?.Site?.Name}: {_counter}", Font, Brushes.Black, ClientRectangle);
         }
 
+        // Note: This is NOT the original mouse down, but rather the mouse down, which is
+        // triggered by the input dispatcher (and originates from the input shield in the client).
         protected override void OnMouseDown(MouseButtonDispatchEventArgs e)
         {
             base.OnMouseDown(e);
             _drawControlInProgress= true;
         }
 
+        // Note: See note above.
         protected override void OnMouseUp(MouseButtonDispatchEventArgs e)
         {
             _drawControlInProgress = false;
             // TODO: OnDrawSelectionFinished.
             _initialPosition = Point.Empty;
-            _currentSelectionArea = Rectangle.Empty;
-            _debugCount = 0;
+            _screenRectangle = Rectangle.Empty;
         }
 
+        // Note: See note above.
         protected override void OnMouseMove(InputDispatchEventArgs e)
         {
             base.OnMouseMove(e);
@@ -84,28 +84,23 @@ public partial class ShapeRootDesigner
             if (!_drawControlInProgress)
                 return;
 
-            _debugCount++;
-            if (_debugCount>50)
-            {
-                if (Debugger.IsAttached)
-                    Debugger.Break();
-
-                _debugCount = 0;
-            }
-
             if (!_initialPosition.IsEmpty)
             {
-                ControlPaint.DrawReversibleFrame(_currentSelectionArea, Color.Black, FrameStyle.Thick);
+                ControlPaint.DrawReversibleFrame(_screenRectangle, Color.Black, FrameStyle.Thick);
             }
             else
             {
                 _initialPosition = e.Location;
             }
 
-            Size rectangleSize = new Size(Math.Abs(_initialPosition.X - _initialPosition.X), Math.Abs(e.Location.Y - e.Location.Y));
-            _currentSelectionArea = new(_initialPosition, rectangleSize);
+            Size rectangleSize = new Size(Math.Abs(_initialPosition.X - e.Location.X), Math.Abs(_initialPosition.Y - e.Location.Y));
+            Rectangle currentSelectionArea = new(_initialPosition, rectangleSize);
 
-            ControlPaint.DrawReversibleFrame(_currentSelectionArea, Color.Black, FrameStyle.Thick);
+            Point topLeft = PointToScreen(new Point(currentSelectionArea.Left, currentSelectionArea.Top));
+            Point bottomRight = PointToScreen(new Point(currentSelectionArea.Right, currentSelectionArea.Bottom));
+            _screenRectangle = new Rectangle(topLeft.X, topLeft.Y, bottomRight.X - topLeft.X, bottomRight.Y - topLeft.Y);
+
+            ControlPaint.DrawReversibleFrame(_screenRectangle, Color.Black, FrameStyle.Thick);
         }
     }
 }
