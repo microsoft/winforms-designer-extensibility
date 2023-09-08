@@ -27,6 +27,9 @@ public partial class ShapeRootDesigner
             Font = new Font(Font.FontFamily.Name, 24.0f);
 
             _timer = new System.Threading.Timer(new TimerCallback(TimerProc), null, 0, 2000);
+
+            // Add a Label and a Button to the Controls Collection:
+
         }
 
         // We want a transparent overlay window automatically created to draw adorners on.
@@ -46,7 +49,7 @@ public partial class ShapeRootDesigner
             // We are requesting an Invalidation of the internal adorner windows, which we inserted in the stack,
             // since this component overwrites SupportPostPaint, and therefore requests a transparent overlay window
             // to be created. Its paint event can then be handled in OnPostPaint.
-            RequestPostPaint();
+            Invalidate();
 
             _counter++;
             _guard = false;

@@ -51,9 +51,4 @@ public class ShapeBase : Component
     }
 
     public virtual void Render(Graphics g) { }
-
-    private void InitializeComponent()
-    {
-
-    }
 }
