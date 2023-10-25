@@ -12,7 +12,7 @@
     <PackageReference Include="TileRepeater.Package" Version="*" />
   </ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\TileRepeater.Data\TileRepeater.Data.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TileRepeater.Data\TileRepeater.Data.csproj" />
+  </ItemGroup>
 </Project>
