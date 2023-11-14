@@ -5,13 +5,11 @@
 		<UseWindowsForms>true</UseWindowsForms>
 		<LangVersion>9.0</LangVersion>
 		<Nullable>enable</Nullable>
-	</PropertyGroup>
-
-	<ItemGroup>
-	  <PackageReference Include="Microsoft.WinForms.Designer.SDK" Version="1.1.0-prerelease-preview3.22076.5" />
-	</ItemGroup>
+    <UseDesignerSDK>true</UseDesignerSDK>
+  </PropertyGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\TileRepeater.ClientServerProtocol\TileRepeater.ClientServerProtocol.csproj" />
 	</ItemGroup>
+  
 </Project>
