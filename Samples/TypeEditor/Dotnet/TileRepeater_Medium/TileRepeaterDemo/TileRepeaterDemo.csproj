@@ -9,7 +9,6 @@
     <UseTileRepeater>true</UseTileRepeater>
   </PropertyGroup>
 
-
 	<ItemGroup>
 	  <ProjectReference Include="..\TileRepeater.Data\TileRepeater.Data.csproj" />
 	</ItemGroup>
