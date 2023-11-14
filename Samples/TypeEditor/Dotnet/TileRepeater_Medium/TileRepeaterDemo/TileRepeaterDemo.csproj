@@ -6,11 +6,8 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UseTileRepeater>true</UseTileRepeater>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="TileRepeater.Package" Version="*" />
-  </ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\TileRepeater.Data\TileRepeater.Data.csproj" />

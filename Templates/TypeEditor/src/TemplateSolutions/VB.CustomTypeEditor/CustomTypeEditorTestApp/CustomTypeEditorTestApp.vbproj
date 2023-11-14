@@ -6,6 +6,7 @@
     <StartupObject>Sub Main</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
+    <UseCustomControlLibrary>true</UseCustomControlLibrary>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,9 +29,4 @@
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="CustomControlLibrary.Package" Version="[1.*,)" />
-  </ItemGroup>
-
 </Project>

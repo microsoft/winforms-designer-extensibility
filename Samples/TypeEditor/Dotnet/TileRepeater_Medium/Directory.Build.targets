@@ -2,7 +2,11 @@
 <Project>
 
   <ItemGroup Condition="'$(UseDesignerSDK)' == 'true'">
-    <PackageReference Include="Microsoft.WinForms.Designer.SDK" Version="1.1.0-prerelease-preview3.22076.5" />
+    <PackageReference Include="Microsoft.WinForms.Designer.SDK" Version="1.6.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(UseTileRepeater)' == 'true'">
+    <PackageReference Include="TileRepeater.Package"/>
   </ItemGroup>
 
 </Project>
