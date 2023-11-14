@@ -6,7 +6,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(UseTileRepeater)' == 'true'">
-    <PackageReference Include="TileRepeater.Package"/>
+    <PackageReference Include="TileRepeater.Package" Version="*"/>
   </ItemGroup>
 
 </Project>
