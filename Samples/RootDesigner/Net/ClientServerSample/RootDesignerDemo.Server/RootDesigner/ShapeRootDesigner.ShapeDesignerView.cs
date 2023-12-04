@@ -1,11 +1,12 @@
 ﻿using System;
 using System.ComponentModel.Design;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.DotNet.DesignTools.Designers;
 using Timer = System.Threading.Timer;
+
 namespace RootDesignerDemo.Designer.Server;
 
 public partial class ShapeRootDesigner
@@ -20,16 +21,32 @@ public partial class ShapeRootDesigner
         private bool _drawControlInProgress;
         private Point _initialPosition;
         private Rectangle _screenRectangle;
+        private BufferedRenderer? _surfaceRenderer;
+        private GraphicsPath? _currentSelectionRenderer;
 
         public ShapeDesignerView(IRootDesigner rootDesigner) : base(rootDesigner)
         {
             BackColor = Color.LightGray;
+            ForeColor = Color.Black;
+
             Font = new Font(Font.FontFamily.Name, 24.0f);
 
             _timer = new System.Threading.Timer(new TimerCallback(TimerProc), null, 0, 2000);
 
             // Add a Label and a Button to the Controls Collection:
+            Controls.Add(new Label()
+            {
+                Text = "Hello World",
+                Location = new Point(10, 200),
+                Size= new Size(200, 50)
+            });
 
+            Controls.Add(new Button()
+            {
+                Text = "Click Me",
+                Location = new Point(10, 250),
+                Size = new Size(200, 50)
+            });
         }
 
         // We want a transparent overlay window automatically created to draw adorners on.
@@ -37,29 +54,71 @@ public partial class ShapeRootDesigner
         // will then surface in the PostPaint event, passing the Graphics object of the adorner window.
         protected override bool SupportPostPaint => true;
 
-        private async void TimerProc(object? state)
+        protected override void OnHandleCreated(EventArgs e)
         {
-            if (_guard)
-                return;
+            base.OnHandleCreated(e);
 
-            _guard = true;
+            // If we had recreate the handle, we need to re-register the SurfaceRenderer.
+            if (_surfaceRenderer is not null)
+            {
+                _surfaceRenderer.Dispose();
+            }
 
-            await Task.Delay(0);
+            _surfaceRenderer = new BufferedRenderer(this);
+            _surfaceRenderer.Paint += SurfaceRendererPaint;
+        }
 
+        protected override void Dispose(bool disposing)
+        {
+            if (_surfaceRenderer is not null)
+            {
+                _surfaceRenderer.Paint -= SurfaceRendererPaint;
+            }
+            base.Dispose(disposing);
+        }
+
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            base.OnPaintBackground(e);
+        }
+
+        private void TimerProc(object? state)
+        {
             // We are requesting an Invalidation of the internal adorner windows, which we inserted in the stack,
             // since this component overwrites SupportPostPaint, and therefore requests a transparent overlay window
             // to be created. Its paint event can then be handled in OnPostPaint.
-            Invalidate();
+            if (!this.IsHandleCreated)
+            {
+                return;
+            }
 
-            _counter++;
-            _guard = false;
+            this.BeginInvoke(new Action(() =>
+            {
+                try
+                {
+                    if (_guard)
+                        return;
+
+                    _guard = true;
+                    _surfaceRenderer?.Invalidate();
+
+                    _counter++;
+                    _guard = false;
+
+                }
+                catch (Exception)
+                {
+                }
+            }));
         }
 
-        // When SupportPostPaint returns true, we create a transparent overlay, and its OnPaint is handled here.
-        protected override void OnPostPaint(PaintEventArgs e)
+        // When SupportPostPaint returns true, we create a transparent overlay, and route the paint event
+        // to the Surface Renderer, which is a BufferedRenderer, which will do the adorner painting.
+        private void SurfaceRendererPaint(object? sender, PaintEventArgs e)
         {
             // Draws the name of the component in large letters.
-            e.Graphics.DrawString($"{RootDesigner?.Component?.Site?.Name}: {_counter}", Font, Brushes.Black, ClientRectangle);
+            e.Graphics.DrawString($"{RootDesigner?.Component?.Site?.Name}: {_counter}", Font, Brushes.Blue, ClientRectangle);
+            e.Graphics.DrawPath(Pens.Blue, CurrentSelectionRenderer);
         }
 
         // Note: This is NOT the original mouse down, but rather the mouse down, which is
@@ -73,10 +132,27 @@ public partial class ShapeRootDesigner
         // Note: See note above.
         protected override void OnMouseUp(MouseButtonDispatchEventArgs e)
         {
+            if (!_drawControlInProgress)
+                return;
+
+            CurrentSelectionRenderer.Reset();
             _drawControlInProgress = false;
-            // TODO: OnDrawSelectionFinished.
             _initialPosition = Point.Empty;
             _screenRectangle = Rectangle.Empty;
+            _surfaceRenderer?.Invalidate();
+        }
+
+        internal GraphicsPath CurrentSelectionRenderer
+        {
+            get
+            {
+                if (_currentSelectionRenderer is null)
+                {
+                    _currentSelectionRenderer = new GraphicsPath();
+                }
+
+                return _currentSelectionRenderer;
+            }
         }
 
         // Note: See note above.
@@ -87,11 +163,7 @@ public partial class ShapeRootDesigner
             if (!_drawControlInProgress)
                 return;
 
-            if (!_initialPosition.IsEmpty)
-            {
-                ControlPaint.DrawReversibleFrame(_screenRectangle, Color.Black, FrameStyle.Thick);
-            }
-            else
+            if (_initialPosition.IsEmpty)
             {
                 _initialPosition = e.Location;
             }
@@ -99,11 +171,10 @@ public partial class ShapeRootDesigner
             Size rectangleSize = new Size(Math.Abs(_initialPosition.X - e.Location.X), Math.Abs(_initialPosition.Y - e.Location.Y));
             Rectangle currentSelectionArea = new(_initialPosition, rectangleSize);
 
-            Point topLeft = PointToScreen(new Point(currentSelectionArea.Left, currentSelectionArea.Top));
-            Point bottomRight = PointToScreen(new Point(currentSelectionArea.Right, currentSelectionArea.Bottom));
-            _screenRectangle = new Rectangle(topLeft.X, topLeft.Y, bottomRight.X - topLeft.X, bottomRight.Y - topLeft.Y);
-
-            ControlPaint.DrawReversibleFrame(_screenRectangle, Color.Black, FrameStyle.Thick);
+            _screenRectangle = currentSelectionArea;
+            CurrentSelectionRenderer.Reset();
+            CurrentSelectionRenderer.AddRectangle(_screenRectangle);
+            _surfaceRenderer?.Invalidate();
         }
     }
 }

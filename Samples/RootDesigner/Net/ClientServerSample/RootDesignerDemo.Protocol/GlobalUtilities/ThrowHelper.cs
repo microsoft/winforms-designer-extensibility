@@ -7,7 +7,7 @@ namespace Microsoft.WinForms.Utilities.Shared;
 internal static class ThrowHelper
 {
     /// <summary>
-    ///  Thows an <see cref="ArgumentNullException"/>.
+    ///  Throws an <see cref="ArgumentNullException"/>.
     /// </summary>
     /// <remarks>
     ///  This is marked with NoInlining to ensure that the JIT can better inline calling code.

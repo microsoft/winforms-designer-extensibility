@@ -8,6 +8,8 @@
 
 namespace System.Runtime.CompilerServices;
 
+#if NETFRAMEWORK
+
 [AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false, Inherited = false)]
 internal sealed class CallerArgumentExpressionAttribute : Attribute
 {
@@ -19,3 +21,4 @@ internal sealed class CallerArgumentExpressionAttribute : Attribute
     public string ParameterName { get; }
 }
 
+#endif
