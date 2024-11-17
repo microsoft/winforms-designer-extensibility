@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>TileRepeater.Package</id>
+    <version>1.234.121557</version>
+    <authors>TileRepeater.Package</authors>
+    <description>Package Description</description>
+    <repository type="git" url="https://github.com/dotnet/winforms-designer" />
+    <dependencies>
+      <group targetFramework="net6.0" />
+    </dependencies>
+  </metadata>
+</package>

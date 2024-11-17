@@ -1,0 +1,77 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RootDesignerDemo.Protocol", "RootDesignerDemo.Protocol\RootDesignerDemo.Protocol.csproj", "{855DB9BD-6C22-416B-A708-549D746149DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ControlDesigners", "ControlDesigners", "{D247B836-28E7-4022-9FEF-12AA0A6B1184}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RootDesignerDemo.Server", "RootDesignerDemo.Server\RootDesignerDemo.Server.csproj", "{A6E65470-05AA-4DAA-92AF-0EC47A5CB140}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Controls", "Controls", "{89AEA44E-519A-4200-8467-17F5524C6E51}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RootDesignerDemo.Controls", "RootDesignerDemo.Controls\RootDesignerDemo.Controls.csproj", "{A1AFE219-25B5-4B8F-B9C2-0514A71731B5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RootDesignerDemo.Package", "RootDesignerDemo.Package\RootDesignerDemo.Package.csproj", "{119E53BE-06D5-40FA-87B8-FED0F8D2A750}"
+	ProjectSection(ProjectDependencies) = postProject
+		{58EFB943-5A3B-427A-A6C2-0ADE29F5A4A8} = {58EFB943-5A3B-427A-A6C2-0ADE29F5A4A8}
+		{855DB9BD-6C22-416B-A708-549D746149DE} = {855DB9BD-6C22-416B-A708-549D746149DE}
+		{A1AFE219-25B5-4B8F-B9C2-0514A71731B5} = {A1AFE219-25B5-4B8F-B9C2-0514A71731B5}
+		{A6E65470-05AA-4DAA-92AF-0EC47A5CB140} = {A6E65470-05AA-4DAA-92AF-0EC47A5CB140}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solution Items", "{80223DA1-D034-43FE-A3D9-B9FCE6B30CE4}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.targets = Directory.Build.targets
+		NuGet.config = NuGet.config
+		readme.md = readme.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RootDesignerTestApp", "RootDesignerTestApp\RootDesignerTestApp.csproj", "{A2522661-E23A-4ADF-8B1F-2306ADB0CA26}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RootDesignerDemo.Client", "RootDesignerDemo.Client\RootDesignerDemo.Client.csproj", "{58EFB943-5A3B-427A-A6C2-0ADE29F5A4A8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{855DB9BD-6C22-416B-A708-549D746149DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{855DB9BD-6C22-416B-A708-549D746149DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{855DB9BD-6C22-416B-A708-549D746149DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{855DB9BD-6C22-416B-A708-549D746149DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6E65470-05AA-4DAA-92AF-0EC47A5CB140}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6E65470-05AA-4DAA-92AF-0EC47A5CB140}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6E65470-05AA-4DAA-92AF-0EC47A5CB140}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6E65470-05AA-4DAA-92AF-0EC47A5CB140}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1AFE219-25B5-4B8F-B9C2-0514A71731B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1AFE219-25B5-4B8F-B9C2-0514A71731B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1AFE219-25B5-4B8F-B9C2-0514A71731B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1AFE219-25B5-4B8F-B9C2-0514A71731B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{119E53BE-06D5-40FA-87B8-FED0F8D2A750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{119E53BE-06D5-40FA-87B8-FED0F8D2A750}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{119E53BE-06D5-40FA-87B8-FED0F8D2A750}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{119E53BE-06D5-40FA-87B8-FED0F8D2A750}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2522661-E23A-4ADF-8B1F-2306ADB0CA26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2522661-E23A-4ADF-8B1F-2306ADB0CA26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2522661-E23A-4ADF-8B1F-2306ADB0CA26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2522661-E23A-4ADF-8B1F-2306ADB0CA26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58EFB943-5A3B-427A-A6C2-0ADE29F5A4A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58EFB943-5A3B-427A-A6C2-0ADE29F5A4A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58EFB943-5A3B-427A-A6C2-0ADE29F5A4A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58EFB943-5A3B-427A-A6C2-0ADE29F5A4A8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{855DB9BD-6C22-416B-A708-549D746149DE} = {D247B836-28E7-4022-9FEF-12AA0A6B1184}
+		{A6E65470-05AA-4DAA-92AF-0EC47A5CB140} = {D247B836-28E7-4022-9FEF-12AA0A6B1184}
+		{A1AFE219-25B5-4B8F-B9C2-0514A71731B5} = {89AEA44E-519A-4200-8467-17F5524C6E51}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D80B6075-E0F0-4F58-9558-C41445569497}
+	EndGlobalSection
+EndGlobal

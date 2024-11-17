@@ -1,18 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
-    <EnablePreviewFeatures>true</EnablePreviewFeatures>
-    <GenerateRequiresPreviewFeaturesAttribute>true</GenerateRequiresPreviewFeaturesAttribute>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net472</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <LangVersion>10.0</LangVersion>
-	<Nullable>enable</Nullable>
-	<ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <UseDesignerSdk>true</UseDesignerSdk>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MauiEdit.ViewModels\MauiEdit.ViewModels.csproj" />
+    <ProjectReference Include="..\RootDesignerDemo.Protocol\RootDesignerDemo.Protocol.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,5 +26,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-	
+
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
 </Project>
