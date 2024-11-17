@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
@@ -18,13 +19,16 @@ public class BufferedRenderer : IDisposable
     private Bitmap? _upcomingBitmap;
     private DesignerScrollableControl _parentControl;
     private bool _disposedValue;
-    private Control? _adornerOverlay;
+    private Graphics? _adornerGraphics;
 
     public BufferedRenderer(DesignerScrollableControl parentControl)
     {
         _parentControl = parentControl ?? throw new ArgumentNullException(nameof(parentControl));
         _parentControl.Resize += OnParentControlResize;
         _parentControl.PostPaint += OnParentPostPaint;
+
+        InitializeBitmaps();
+        _parentControl.Invalidate();
     }
 
     private void InitializeBitmaps()
@@ -55,22 +59,23 @@ public class BufferedRenderer : IDisposable
     private void OnParentControlResize(object? sender, EventArgs e)
     {
         InitializeBitmaps();
-        Invalidate();
-        _adornerOverlay?.Invalidate();
+        _parentControl.Invalidate();
     }
 
     private void OnParentPostPaint(object? sender, PaintEventArgs e)
     {
-        if (_adornerOverlay is null)
+        if (_adornerGraphics is null)
         {
-            IntPtr hwnd = WindowFromDC(e.Graphics.GetHdc());
-            _adornerOverlay = Control.FromHandle(hwnd);
+            _adornerGraphics = Graphics.FromHdc(e.Graphics.GetHdc());
         }
 
         if (_activeBitmap is null)
         {
             return;
         }
+
+        // Draw something on the screen
+        e.Graphics.DrawLine(Pens.Blue, 10, 10, 100, 100);
 
         OnPaintInternal();
     }
@@ -87,7 +92,7 @@ public class BufferedRenderer : IDisposable
     {
         if (_upcomingBitmap is null
             || _activeBitmap is null
-            || _adornerOverlay is null)
+            || _adornerGraphics is null)
         {
             return;
         }
@@ -95,35 +100,32 @@ public class BufferedRenderer : IDisposable
         using (Graphics g = Graphics.FromImage(_activeBitmap))
         {
             g.Clear(Color.Transparent);
-            OnPaint(new PaintEventArgs(g, _adornerOverlay.ClientRectangle));
+            OnPaint(new PaintEventArgs(g, _parentControl.ClientRectangle));
             //SwapBitmaps();
         }
 
-        using (Graphics parentGraphics = _adornerOverlay.CreateGraphics())
+        var bitmapRectangle = new Rectangle(0, 0, _activeBitmap.Width, _activeBitmap.Height);
+
+        ImageAttributes imageAttributes = new ImageAttributes();
+        imageAttributes.SetColorKey(Color.Transparent, Color.Transparent);
+
+        _adornerGraphics.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
+
+        try
         {
-            var bitmapRectangle = new Rectangle(0, 0, _activeBitmap.Width, _activeBitmap.Height);
-
-            ImageAttributes imageAttributes = new ImageAttributes();
-            imageAttributes.SetColorKey(Color.Transparent, Color.Transparent);
-
-            parentGraphics.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
-
-            try
-            {
-                parentGraphics.DrawImage(
-                    image: _activeBitmap!,
-                    destRect: bitmapRectangle,
-                    srcX: 0,
-                    srcY: 0,
-                    srcWidth: bitmapRectangle.Width,
-                    srcHeight: bitmapRectangle.Height,
-                    srcUnit: GraphicsUnit.Pixel,
-                    imageAttributes);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"{ex.Message}\n{ex.StackTrace}");
-            }
+            //_adornerGraphics.DrawImage(
+            //    image: _activeBitmap!,
+            //    destRect: bitmapRectangle,
+            //    srcX: 0,
+            //    srcY: 0,
+            //    srcWidth: bitmapRectangle.Width,
+            //    srcHeight: bitmapRectangle.Height,
+            //    srcUnit: GraphicsUnit.Pixel,
+            //    imageAttributes);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"{ex.Message}\n{ex.StackTrace}");
         }
     }
 

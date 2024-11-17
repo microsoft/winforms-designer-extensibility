@@ -66,6 +66,7 @@ public partial class ShapeRootDesigner
 
             _surfaceRenderer = new BufferedRenderer(this);
             _surfaceRenderer.Paint += SurfaceRendererPaint;
+            Invalidate();
         }
 
         protected override void Dispose(bool disposing)
@@ -75,11 +76,6 @@ public partial class ShapeRootDesigner
                 _surfaceRenderer.Paint -= SurfaceRendererPaint;
             }
             base.Dispose(disposing);
-        }
-
-        protected override void OnPaintBackground(PaintEventArgs e)
-        {
-            base.OnPaintBackground(e);
         }
 
         private void TimerProc(object? state)
