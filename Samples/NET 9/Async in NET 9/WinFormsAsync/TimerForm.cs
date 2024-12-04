@@ -122,7 +122,6 @@ public partial class TimerForm : Form
     }
 
     // But this is.
-    // But this is.
     private async Task RunDisplayLoopAsyncV6()
     {
         Task? uiUpdateTask = null;
