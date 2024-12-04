@@ -1,13 +1,13 @@
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace WinFormsAsync;
 
-public partial class FrmMain : Form
+public partial class TimerForm : Form
 {
     private SevenSegmentTimer _sevenSegmentTimer;
     private readonly CancellationTokenSource _formCloseCancellation = new();
 
-    public FrmMain()
+    public TimerForm()
     {
         InitializeComponent();
         SetupTimerDisplay();
@@ -27,7 +27,7 @@ public partial class FrmMain : Form
     override async protected void OnLoad(EventArgs e)
     {
         base.OnLoad(e);
-        await RunDisplayLoopAsyncV1();
+        await RunDisplayLoopAsyncV6();
     }
 
     private async Task RunDisplayLoopAsyncV1()
@@ -122,6 +122,7 @@ public partial class FrmMain : Form
     }
 
     // But this is.
+    // But this is.
     private async Task RunDisplayLoopAsyncV6()
     {
         Task? uiUpdateTask = null;
@@ -140,9 +141,14 @@ public partial class FrmMain : Form
                 cancellation: _formCloseCancellation.Token);
 
             separatorFadingTask ??= FadeInFadeOutAsync(_formCloseCancellation.Token);
-            Task completedTask = await Task.WhenAny(separatorFadingTask, uiUpdateTask);
+            Task completedOrCancelledTask = await Task.WhenAny(separatorFadingTask, uiUpdateTask);
 
-            if (completedTask == uiUpdateTask)
+            if (completedOrCancelledTask.IsCanceled)
+            {
+                break;
+            }
+
+            if (completedOrCancelledTask == uiUpdateTask)
             {
                 uiUpdateTask = null;
             }

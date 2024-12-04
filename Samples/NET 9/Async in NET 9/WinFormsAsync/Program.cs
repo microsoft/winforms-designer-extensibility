@@ -12,7 +12,7 @@ namespace WinFormsAsync
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.SetColorMode(SystemColorMode.System);
-            Application.Run(new FrmMain());
+            Application.Run(new TimerForm());
         }
     }
 }

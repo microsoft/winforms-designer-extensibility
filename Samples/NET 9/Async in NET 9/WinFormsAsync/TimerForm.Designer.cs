@@ -1,6 +1,6 @@
 ﻿namespace WinFormsAsync
 {
-    partial class FrmMain
+    partial class TimerForm
     {
         /// <summary>
         ///  Required designer variable.
