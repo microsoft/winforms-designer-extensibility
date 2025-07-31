@@ -2,14 +2,19 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net9.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseTileRepeater>true</UseTileRepeater>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="9.0.7" />
+  </ItemGroup>
+
 	<ItemGroup>
+	  <ProjectReference Include="..\TileRepeater.Controls\TileRepeater.Controls.csproj" />
 	  <ProjectReference Include="..\TileRepeater.Data\TileRepeater.Data.csproj" />
 	</ItemGroup>
 

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0-windows</TargetFramework>
+		<TargetFramework>net9.0-windows</TargetFramework>
 		<UseWindowsForms>true</UseWindowsForms>
 		<Nullable>enable</Nullable>
     <UseDesignerSDK>true</UseDesignerSDK>
@@ -10,6 +10,10 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\TileRepeater.ClientServerProtocol\TileRepeater.ClientServerProtocol.csproj" />
 	  <ProjectReference Include="..\TileRepeater.Controls\TileRepeater.Controls.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Update="Microsoft.WinForms.Designer.SDK" Version="1.13.0-preview.2.24575.3" />
 	</ItemGroup>
 
 </Project>

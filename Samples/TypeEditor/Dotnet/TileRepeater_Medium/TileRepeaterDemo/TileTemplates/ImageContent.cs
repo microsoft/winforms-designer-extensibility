@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Diagnostics;
 using WinForms.Tiles;
 
 namespace TileRepeaterDemo.TileTemplates
@@ -13,6 +14,7 @@ namespace TileRepeaterDemo.TileTemplates
             BindingSourceComponent = _genericPictureItemBindingSource;
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public TileSize TileSize
         {
             get => _tileSize;

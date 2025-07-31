@@ -1,12 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0-windows;net472</TargetFrameworks>
+    <TargetFrameworks>net9.0-windows;net472</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
-	  <LangVersion>10.0</LangVersion>
+	  <LangVersion>latest</LangVersion>
 	  <Nullable>enable</Nullable>
     
     <UseDesignerSDK>true</UseDesignerSDK>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.WinForms.Designer.SDK" Version="1.13.0-preview.2.24575.3" />
+  </ItemGroup>
 
 </Project>

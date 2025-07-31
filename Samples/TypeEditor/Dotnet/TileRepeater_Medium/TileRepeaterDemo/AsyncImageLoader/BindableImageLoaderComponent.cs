@@ -1,217 +1,213 @@
-﻿using System;
-using System.ComponentModel;
-using System.Drawing;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
-namespace TileRepeaterDemo.TileTemplates
+namespace TileRepeaterDemo.TileTemplates;
+
+public partial class BindableAsyncImageLoaderComponent : Component, IBindableComponent
 {
-    public partial class BindableAsyncImageLoaderComponent : Component, IBindableComponent
+    // We're running no more than 2 worker tasks for the image resizing at a time.
+    private static readonly SemaphoreSlim s_semaphore = new(2);
+
+    private BindingContext? _bindingContext;
+    private ControlBindingsCollection? _dataBindings;
+    private Image? _image;
+    private string? _imageFilename;
+
+    public event EventHandler? ImageChanged;
+    public event EventHandler? ImageFilenameChanged;
+    public event EventHandler? BindingContextChanged;
+
+    public BindableAsyncImageLoaderComponent()
     {
-        // We're running no more than 2 worker tasks for the image resizing at a time.
-        private static readonly SemaphoreSlim s_semaphore = new(2);
+        InitializeComponent();
+        Disposed += BindableAsyncImageLoaderComponent_Disposed;
+    }
 
-        private BindingContext? _bindingContext;
-        private ControlBindingsCollection? _dataBindings;
-        private Image? _image;
-        private string? _imageFilename;
+    private void BindableAsyncImageLoaderComponent_Disposed(object? sender, EventArgs e)
+        => Image?.Dispose();
 
-        public event EventHandler? ImageChanged;
-        public event EventHandler? ImageFilenameChanged;
-        public event EventHandler? BindingContextChanged;
+    public BindableAsyncImageLoaderComponent(IContainer container)
+    {
+        container.Add(this);
+        InitializeComponent();
+    }
 
-        public BindableAsyncImageLoaderComponent()
+    private void UpdateBindings()
+    {
+        for (int i = 0; i < DataBindings.Count; i++)
         {
-            InitializeComponent();
-            Disposed += BindableAsyncImageLoaderComponent_Disposed;
+            BindingContext.UpdateBinding(BindingContext, DataBindings[i]);
+        }
+    }
+
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    protected virtual void OnBindingContextChanged(EventArgs e)
+    {
+        if (_bindingContext is not null)
+        {
+            UpdateBindings();
         }
 
-        private void BindableAsyncImageLoaderComponent_Disposed(object? sender, EventArgs e)
-            => Image?.Dispose();
+        BindingContextChanged?.Invoke(this, e);
+    }
 
-        public BindableAsyncImageLoaderComponent(IContainer container)
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+    [RefreshProperties(RefreshProperties.All)]
+    [ParenthesizePropertyName(true)]
+    public ControlBindingsCollection DataBindings
+    {
+        get
         {
-            container.Add(this);
-            InitializeComponent();
+            _dataBindings ??= new ControlBindingsCollection(this);
+
+            return _dataBindings;
         }
+    }
 
-        private void UpdateBindings()
+    [AllowNull]
+    [Browsable(false)]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    public BindingContext BindingContext
+    {
+        get
         {
-            for (int i = 0; i < DataBindings.Count; i++)
-            {
-                BindingContext.UpdateBinding(BindingContext, DataBindings[i]);
-            }
+            _bindingContext ??= new BindingContext();
+
+            return _bindingContext;
         }
-
-        [EditorBrowsable(EditorBrowsableState.Advanced)]
-        protected virtual void OnBindingContextChanged(EventArgs e)
+        set
         {
-            if (_bindingContext is not null)
+            if (!Equals(_bindingContext, value))
             {
-                UpdateBindings();
-            }
-
-            BindingContextChanged?.Invoke(this, e);
-        }
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        [RefreshProperties(RefreshProperties.All)]
-        [ParenthesizePropertyName(true)]
-        public ControlBindingsCollection DataBindings
-        {
-            get
-            {
-                _dataBindings ??= new ControlBindingsCollection(this);
-
-                return _dataBindings;
+                _bindingContext = value;
+                OnBindingContextChanged(EventArgs.Empty);
             }
         }
+    }
 
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Advanced)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public BindingContext BindingContext
+    [Bindable(true), DefaultValue(null)]
+    public string? ImageFilename
+    {
+        get => _imageFilename;
+
+        set
         {
-            get
+            if (!Equals(_imageFilename, value))
             {
-                _bindingContext ??= new BindingContext();
-
-                return _bindingContext;
-            }
-            set
-            {
-                if (!Equals(_bindingContext, value))
-                {
-                    _bindingContext = value;
-                    OnBindingContextChanged(EventArgs.Empty);
-                }
+                _imageFilename = value;
+                OnImageFilenameChanged(EventArgs.Empty);
             }
         }
+    }
 
-        [Bindable(true), DefaultValue(null)]
-        public string? ImageFilename
+    [DefaultValue(false)]
+    public bool AutoLoad { get; set; }
+
+    protected async virtual void OnImageFilenameChanged(EventArgs e)
+    {
+        try
         {
-            get => _imageFilename;
+            ImageFilenameChanged?.Invoke(this, e);
 
-            set
+            if (AutoLoad)
             {
-                if (!Equals(_imageFilename, value))
-                {
-                    _imageFilename = value;
-                    OnImageFilenameChanged(EventArgs.Empty);
-                }
+                await LoadImageAsync();
             }
         }
-
-        [DefaultValue(false)]
-        public bool AutoLoad { get; set; }
-
-        protected async virtual void OnImageFilenameChanged(EventArgs e)
+        catch (Exception)
         {
-            try
-            {
-                ImageFilenameChanged?.Invoke(this, e);
+        }
+    }
 
-                if (AutoLoad)
-                {
-                    await LoadImageAsync();
-                }
-            }
-            catch (Exception)
+    [Browsable(false)]
+    public Image? Image
+    {
+        get => _image;
+        private set
+        {
+            if (!Equals(_image, value))
             {
+                _image = value;
+                OnImageChanged(EventArgs.Empty);
             }
         }
+    }
 
-        [Browsable(false)]
-        public Image? Image
-        {
-            get => _image;
-            private set
-            {
-                if (!Equals(_image, value))
-                {
-                    _image = value;
-                    OnImageChanged(EventArgs.Empty);
-                }
-            }
-        }
-
-        public async virtual Task LoadImageAsync(Size rescaleTo = default)
-        {
-            if (string.IsNullOrWhiteSpace(_imageFilename))
-            {
-                if (Image is not null)
-                {
-                    Image.Dispose();
-                    Image = null;
-                }
-
-                return;
-            }
-
-            try
-            {
-                Image?.Dispose();
-                Image = await LoadImageAsync(_imageFilename!, rescaleTo);
-            }
-            catch (Exception)
-            {
-            }
-        }
-
-        public virtual void DisposeImage()
+    public async virtual Task LoadImageAsync(Size rescaleTo = default)
+    {
+        if (string.IsNullOrWhiteSpace(_imageFilename))
         {
             if (Image is not null)
             {
                 Image.Dispose();
                 Image = null;
             }
+
+            return;
         }
 
-        protected virtual void OnImageChanged(EventArgs e)
-            => ImageChanged?.Invoke(this, e);
-
-        private static async Task<Image> LoadImageAsync(string fileName, Size rescaleTo = default)
+        try
         {
-            await s_semaphore.WaitAsync();
+            Image?.Dispose();
+            Image = await LoadImageAsync(_imageFilename!, rescaleTo);
+        }
+        catch (Exception)
+        {
+        }
+    }
 
-            var imageResult = await Task.Run<Image>(() =>
+    public virtual void DisposeImage()
+    {
+        if (Image is not null)
+        {
+            Image.Dispose();
+            Image = null;
+        }
+    }
+
+    protected virtual void OnImageChanged(EventArgs e)
+        => ImageChanged?.Invoke(this, e);
+
+    private static async Task<Image> LoadImageAsync(string fileName, Size rescaleTo = default)
+    {
+        await s_semaphore.WaitAsync();
+
+        var imageResult = await Task.Run<Image>(() =>
+        {
+            var image = Image.FromFile(fileName);
+            Size rescaleToAligned;
+
+            if (rescaleTo != default)
             {
-                var image = Image.FromFile(fileName);
-                Size rescaleToAligned;
+                float originalRatio = (float)image.Width / (float)image.Height;
+                float targetRatio = (float)rescaleTo.Width / (float)rescaleTo.Height;
 
-                if (rescaleTo != default)
+                // We must do the scaling the other way around, if it is Portrait format.
+                bool flipFlag = originalRatio < 1;
+
+                if ((originalRatio < targetRatio) ^ flipFlag)
                 {
-                    float originalRatio = (float)image.Width / (float)image.Height;
-                    float targetRatio = (float)rescaleTo.Width / (float)rescaleTo.Height;
-
-                    // We must do the scaling the other way around, if it is Portrait format.
-                    bool flipFlag = originalRatio < 1;
-
-                    if ((originalRatio < targetRatio) ^ flipFlag)
-                    {
-                        var ratioH = (float)rescaleTo.Height / (float)image.Height;
-                        rescaleToAligned = new((int)(image.Width * ratioH), rescaleTo.Height);
-                    }
-                    else
-                    {
-                        var ratioW = (float)rescaleTo.Width / (float)image.Width;
-                        rescaleToAligned = new(rescaleTo.Width, (int)(image.Height * ratioW));
-                    }
-
-                    var imageAligned = new Bitmap(image, rescaleToAligned);
-                    image.Dispose();
-
-                    return imageAligned;
+                    var ratioH = (float)rescaleTo.Height / (float)image.Height;
+                    rescaleToAligned = new((int)(image.Width * ratioH), rescaleTo.Height);
+                }
+                else
+                {
+                    var ratioW = (float)rescaleTo.Width / (float)image.Width;
+                    rescaleToAligned = new(rescaleTo.Width, (int)(image.Height * ratioW));
                 }
 
-                return image;
-            });
+                var imageAligned = new Bitmap(image, rescaleToAligned);
+                image.Dispose();
 
-            s_semaphore.Release();
+                return imageAligned;
+            }
 
-            return imageResult;
-        }
+            return image;
+        });
+
+        s_semaphore.Release();
+
+        return imageResult;
     }
 }

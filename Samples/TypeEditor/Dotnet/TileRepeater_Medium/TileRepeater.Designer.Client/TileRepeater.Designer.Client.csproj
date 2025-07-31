@@ -11,5 +11,9 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\TileRepeater.ClientServerProtocol\TileRepeater.ClientServerProtocol.csproj" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Update="Microsoft.WinForms.Designer.SDK" Version="1.13.0-preview.2.24575.3" />
+	</ItemGroup>
   
 </Project>

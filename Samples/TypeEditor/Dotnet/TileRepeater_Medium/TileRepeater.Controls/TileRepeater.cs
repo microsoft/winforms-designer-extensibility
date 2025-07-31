@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace WinForms.Tiles
 {
@@ -66,12 +67,18 @@ namespace WinForms.Tiles
                 _itemTemplate = value;
 
                 // We update the rendered content only at design-time, not at runtime.
-                if (IsHandleCreated && this.IsAncestorSiteInDesignMode)
+                if (IsHandleCreated && IsAncestorSiteInDesignMode)
                 {
                     Invalidate();
                 }
             }
         }
+
+        private bool ShouldSerializeItemTemplate()
+            => _itemTemplate is not null && _itemTemplate.TemplateType is not null;
+
+        private void ResetItemTemplate()
+            => ItemTemplate = null;
 
         /// <summary>
         ///  Gets or sets the template which should act as a separator indicator.
@@ -90,16 +97,23 @@ namespace WinForms.Tiles
                 _separatorTemplate = value;
 
                 // We update the rendered content only at design-time, not at runtime.
-                if (IsHandleCreated && this.IsAncestorSiteInDesignMode)
+                if (IsHandleCreated && IsAncestorSiteInDesignMode)
                 {
                     Invalidate();
                 }
             }
         }
 
+        private bool ShouldSerializeSeparatorTemplate()
+            => _separatorTemplate is not null && _separatorTemplate.TemplateType is not null;
+
+        private void ResetSeparatorTemplate()
+            => SeparatorTemplate = null;
+
         /// <summary>
         ///  Gets or sets the data source for the TileRepeater control.
         /// </summary>
+        [AllowNull]
         [Description(DataSourceDescription)]
         [AttributeProvider(typeof(IListSource)),
          Bindable(true)]
@@ -126,11 +140,17 @@ namespace WinForms.Tiles
             }
         }
 
+        private bool ShouldSerializeDataSource()
+            => _dataSource is not null && _dataSource.Count > 0;
+
+        private void ResetDataSource()
+            => DataSource = null;
+
         protected override void CreateHandle()
         {
             base.CreateHandle();
 
-            if (this.IsAncestorSiteInDesignMode)
+            if (IsAncestorSiteInDesignMode)
             {
                 PopulateDesignerContent();
             }
