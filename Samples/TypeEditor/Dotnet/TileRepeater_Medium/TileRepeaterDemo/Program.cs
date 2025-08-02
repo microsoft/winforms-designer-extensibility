@@ -12,6 +12,8 @@ namespace TileRepeaterDemo
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
+            Application.SetColorMode(SystemColorMode.System);
+
             // Comment this line in and the next line out for running the Client/Server Demo.
             Application.Run(new MainForm());
             // Application.Run(new SimplifiedTileRepeaterTestForm());
